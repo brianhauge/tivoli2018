@@ -9,11 +9,10 @@
 setlocale(LC_ALL, "da_DK");
 
 spl_autoload_register(function ($class) {
-    include $class . '.php';
     include 'model/' . $class . '.php';
 });
 
 $smsBody = new SmsContent();
 $smsBody->setSmscontent($_GET['body']);
 
-file_put_contents("tmp.txt",$smsBody->getSmscontent());
+file_put_contents("tmp.txt",$smsBody->getSmscontent() . " Point: " . $smsBody->getPoint() . " Post: " . $smsBody->getPost() . " Hold: " . $smsBody->getTeam() . "\n", FILE_APPEND | LOCK_EX);

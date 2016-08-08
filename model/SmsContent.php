@@ -62,9 +62,9 @@ class SmsContent extends BaseInit
     public function setSmscontent($smscontent)
     {
         $this->smscontent = $smscontent;
-        preg_match("/poin?t?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->point);
-        preg_match("/post?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->post);
-        preg_match("/ho?l?d?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->team);
+        preg_match("/poin?t?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->point[0]);
+        preg_match("/post?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->post[0]);
+        preg_match("/ho?l?d?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->team[0]);
         $this->logger->info("SMS Content: ").$smscontent;
     }
 

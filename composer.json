@@ -1,0 +1,15 @@
+{
+  "name": "tivoli2016/tivoli2016",
+  "description": "description_text",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Brian Hauge Hansen",
+      "email": "brian.hauge@gmail.com"
+    }
+  ],
+  "require": {
+    "katzgrau/klogger": "1.2.0"
+  }
+}

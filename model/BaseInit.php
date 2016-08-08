@@ -23,7 +23,7 @@ abstract class BaseInit
     function __construct()
     {
         $this->premessage = str_pad(basename($_SERVER['PHP_SELF']),20)." | ";
-        $this->logger = new Logger(__DIR__.'/logs');
+        $this->logger = new Logger(__DIR__ . '/logs');
 
         $this->con = mysqli_connect('mysql6.unoeuro.com', 'haugemedia_net', '11PVT8se','haugemedia_net_db') or die("Error " . mysqli_error($this->con));
         // Check connection

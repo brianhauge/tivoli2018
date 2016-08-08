@@ -9,7 +9,8 @@
 setlocale(LC_ALL, "da_DK");
 
 spl_autoload_register(function ($class) {
-    include './model/' . $class . '.php';
+    include $class . '.php';
+    include 'model/' . $class . '.php';
 });
 
 $smsBody = new SmsContent();

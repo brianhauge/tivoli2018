@@ -38,6 +38,8 @@ class SmsContent extends BaseInit
     {
         return $this->post;
 
+    }
+
     /**
      * @return mixed
      */
@@ -63,6 +65,7 @@ class SmsContent extends BaseInit
         preg_match("poin?t?(\d{1,2}(?!\d)|100)(\D|$)",$smscontent,$this->point);
         preg_match("post?(\d{1,2}(?!\d)|100)(\D|$)",$smscontent,$this->post);
         preg_match("te?a?m?(\d{1,2}(?!\d)|100)(\D|$)",$smscontent,$this->team);
+        $this->logger->info("SMS Content: ").$smscontent;
     }
 
 

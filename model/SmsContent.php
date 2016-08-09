@@ -49,6 +49,33 @@ class SmsContent extends BaseInit
     }
 
     /**
+     * @param mixed $smscontent
+     */
+    private function setPoint($smscontent)
+    {
+        preg_match("/poin?t?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
+        preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->point);
+    }
+
+    /**
+     * @param mixed $smscontent
+     */
+    private function setPost($smscontent)
+    {
+        preg_match("/post?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
+        preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->post);
+    }
+
+    /**
+     * @param mixed $smscontent
+     */
+    private function setTeam($smscontent)
+    {
+        preg_match("/ho?l?d?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
+        preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->team);
+    }
+
+    /**
      * @return mixed
      */
     public function getSmscontent()
@@ -61,10 +88,10 @@ class SmsContent extends BaseInit
      */
     public function setSmscontent($smscontent)
     {
-        $this->smscontent = $smscontent;
-        preg_match("/poin?t?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->point);
-        preg_match("/post?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->post);
-        preg_match("/ho?l?d?(\\d{1,2}(?!\\d)|100)(\\D|$)/",$smscontent,$this->team);
+        $this->smscontent = preg_replace('/\s+/', '', $smscontent);
+        $this->setPoint($this->smscontent);
+        $this->setPost($this->smscontent);
+        $this->setTeam($this->smscontent);
         $this->logger->info("SMS Content: ").$smscontent;
     }
 

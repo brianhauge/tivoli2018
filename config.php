@@ -10,3 +10,4 @@ define(DBHOST,"localhost");
 define(DBUSER, "db");
 define(DBPASS, "db");
 define(DB, "tivoli2016");
+difine(LOGPATH, "~/PhpstormProjects/tivoli2016/logs");

@@ -7,6 +7,8 @@
  * Time: 19:03
  */
 
+include_once("../config.php");
+
 if( ! ini_get('date.timezone') )
 {
     date_default_timezone_set('Europe/Copenhagen');
@@ -25,7 +27,7 @@ abstract class BaseInit
         $this->premessage = str_pad(basename($_SERVER['PHP_SELF']),20)." | ";
         $this->logger = new Logger(__DIR__ . '/logs');
 
-        $this->con = mysqli_connect('mysql6.unoeuro.com', 'haugemedia_net', '11PVT8se','haugemedia_net_db') or die("Error " . mysqli_error($this->con));
+        $this->con = mysqli_connect(DBHOST, DBUSER, DBPASS, DB) or die("Error " . mysqli_error($this->con));
         // Check connection
         if (mysqli_connect_errno())
         {

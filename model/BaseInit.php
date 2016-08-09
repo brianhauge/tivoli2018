@@ -7,7 +7,7 @@
  * Time: 19:03
  */
 
-include_once("../config.php");
+include_once("config.php");
 
 if( ! ini_get('date.timezone') )
 {

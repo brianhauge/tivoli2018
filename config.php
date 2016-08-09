@@ -6,8 +6,8 @@
  * Time: 16:46
  */
 
-define(DBHOST,"localhost");
-define(DBUSER, "db");
-define(DBPASS, "db");
-define(DB, "tivoli2016");
-define(LOGPATH, "~/PhpstormProjects/tivoli2016/logs");
+define("DBHOST","localhost");
+define("DBUSER", "db");
+define("DBPASS", "db");
+define("DB", "tivoli2016");
+define("LOGPATH", "~/PhpstormProjects/tivoli2016/logs");

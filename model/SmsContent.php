@@ -92,7 +92,7 @@ class SmsContent extends BaseInit
         $this->setPoint($this->smscontent);
         $this->setPost($this->smscontent);
         $this->setTeam($this->smscontent);
-        $this->logger->info("SMS Content: ").$smscontent;
+        $this->logger->info("SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
     }
 
 

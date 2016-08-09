@@ -1,0 +1,16 @@
+[2016-08-08 21:11:33.000000] [info] SMS Content: 
+[2016-08-08 21:11:49.000000] [info] SMS Content: 
+[2016-08-08 21:12:18.000000] [info] SMS Content: 
+[2016-08-08 21:14:08.000000] [info] SMS Content: 
+[2016-08-08 21:18:27.000000] [info] SMS Content: 
+[2016-08-08 21:18:50.000000] [info] SMS Content: 
+[2016-08-08 21:20:09.000000] [info] SMS Content: 
+[2016-08-08 21:28:42.000000] [info] SMS Content: 
+[2016-08-08 21:28:48.000000] [info] SMS Content: 
+[2016-08-08 21:29:30.000000] [info] SMS Content: 
+[2016-08-08 21:29:49.000000] [info] SMS Content: 
+[2016-08-08 21:33:17.000000] [info] SMS Content: 
+[2016-08-08 21:33:33.000000] [info] SMS Content: 
+[2016-08-08 21:33:45.000000] [info] SMS Content: 
+[2016-08-08 21:34:01.000000] [info] SMS Content: 
+[2016-08-08 21:34:10.000000] [info] SMS Content: 

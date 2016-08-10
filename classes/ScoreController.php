@@ -34,4 +34,8 @@ class ScoreController extends BaseInit
             $this->smsSender->sendSms($smsModel->getSender(),"Point til hold ".$smsModel->getTeam()." post ".$smsModel->getPost()." givet");
         }
     }
+    
+    public function getScoreByTeam($team) {
+        
+    }
 }

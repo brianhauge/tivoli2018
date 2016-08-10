@@ -88,7 +88,7 @@ class SmsModel extends BaseInit
      */
     public function setSmscontent($smscontent)
     {
-        $this->smscontent = preg_replace('/\s+/', '', $smscontent);
+        $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPoint($this->smscontent);
         $this->setPost($this->smscontent);
         $this->setTeam($this->smscontent);

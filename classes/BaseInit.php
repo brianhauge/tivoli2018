@@ -26,9 +26,4 @@ abstract class BaseInit
         $this->premessage = str_pad(basename($_SERVER['PHP_SELF']),20)." | ";
         $this->logger = new Logger(LOGPATH);
     }
-
-    function __destruct()
-    {
-        mysqli_close($this->con);
-    }
 }

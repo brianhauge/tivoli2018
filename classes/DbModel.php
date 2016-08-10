@@ -30,14 +30,13 @@ class DbModel extends BaseInit
     }
 
     public function getScore() {
-        $myArray = array();
+        $score = array();
         if ($result = $this->con->query("SELECT * FROM tivoli2016_score")) {
-
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                $myArray[] = $row;
+                $score[] = $row;
             }
         }
-        return $myArray;
+        return $score;
     }
 
     public function __destruct()

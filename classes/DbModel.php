@@ -26,7 +26,7 @@ class DbModel extends BaseInit
     }
 
     public function insertScore($team, $point, $post, $creator) {
-        $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now())");
+        $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
     public function __destruct()

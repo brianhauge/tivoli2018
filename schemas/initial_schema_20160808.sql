@@ -30,5 +30,6 @@ CREATE TABLE tivoli2016_score (
   `postid` bigint(6) unsigned NOT NULL,
   `creator` varchar(255),
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`, `teamid`, `postid`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `score` (`teamid`, `postid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

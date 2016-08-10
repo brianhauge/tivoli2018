@@ -29,6 +29,17 @@ class DbModel extends BaseInit
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
+    public function getScore() {
+        $myArray = array();
+        if ($result = $this->con->query("SELECT * FROM tivoli2016_score")) {
+
+            while($row = $result->fetch_array()) {
+                $myArray[] = $row;
+            }
+        }
+        return $myArray;
+    }
+
     public function __destruct()
     {
         parent::__destruct();

@@ -12,10 +12,21 @@ spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
 
-$smsBody = new IncomingSmsScoreModel();
-$smsBody->setSmscontent($_GET['body'],$_GET['sender']);
-
-print("SMS Content: ".$smsBody->getSmscontent() . " Point: " . $smsBody->getPoint() . " Post: " . $smsBody->getPost() . " Hold: " . $smsBody->getTeam());
-
 $db = new DbModel();
-$db->insertScore($smsBody->getTeam(), $smsBody->getPoint(), $smsBody->getPost(), $smsBody->getSender());
+
+if(isset($_GET['body'])) {
+    $smsBody = new IncomingSmsScoreModel();
+    $smsBody->setSmscontent($_GET['body'],$_GET['sender']);
+
+    print("SMS Content: ".$smsBody->getSmscontent() . " Point: " . $smsBody->getPoint() . " Post: " . $smsBody->getPost() . " Hold: " . $smsBody->getTeam());
+
+
+    $db->insertScore($smsBody->getTeam(), $smsBody->getPoint(), $smsBody->getPost(), $smsBody->getSender());
+}
+
+else {
+    print("<head></head><body><pre>");
+    print_r($db->getScore());
+    print("</pre></body>");
+}
+

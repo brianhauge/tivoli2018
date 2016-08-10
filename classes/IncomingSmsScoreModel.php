@@ -7,7 +7,7 @@
  * Time: 16:05
  */
 
-class SmsModel extends BaseInit
+class IncomingSmsScoreModel extends BaseInit
 {
 
     /**
@@ -16,6 +16,7 @@ class SmsModel extends BaseInit
     private $point;
     private $post;
     private $team;
+    private $sender;
     private $smscontent;
 
     public function __construct()
@@ -78,6 +79,22 @@ class SmsModel extends BaseInit
     /**
      * @return mixed
      */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @param mixed $sender
+     */
+    private function setSender($sender)
+    {
+        $this->sender = $sender;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getSmscontent()
     {
         return $this->smscontent;
@@ -86,12 +103,13 @@ class SmsModel extends BaseInit
     /**
      * @param mixed $smscontent
      */
-    public function setSmscontent($smscontent)
+    public function setSmscontent($smscontent, $sender)
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPoint($this->smscontent);
         $this->setPost($this->smscontent);
         $this->setTeam($this->smscontent);
+        $this->setSender($sender);
         $this->logger->info("SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
     }
 

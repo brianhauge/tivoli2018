@@ -33,7 +33,7 @@ class DbModel extends BaseInit
         $myArray = array();
         if ($result = $this->con->query("SELECT * FROM tivoli2016_score")) {
 
-            while($row = $result->fetch_array()) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $myArray[] = $row;
             }
         }

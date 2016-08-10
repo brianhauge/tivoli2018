@@ -21,19 +21,10 @@ abstract class BaseInit
 {
     var $logger;
     var $premessage;
-    var $con;
     function __construct()
     {
         $this->premessage = str_pad(basename($_SERVER['PHP_SELF']),20)." | ";
         $this->logger = new Logger(LOGPATH);
-
-        $this->con = mysqli_connect(DBHOST, DBUSER, DBPASS, DB) or die("Error " . mysqli_error($this->con));
-        // Check connection
-        if (mysqli_connect_errno())
-        {
-            $this->logger("Failed to connect to MySQL: " . mysqli_connect_error());
-            die("DB issue");
-        }
     }
 
     function __destruct()

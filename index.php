@@ -9,10 +9,13 @@
 setlocale(LC_ALL, "da_DK");
 
 spl_autoload_register(function ($class) {
-    include 'model/' . $class . '.php';
+    include 'classes/' . $class . '.php';
 });
 
-$smsBody = new SmsContent();
+$smsBody = new SmsModel();
 $smsBody->setSmscontent($_GET['body']);
 
 print("SMS Content: ".$smsBody->getSmscontent() . " Point: " . $smsBody->getPoint() . " Post: " . $smsBody->getPost() . " Hold: " . $smsBody->getTeam());
+
+$db = new DbModel();
+$db->insertScore($smsBody->getTeam(), $smsBody->getPoint(), $smsBody->getPost(), $_GET['sender']);

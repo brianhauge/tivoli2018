@@ -7,7 +7,7 @@
  * Time: 16:05
  */
 
-class SmsContent extends BaseInit
+class SmsModel extends BaseInit
 {
 
     /**

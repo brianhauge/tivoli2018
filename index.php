@@ -43,10 +43,8 @@ else {
                     <div class="page-header">
                         <h1>Løbsplacering <small>Klokken <?php echo date("H:i"); ?></small></h1>
                     </div>
-                    <br />
                     <h3 class="text-muted">Gruppe 1</h3>
                     <?php print($score->getScoreTableByGroup(1)); ?>
-                    <br />
                     <h3 class="text-muted">Gruppe 2</h3>
                     <?php print($score->getScoreTableByGroup(2)); ?>
                 </div>

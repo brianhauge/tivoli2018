@@ -45,31 +45,33 @@ else {
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="page-header">
-                    <h1>Løbsplacering <small>Klokken <?php echo date("H:i"); ?></small></h1>
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="page-header">
+                        <h1>Løbsplacering <small>Klokken <?php echo date("H:i"); ?></small></h1>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Placering</th>
+                            <th>Hold</th>
+                            <th>Point</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $counter = 1;
+                        foreach ($db->getScore() as $score) {
+                            print("<tr>");
+                            print("<th placering='row'>$counter</th>");
+                            print("<td>" . $score['team'] . "</td>");
+                            print("<td><span class=\"badge\">" . $score['point'] . "</span></td>");
+                            print("</tr>");
+                            $counter++;
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Placering</th>
-                        <th>Hold</th>
-                        <th>Point</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $counter = 1;
-                    foreach ($db->getScore() as $score) {
-                        print("<tr>");
-                        print("<th placering='row'>$counter</th>");
-                        print("<td>" . $score['team'] . "</td>");
-                        print("<td><span class=\"badge\">" . $score['point'] . "</span></td>");
-                        print("</tr>");
-                        $counter++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </body>

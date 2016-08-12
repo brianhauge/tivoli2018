@@ -14,6 +14,6 @@ class SendSmsModel extends BaseInit
     }
 
     public function sendSms($receiver, $message) {
-        $this->logger->info("Sending SMS to ".$message);
+        $this->logger->info("Sending SMS: '".$message."' To: ".$receiver);
     }
 }

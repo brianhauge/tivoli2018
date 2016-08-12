@@ -10,7 +10,6 @@
     }
   ],
   "require": {
-    "katzgrau/klogger": "1.2.0",
-    "twitter/bootstrap": "3.3.x-dev"
+    "katzgrau/klogger": "1.2.0"
   }
 }

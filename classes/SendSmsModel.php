@@ -14,6 +14,21 @@ class SendSmsModel extends BaseInit
     }
 
     public function sendSms($receiver, $message) {
-        $this->logger->info("Sending SMS: '".$message."' To: ".$receiver);
+        $receiver = urlencode($receiver);
+        $message = urlencode($message);
+        $this->logger->info("Receiver: ".$receiver." - SMS: ".$message);
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => "http://10.74.150.10:52583/send.html?smsto=".$receiver."&smsbody=".$message."&smstype=sms",
+            CURLOPT_USERAGENT => 'PHP Tivoli'
+        ));
+        $resp = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        curl_close($curl);
+
+        $this->logger->info("Sending SMS: '".urldecode($message)."' To: ".urldecode($receiver). " - Response code: ".$info['http_code']);
     }
+
 }

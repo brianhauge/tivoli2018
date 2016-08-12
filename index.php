@@ -13,15 +13,16 @@ spl_autoload_register(function ($class) {
 });
 
 $db = new DbModel();
+$score = new ScoreController();
 
 if(isset($_GET['body'])) {
-    $smsBody = new IncomingSmsScoreModel();
-    $smsBody->setSmscontent($_GET['body'],$_GET['sender']);
+    $smsModel = new IncomingSmsScoreModel();
+    $smsModel->setSmscontent($_GET['body'],$_GET['sender']);
 
-    print("SMS Content: ".$smsBody->getSmscontent() . " Point: " . $smsBody->getPoint() . " Post: " . $smsBody->getPost() . " Hold: " . $smsBody->getTeam());
+    print("SMS Content: ".$smsModel->getSmscontent() . " Point: " . $smsModel->getPoint() . " Post: " . $smsModel->getPost() . " Hold: " . $smsModel->getTeam());
 
-
-    $db->insertScore($smsBody->getTeam(), $smsBody->getPoint(), $smsBody->getPost(), $smsBody->getSender());
+    $score->handleReceivedPoints($smsModel);
+    //$db->insertScore($smsBody->getTeam(), $smsBody->getPoint(), $smsBody->getPost(), $smsBody->getSender());
 }
 
 else {
@@ -38,7 +39,6 @@ else {
             FDF og spejderne indtager Tivoli - Score
         </title>
         <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
-        <link rel="shortcut icon" href="/favicon.ico">
         <link rel="stylesheet" href="dist/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css" type="text/css">
     </head>
@@ -49,28 +49,12 @@ else {
                     <div class="page-header">
                         <h1>Løbsplacering <small>Klokken <?php echo date("H:i"); ?></small></h1>
                     </div>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Placering</th>
-                            <th>Hold</th>
-                            <th>Point</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $counter = 1;
-                        foreach ($db->getScore() as $score) {
-                            print("<tr>");
-                            print("<th placering='row'>$counter</th>");
-                            print("<td>" . $score['team'] . "</td>");
-                            print("<td><span class=\"badge\">" . $score['point'] . "</span></td>");
-                            print("</tr>");
-                            $counter++;
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                    <br />
+                    <h3 class="text-muted">Gruppe 1</h3>
+                    <?php print($score->getScoreTableByGroup(1)); ?>
+                    <br />
+                    <h3 class="text-muted">Gruppe 2</h3>
+                    <?php print($score->getScoreTableByGroup(2)); ?>
                 </div>
             </div>
         </div>

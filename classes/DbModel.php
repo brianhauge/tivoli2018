@@ -26,12 +26,13 @@ class DbModel extends BaseInit
     }
 
     public function insertScore($team, $point, $post, $creator) {
+        $this->logger->info("$team, $point, $post, $creator");
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
-    public function getScore() {
+    public function getScore($group) {
         $score = array();
-        if ($result = $this->con->query("select group_concat(t.id, \". \", t.name) team, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left outer join tivoli2016_score s on s.teamid = t.id group by teamid order by point desc")) {
+        if ($result = $this->con->query("select concat(t.id, \". \", t.name) team, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left outer join tivoli2016_score s on s.teamid = t.id where t.groups = '$group' group by teamid order by point desc")) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $score[] = $row;
             }

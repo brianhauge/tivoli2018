@@ -35,7 +35,19 @@ class ScoreController extends BaseInit
         }
     }
     
-    public function getScoreByTeam($team) {
-        
+    public function getScoreTableByGroup($group) {
+        $scoreTable = "<table class=\"table table-striped\"><thead><tr><th>Placering</th><th>Hold</th><th>Point</th></tr></thead><tbody>";
+        $counter = 1;
+        foreach ($this->dbModel->getScore($group) as $score) {
+            $scoreTable .= "<tr>";
+            $scoreTable .= "<th width='20%'>$counter</th>";
+            $scoreTable .= "<td width='70%'>" . $score['team'] . "</td>";
+            $scoreTable .= "<td><span class=\"badge\">" . $score['point'] . "</span></td>";
+            $scoreTable .= "</tr>";
+            $counter++;
+        }
+        $scoreTable .= "</tbody>";
+        $scoreTable .= "</table>";
+        return $scoreTable;
     }
 }

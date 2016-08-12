@@ -19,13 +19,13 @@ class ScoreController extends BaseInit
 
     public function handleReceivedPoints(IncomingSmsScoreModel $smsModel) {
         if($smsModel->getTeam() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"'hold' ikke fundet i beskeden");
+            $this->smsSender->sendSms($smsModel->getSender(),"'hold' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
         }
         elseif ($smsModel->getPost() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"'post' ikke fundet i beskeden");
+            $this->smsSender->sendSms($smsModel->getSender(),"'post' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
         }
         elseif ($smsModel->getPoint() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"'point' ikke fundet i beskeden");
+            $this->smsSender->sendSms($smsModel->getSender(),"'point' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
         }
         else {
             // Insert Score

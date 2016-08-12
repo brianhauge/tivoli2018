@@ -39,8 +39,8 @@ else {
         </title>
         <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
         <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="stylesheet" href="vendor/twitter/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="vendor/twitter/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="dist/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css" type="text/css">
     </head>
     <body>
         <div class="container-fluid">

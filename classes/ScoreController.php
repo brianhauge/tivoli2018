@@ -22,7 +22,7 @@ class ScoreController extends BaseInit
             $this->smsSender->sendSms($smsModel->getSender(),"'hold' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
         }
         elseif ($smsModel->getPost() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"'post' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
+            $this->smsSender->sendSms($smsModel->getSender(),"Du er ikke tjekket ind på en post. Send 'checkin post 9' for at tjekke ind. Ring 25 21 20 02 for hjælp.");
         }
         elseif ($smsModel->getPoint() < 1) {
             $this->smsSender->sendSms($smsModel->getSender(),"'point' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
@@ -31,7 +31,7 @@ class ScoreController extends BaseInit
             // Insert Score
             $this->dbModel->insertScore($smsModel->getTeam(),$smsModel->getPoint(),$smsModel->getPost(),$smsModel->getSender());
             // Send status to $sender
-            $this->smsSender->sendSms($smsModel->getSender(),"Point til hold ".$smsModel->getTeam()." post ".$smsModel->getPost()." givet");
+            $this->smsSender->sendSms($smsModel->getSender(),$smsModel->getPoint()." point til hold ".$smsModel->getTeam()." fra post ".$smsModel->getPost()." givet. Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.");
         }
     }
     

@@ -26,8 +26,13 @@ class DbModel extends BaseInit
     }
 
     public function insertScore($team, $point, $post, $creator) {
-        $this->logger->info("$team, $point, $post, $creator");
+        $this->logger->info("Log point: $team, $point, $post, $creator");
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");
+    }
+
+    public function insertCheckin($postid, $sender) {
+        $this->logger->info("Log check-in: $postid, $sender");
+        $this->con->query("INSERT INTO tivoli2016_postcheckin (mobile, postid, updated_at) VALUES ('$sender', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
     }
 
     public function getScore($group) {
@@ -39,6 +44,25 @@ class DbModel extends BaseInit
         }
         return $score;
     }
+
+    public function getCheckedinPost($sender) {
+        $postid = 0;
+        if ($result = $this->con->query("select postid from tivoli2016_postcheckin where mobile = '$sender'")) {
+            $row = mysqli_fetch_assoc($result);
+            $postid = $row['postid'];
+        }
+        return $postid;
+    }
+
+    public function getTeamPoints($team) {
+        $postid = 0;
+        if ($result = $this->con->query("select sum(point) point from tivoli2016_score where teamid = '$team'")) {
+            $row = mysqli_fetch_assoc($result);
+            $postid = $row['point'];
+        }
+        return $postid;
+    }
+
 
     public function __destruct()
     {

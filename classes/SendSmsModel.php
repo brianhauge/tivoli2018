@@ -21,7 +21,7 @@ class SendSmsModel extends BaseInit
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "http://10.74.150.10:52583/send.html?smsto=".$receiver."&smsbody=".$message."&smstype=sms",
+            CURLOPT_URL => "http://127.0.0.1:8585/send.html?smsto=".$receiver."&smsbody=".$message."&smstype=sms",
             CURLOPT_USERAGENT => 'PHP Tivoli'
         ));
         $resp = curl_exec($curl);

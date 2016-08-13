@@ -10,18 +10,20 @@
 class IncomingSmsScoreModel extends BaseInit
 {
 
-    /**
-     * SmsContent constructor.
-     */
     private $point;
     private $post;
     private $team;
     private $sender;
     private $smscontent;
+    private $db;
 
+    /**
+     * SmsContent constructor.
+     */
     public function __construct()
     {
         parent::__construct();
+        $this->db = new DbModel();
     }
 
     /**
@@ -54,17 +56,16 @@ class IncomingSmsScoreModel extends BaseInit
      */
     private function setPoint($smscontent)
     {
-        preg_match("/poin?t?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
+        preg_match("/po?i?n?t?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
         preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->point);
     }
 
     /**
-     * @param mixed $smscontent
+     * @param mixed $sender
      */
-    private function setPost($smscontent)
+    private function setPost($sender)
     {
-        preg_match("/post?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
-        preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->post);
+        $this->post = $this->db->getCheckedinPost($sender);
     }
 
     /**
@@ -107,7 +108,7 @@ class IncomingSmsScoreModel extends BaseInit
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPoint($this->smscontent);
-        $this->setPost($this->smscontent);
+        $this->setPost($sender);
         $this->setTeam($this->smscontent);
         $this->setSender($sender);
         $this->logger->info("SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());

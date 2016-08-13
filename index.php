@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Brian Hauge Hansen">
+    <meta name="description" content="FDF og spejderne indtager Tivoli">
+    <title>FDF og spejderne indtager Tivoli - Score</title>
+    <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css" type="text/css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
 <?php
 /**
  * Created by PhpStorm.
@@ -12,34 +29,33 @@ spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
 
+
 $score = new ScoreController();
 
-if(isset($_GET['body'])) {
+if(isset($_GET['body']) && isset($_GET['sender'])) {
+    print("<h3>Getters:</h3><pre>");
     print_r($_GET);
-    $incomingSmsScoreModel = new IncomingSmsScoreModel();
-    $incomingSmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
-    $score->handleReceivedPoints($incomingSmsScoreModel);
+    if($_GET['body'] == '' || $_GET['sender'] == '') {
+        die("<br /><br /><div class=\"alert alert-danger\" role=\"alert\">Empty fields. Aborting</div>");
+    }
+    if(preg_match("/check/",$_GET['body'])) {
+        $checkinPostModel = new PostCheckInModel();
+        $checkin = new PostCheckInController();
+        $checkinPostModel->setSmscontent($_GET['body'],$_GET['sender']);
+        $checkin->handleCheckin($checkinPostModel);
+    }
+    else {
+        $incomingSmsScoreModel = new IncomingSmsScoreModel();
+        $incomingSmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
+        $score->handleReceivedPoints($incomingSmsScoreModel);
+    }
+    print("</pre><h3>Log:</h3><pre style='font-size: 8px'>");
+    print(str_replace(PHP_EOL, '<br />', shell_exec("tail -n10 logs/log_2016-08-13.txt")));
+    print("</pre>");
 }
 
 else {
 ?>
-<!DOCTYPE html>
-<html lang="da">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Brian Hauge Hansen">
-        <meta name="description" content="FDF og spejderne indtager Tivoli">
-        <title>FDF og spejderne indtager Tivoli - Score</title>
-        <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
-        <link rel="stylesheet" href="dist/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css" type="text/css">
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
                     <div class="page-header">
                         <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
                     </div>
@@ -47,10 +63,12 @@ else {
                     <?php print($score->getScoreTableByGroup(1)); ?>
                     <h3 class="text-muted">Gruppe 2</h3>
                     <?php print($score->getScoreTableByGroup(2)); ?>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+
 <?php
 }
+?>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -27,7 +27,7 @@ class PostCheckInController extends BaseInit
             $this->dbModel->insertCheckin($checkInModel->getPost(),$checkInModel->getSender());
             // Send status to $sender
             $this->logger->info($checkInModel->getSender()." has checked in on post ".$checkInModel->getPost());
-            $this->smsSender->sendSms($checkInModel->getSender(),"Du er nu checked in på post ".$checkInModel->getPost().". For at give point, send ex: hold 4 point 20. %0aHusk at checke ind igen, hvis du flytter post!");
+            $this->smsSender->sendSms($checkInModel->getSender(),"Du er nu checked in på post ".$checkInModel->getPost().". For at give point, send ex: hold 4 point 20. Husk at checke ind igen, hvis du flytter post!");
         }
     }
 }

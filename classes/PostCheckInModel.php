@@ -33,7 +33,7 @@ class PostCheckInModel extends BaseInit
      */
     private function setPost($smscontent)
     {
-        preg_match("/post?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
+        preg_match("/po?s?t?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
         preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->post);
     }
 

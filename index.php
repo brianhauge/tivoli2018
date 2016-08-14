@@ -30,7 +30,7 @@ spl_autoload_register(function ($class) {
 });
 
 
-$score = new ScoreController();
+$score = new SmsScoreController();
 
 if(isset($_GET['body']) && isset($_GET['sender'])) {
     print("<h3>Getters:</h3><pre>");
@@ -38,16 +38,16 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
     if($_GET['body'] == '' || $_GET['sender'] == '') {
         die("<br /><br /><div class=\"alert alert-danger\" role=\"alert\">Empty fields. Aborting</div>");
     }
-    if(preg_match("/check/",$_GET['body'])) {
+    if(preg_match("/[Cc]heck|[Ttjek]/",$_GET['body'])) {
         $checkinPostModel = new PostCheckInModel();
         $checkin = new PostCheckInController();
         $checkinPostModel->setSmscontent($_GET['body'],$_GET['sender']);
         $checkin->handleCheckin($checkinPostModel);
     }
     else {
-        $incomingSmsScoreModel = new IncomingSmsScoreModel();
-        $incomingSmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
-        $score->handleReceivedPoints($incomingSmsScoreModel);
+        $SmsScoreModel = new SmsScoreModel();
+        $SmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
+        $score->handleReceivedPoints($SmsScoreModel);
     }
     print("</pre><h3>Log:</h3><pre style='font-size: 8px'>");
     print(str_replace(PHP_EOL, '<br />', shell_exec("tail -n10 logs/log_2016-08-13.txt")));

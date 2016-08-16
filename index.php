@@ -1,3 +1,13 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: bhansen
+ * Date: 08/08/16
+ * Time: 20:24
+ */
+
+?>
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -16,19 +26,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 <?php
-/**
- * Created by PhpStorm.
- * User: bhansen
- * Date: 08/08/16
- * Time: 20:24
- */
 
 setlocale(LC_ALL, "da_DK");
-
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
-
 
 $score = new SmsScoreController();
 

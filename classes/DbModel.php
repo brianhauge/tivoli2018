@@ -25,6 +25,13 @@ class DbModel extends BaseInit
         }
     }
 
+    public function insertTeam($name, $leader, $mobile, $email, $kreds, $group) {
+        $this->logger->info("Log create team: $name, $mobile, $email, $kreds, $group");
+        $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, updated_at) VALUES ('$name', '$leader', '$mobile', '$email', '$kreds', '$group', now())");
+        return $this->con->insert_id;
+
+    }
+
     public function insertScore($team, $point, $post, $creator) {
         $this->logger->info("Log point: $team, $point, $post, $creator");
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");

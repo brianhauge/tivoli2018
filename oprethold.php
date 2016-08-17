@@ -28,7 +28,7 @@
                     <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
                     <div class="col-sm-10">
                         <div class="radio">
-                            <label><input type="radio" name="group" id="1" value="1">0 .- 4. klasse</label>
+                            <label><input type="radio" name="group" id="1" value="1">0. - 4. klasse</label>
                         </div>
                         <div class="radio">
                             <label><input type="radio" name="group" id="2" value="2">5. - 8. klasse</label>

@@ -37,7 +37,7 @@
                             <label><input type="radio" name="group" id="3" value="3">9. klasse til 18 år</label>
                         </div>
                         <div class="radio disabled">
-                            <label><input type="radio" name="group" id="9" value="9">Natløb</label>
+                            <label><input type="radio" name="group" id="9" value="9" disabled>Natløb</label>
                         </div>
                     </div>
                 </div>

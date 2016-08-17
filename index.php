@@ -61,7 +61,7 @@ else {
     <div class="page-header">
         <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
     </div>
-    <h3 class="text-muted">0 .- 4. klasse</h3>
+    <h3 class="text-muted">0. - 4. klasse</h3>
     <?php print($score->getScoreTableByGroup(1)); ?>
     <h3 class="text-muted">5. - 8. klasse</h3>
     <?php print($score->getScoreTableByGroup(2)); ?>

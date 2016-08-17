@@ -58,13 +58,17 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
 
 else {
 ?>
-                    <div class="page-header">
-                        <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
-                    </div>
-                    <h3 class="text-muted">Gruppe 1</h3>
-                    <?php print($score->getScoreTableByGroup(1)); ?>
-                    <h3 class="text-muted">Gruppe 2</h3>
-                    <?php print($score->getScoreTableByGroup(2)); ?>
+    <div class="page-header">
+        <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
+    </div>
+    <h3 class="text-muted">0 .- 4. klasse</h3>
+    <?php print($score->getScoreTableByGroup(1)); ?>
+    <h3 class="text-muted">5. - 8. klasse</h3>
+    <?php print($score->getScoreTableByGroup(2)); ?>
+    <h3 class="text-muted">9. klasse til 18 år</h3>
+    <?php print($score->getScoreTableByGroup(2)); ?>
+    <h3 class="text-muted">Natløb</h3>
+    <?php print($score->getScoreTableByGroup(9)); ?>
 
 <?php
 }

@@ -42,7 +42,7 @@ class CreateTeamController extends BaseInit
             } else {
 
                 $tmp = "<h3>Hold oprettet</h3>";
-                $tmp .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><b>Skriv nummeret ned. Det skal bruges ved pointgivning på posterne.</b><br />Ved ankomst kan i komme forbi løbsteltet og får udleveret et visitkort med jeres hold navn og nummer.<br /></div>";
+                $tmp .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><p><b>Skriv nummeret ned. Det skal bruges ved pointgivning på posterne.</b></p><p>Ved ankomst kan i komme forbi løbsteltet og får udleveret et visitkort med jeres hold navn og nummer.</p></div>";
                 $tmp .= "<table class=\"table table-striped\">";
                 $tmp .= "<tr><th align='left'>Holdnavn: </th><td>".$teamModel->getName()." (gruppe: ".$teamModel->getGroup().")</td></tr>";
                 $tmp .= "<tr><th align='left'>Holdleder: </th><td>".$teamModel->getLeader()."</td></tr>";

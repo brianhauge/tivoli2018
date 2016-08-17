@@ -42,27 +42,26 @@ class CreateTeamController extends BaseInit
             } else {
 
                 $tmp = "<h3>Hold oprettet</h3>";
-                $tmp .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><b>Skriv nummeret ned. Det skal bruges ved pointgivning på posterne.</b></div>";
+                $tmp .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><b>Skriv nummeret ned. Det skal bruges ved pointgivning på posterne.</b><br />Ved ankomst kan i komme forbi løbsteltet og får udleveret et visitkort med jeres hold navn og nummer.<br /></div>";
                 $tmp .= "<table class=\"table table-striped\">";
-                $tmp .= "<tr><th>Holdnavn: </th><td>".$teamModel->getName()." (gruppe: ".$teamModel->getGroup().")</td></tr>";
-                $tmp .= "<tr><th>Holdleder: </th><td>".$teamModel->getLeader()."</td></tr>";
-                $tmp .= "<tr><th>Mobil: </th><td>".$teamModel->getMobile()."</td></tr>";
-                $tmp .= "<tr><th>HoldEmail: </th><td>".$teamModel->getEmail()."</td></tr>";
-                $tmp .= "<tr><th>Kreds / Gruppe: </th><td>".$teamModel->getKreds()."</td></tr></table>";
-                $tmp .= "<p>Du modtager snarest en mail med oplysningerne om holdet, sendt til: <b>". $teamModel->getEmail()."</b></p>";
-                $tmp .= "<br /><a class=\"btn btn-primary\" href=\"oprethold.php\" role=\"button\">Opret endnu et hold</a>";
-                $this->teamstatus['status'] = true;
-                $this->teamstatus['message'] = $tmp;
-
+                $tmp .= "<tr><th align='left'>Holdnavn: </th><td>".$teamModel->getName()." (gruppe: ".$teamModel->getGroup().")</td></tr>";
+                $tmp .= "<tr><th align='left'>Holdleder: </th><td>".$teamModel->getLeader()."</td></tr>";
+                $tmp .= "<tr><th align='left'>Mobil: </th><td>".$teamModel->getMobile()."</td></tr>";
+                $tmp .= "<tr><th align='left'>HoldEmail: </th><td>".$teamModel->getEmail()."</td></tr>";
+                $tmp .= "<tr><th align='left'>Kreds / Gruppe: </th><td>".$teamModel->getKreds()."</td></tr></table>";
 
                 // To send HTML mail, the Content-type header must be set
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
                 // Additional headers
-                $headers .= 'From: FDF og Spejderne <brian.hauge@gmail.com>' . "\r\n";
+                $headers .= 'Reply-to: FDF og Spejderne <brian.hauge@gmail.com>' . "\r\n";
 
-                mail($teamModel->getEmail(),"Hold ".$teamid."oprettet - ".$teamModel->getName(),$tmp, $headers);
+                mail($teamModel->getEmail(),"Hold ".$teamid." oprettet - ".$teamModel->getName(),$tmp, $headers);
+                $tmp .= "<p>Du modtager snarest en mail med oplysningerne om holdet, sendt til: <b>". $teamModel->getEmail()."</b></p>";
+                $tmp .= "<br /><a class=\"btn btn-primary\" href=\"oprethold.php\" role=\"button\">Opret endnu et hold</a>";
+                $this->teamstatus['status'] = true;
+                $this->teamstatus['message'] = $tmp;
             }
         }
 

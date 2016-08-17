@@ -44,7 +44,7 @@ class DbModel extends BaseInit
 
     public function getScore($group) {
         $score = array();
-        if ($result = $this->con->query("select concat(t.id, \". \", t.name) team, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left outer join tivoli2016_score s on s.teamid = t.id where t.groups = '$group' group by teamid order by point desc")) {
+        if ($result = $this->con->query("select concat(t.id, \". \", t.name) team, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id where t.groups = '$group' group by t.id order by point desc")) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $score[] = $row;
             }

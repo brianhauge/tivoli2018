@@ -66,7 +66,7 @@ else {
     <h3 class="text-muted">5. - 8. klasse</h3>
     <?php print($score->getScoreTableByGroup(2)); ?>
     <h3 class="text-muted">9. klasse til 18 år</h3>
-    <?php print($score->getScoreTableByGroup(2)); ?>
+    <?php print($score->getScoreTableByGroup(3)); ?>
     <h3 class="text-muted">Natløb</h3>
     <?php print($score->getScoreTableByGroup(9)); ?>
 

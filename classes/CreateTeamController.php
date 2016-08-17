@@ -22,7 +22,7 @@ class CreateTeamController extends BaseInit
 
     public function insertTeam(CreateTeamModel $teamModel) {
         if ($teamModel->getName() === "") {
-            $this->teamstatus['message'] = "Navn mangler";
+            $this->teamstatus['message'] = "Holdnavn mangler";
         } elseif ($teamModel->getLeader() === "") {
             $this->teamstatus['message'] = "Holdleder mangler";
         } elseif ($teamModel->getMobile() === "") {

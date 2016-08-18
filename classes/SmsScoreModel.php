@@ -39,7 +39,7 @@ class SmsScoreModel extends BaseInit
      */
     public function getPost()
     {
-        return $this->post[0];
+        return $this->post;
 
     }
 
@@ -112,7 +112,7 @@ class SmsScoreModel extends BaseInit
         $this->setSender($sender);
         $this->setPost($sender);
         $this->setTeam($this->smscontent);
-        $this->logger->info("SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
     }
 
 

@@ -16,7 +16,6 @@ class SendSmsModel extends BaseInit
     public function sendSms($receiver, $message) {
         $receiver = urlencode($receiver);
         $message = urlencode($message);
-        $this->logger->info("Receiver: ".$receiver." - SMS: ".$message);
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -28,7 +27,7 @@ class SendSmsModel extends BaseInit
         $info = curl_getinfo($curl);
         curl_close($curl);
 
-        $this->logger->info("Sending SMS: '".urldecode($message)."' To: ".urldecode($receiver). " - Response code: ".$info['http_code']);
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($receiver). " - Response code: ".$info['http_code']);
     }
 
 }

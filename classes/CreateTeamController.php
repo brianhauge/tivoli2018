@@ -64,7 +64,7 @@ class CreateTeamController extends BaseInit
                 $this->teamstatus['message'] = $tmp;
             }
         }
-
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Status: ".$this->teamstatus['status']." - Message: ".substr($this->teamstatus['message'],25));
         return $this->teamstatus;
     }
 }

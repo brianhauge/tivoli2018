@@ -26,19 +26,19 @@ class DbModel extends BaseInit
     }
 
     public function insertTeam($name, $leader, $mobile, $email, $kreds, $group) {
-        $this->logger->info("Log create team: $name, $mobile, $email, $kreds, $group");
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log create team: $name, $mobile, $email, $kreds, $group");
         $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, updated_at) VALUES ('$name', '$leader', '$mobile', '$email', '$kreds', '$group', now())");
         return $this->con->insert_id;
 
     }
 
     public function insertScore($team, $point, $post, $creator) {
-        $this->logger->info("Log point: $team, $point, $post, $creator");
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log point: $team, $point, $post, $creator");
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
     public function insertCheckin($postid, $sender) {
-        $this->logger->info("Log check-in: $postid, $sender");
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log check-in: $postid, $sender");
         $this->con->query("INSERT INTO tivoli2016_postcheckin (mobile, postid, updated_at) VALUES ('$sender', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
     }
 
@@ -49,6 +49,7 @@ class DbModel extends BaseInit
                 $score[] = $row;
             }
         }
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$score);
         return $score;
     }
 
@@ -58,6 +59,7 @@ class DbModel extends BaseInit
             $row = mysqli_fetch_assoc($result);
             $postid = $row['postid'];
         }
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$postid);
         return $postid;
     }
 
@@ -67,6 +69,7 @@ class DbModel extends BaseInit
             $row = mysqli_fetch_assoc($result);
             $postid = $row['point'];
         }
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$postid);
         return $postid;
     }
 

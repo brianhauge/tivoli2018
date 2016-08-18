@@ -20,18 +20,22 @@ class SmsScoreController extends BaseInit
     public function handleReceivedPoints(SmsScoreModel $smsModel) {
         if ($smsModel->getPost() < 1) {
             $this->smsSender->sendSms($smsModel->getSender(),"Du er ikke tjekket ind på en post. Send 'checkin post 9' for at tjekke ind. Ring 25 21 20 02 for hjælp.");
+            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Not checked in");
         }
         elseif($smsModel->getTeam() < 1) {
             $this->smsSender->sendSms($smsModel->getSender(),"'hold' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
+            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Team missing in message");
         }
         elseif ($smsModel->getPoint() < 1) {
             $this->smsSender->sendSms($smsModel->getSender(),"'point' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
+            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Point missing in message");
         }
         else {
             // Insert Score
             $this->dbModel->insertScore($smsModel->getTeam(),$smsModel->getPoint(),$smsModel->getPost(),$smsModel->getSender());
             // Send status to $sender
             $this->smsSender->sendSms($smsModel->getSender(),$smsModel->getPoint()." point til hold ".$smsModel->getTeam()." på post ".$smsModel->getPost()." givet. Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.");
+            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Points successfully given to team");
         }
     }
     
@@ -48,6 +52,7 @@ class SmsScoreController extends BaseInit
         }
         $scoreTable .= "</tbody>";
         $scoreTable .= "</table>";
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Creating score table");
         return $scoreTable;
     }
 }

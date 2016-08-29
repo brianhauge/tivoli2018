@@ -19,15 +19,16 @@ class PostCheckInController extends BaseInit
 
     public function handleCheckin(PostCheckInModel $checkInModel) {
         if ($checkInModel->getPost() < 1) {
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Invalid checkin from ".$checkInModel->getSender()." Message: ".$checkInModel->getSmscontent());
-            $this->smsSender->sendSms($checkInModel->getSender(),"Postindtjekning: 'post' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
+            $message = "Postindtjekning: 'post' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.";
+            $this->smsSender->sendSms($checkInModel->getMsisdn(),$message);
+            $this->dbModel->insertTrace($checkInModel->getMsisdn(),$checkInModel->getSmscontent(),$message);
         }
         else {
             // Insert Check-in to database
-            $this->dbModel->insertCheckin($checkInModel->getPost(),$checkInModel->getSender());
+            $this->dbModel->insertCheckin($checkInModel->getPost(),$checkInModel->getMsisdn());
             // Send status to $sender
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$checkInModel->getSender()." has checked in on post ".$checkInModel->getPost());
-            $this->smsSender->sendSms($checkInModel->getSender(),"Du er nu checked in på post ".$checkInModel->getPost().". For at give point, send ex: hold 4 point 20. Husk at checke ind igen, hvis du flytter post!");
+            $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$checkInModel->getMsisdn()." has checked in on post ".$checkInModel->getPost());
+            $this->smsSender->sendSms($checkInModel->getMsisdn(),"Du er nu checked in på post ".$checkInModel->getPost().". For at give point, send ex: hold 4 point 20. Husk at checke ind igen, hvis du flytter post!");
         }
     }
 }

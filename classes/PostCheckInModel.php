@@ -10,7 +10,7 @@ class PostCheckInModel extends BaseInit
 {
     private $post;
     private $smscontent;
-    private $sender;
+    private $msisdn;
 
     /**
      * SmsContent constructor.
@@ -40,17 +40,17 @@ class PostCheckInModel extends BaseInit
     /**
      * @return mixed
      */
-    public function getSender()
+    public function getMsisdn()
     {
-        return $this->sender;
+        return $this->msisdn;
     }
 
     /**
-     * @param mixed $sender
+     * @param mixed $msisdn
      */
-    private function setSender($sender)
+    private function setMsisdn($msisdn)
     {
-        $this->sender = $sender;
+        $this->msisdn = $msisdn;
     }
 
     /**
@@ -61,12 +61,12 @@ class PostCheckInModel extends BaseInit
         return $this->smscontent;
     }
 
-    public function setSmscontent($smscontent, $sender)
+    public function setSmscontent($smscontent, $msisdn)
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPost($this->smscontent);
-        $this->setSender($sender);
-        $this->logger->info("SMS Content: ".$this->getSmscontent() . " Checking in on post: " . $this->getPost() . " Mobile: " . $this->getSender()
+        $this->setMsisdn($msisdn);
+        $this->logger->info("SMS Content: ".$this->getSmscontent() . " Checking in on post: " . $this->getPost() . " Mobile: " . $this->getMsisdn()
         );
     }
 }

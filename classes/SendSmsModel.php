@@ -13,21 +13,33 @@ class SendSmsModel extends BaseInit
         parent::__construct();
     }
 
-    public function sendSms($receiver, $message) {
-        $receiver = urlencode($receiver);
+    public function sendSms($msisdn, $message) {
+        $msisdn = urlencode($msisdn);
         $message = urlencode($message);
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "http://127.0.0.1:8585/send.html?smsto=".$receiver."&smsbody=".$message."&smstype=sms",
+            CURLOPT_URL => "http://".SMSGW_HOST.":".SMSGW_PORT."/send.html?smsto=".$msisdn."&smsbody=".$message."&smstype=sms",
             CURLOPT_USERAGENT => 'PHP Tivoli'
         ));
-        $resp = curl_exec($curl);
+        curl_exec($curl);
         $info = curl_getinfo($curl);
-        curl_close($curl);
 
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($receiver). " - Response code: ".$info['http_code']);
+        if (!curl_errno($curl)) {
+            switch ($info['http_code']) {
+                case 200:  # OK
+                    $this->logger->info(__CLASS__." > ".__FUNCTION__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($msisdn). " - Response code: ".$info['http_code']);
+                default:
+                    $this->logger->error(__CLASS__." > ".__FUNCTION__.": Unexpected HTTP answer from SMSGW ". $info['url']." - Response code: ".$info['http_code']);
+            }
+        }
+        else {
+            $this->logger->error(__CLASS__." > ".__FUNCTION__.": Unexpected issue calling SMSGW ". $info['url']." - Response code: ".$info['http_code']);
+        }
+
+
+        curl_close($curl);
     }
 
 }

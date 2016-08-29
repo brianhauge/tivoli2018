@@ -19,24 +19,24 @@ class SmsScoreController extends BaseInit
 
     public function handleReceivedPoints(SmsScoreModel $smsModel) {
         if ($smsModel->getPost() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"Du er ikke tjekket ind på en post. Send 'checkin post 9' for at tjekke ind. Ring 25 21 20 02 for hjælp.");
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Not checked in");
+            $message = "Du er ikke tjekket ind på en post. Send 'checkin post 9' for at tjekke ind.".SMS_HELPTEXT;
+
         }
         elseif($smsModel->getTeam() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"'hold' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Team missing in message");
+            $message = "'a', 'b', 'c' eller 'n' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig.".SMS_HELPTEXT;
         }
         elseif ($smsModel->getPoint() < 1) {
-            $this->smsSender->sendSms($smsModel->getSender(),"'point' ikke fundet i beskeden eller dens værdi er ugyldig. Ring 25 21 20 02 for hjælp.");
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Point missing in message");
+            $message = "'point' ikke fundet i beskeden eller dens værdi er ugyldig.".SMS_HELPTEXT;
         }
         else {
             // Insert Score
-            $this->dbModel->insertScore($smsModel->getTeam(),$smsModel->getPoint(),$smsModel->getPost(),$smsModel->getSender());
+            $this->dbModel->insertScore($smsModel->getTeam(),$smsModel->getPoint(),$smsModel->getPost(),$smsModel->getMsisdn());
             // Send status to $sender
-            $this->smsSender->sendSms($smsModel->getSender(),$smsModel->getPoint()." point til hold ".$smsModel->getTeam()." på post ".$smsModel->getPost()." givet. Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.");
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Points successfully given to team");
+            $message = $smsModel->getPoint()." point til hold ".$smsModel->getTeam()." på post ".$smsModel->getPost()." givet. Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.";
         }
+
+        $this->smsSender->sendSms($smsModel->getMsisdn(),$message);
+        $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
     }
     
     public function getScoreTableByGroup($group) {

@@ -6,6 +6,7 @@
  * Time: 11:38
  */
 
+session_start();
 setlocale(LC_ALL, "da_DK");
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
@@ -13,11 +14,15 @@ spl_autoload_register(function ($class) {
 
 $data = $_POST;
 if(!empty($data)) {
-    $teammodel = new CreateTeamModel($data);
-    $teamcontroller = new CreateTeamController();
-    $teamcreated = $teamcontroller->insertTeam($teammodel);
-}
-
-if(!empty($data)) {
-    print(json_encode($teamcreated));
+    if($data['captcha'] == $_SESSION['captcha']['code']) {
+        $teammodel = new CreateTeamModel($data);
+        $teamcontroller = new CreateTeamController();
+        $teamcreated = $teamcontroller->insertTeam($teammodel);
+        print(json_encode($teamcreated));
+    }
+    else {
+        $tmp['message'] = "Forkert code";
+        $tmp['status'] = false;
+        print(json_encode($tmp));
+    }
 }

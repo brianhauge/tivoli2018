@@ -4,9 +4,32 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a235031d8f081cc73d4ecdda88d42e33",
-    "content-hash": "79759a0b5b46e9274f600b2d416e2883",
+    "hash": "ddd981b281bd765c05baf3d5818fc82e",
+    "content-hash": "a1ff220f3a6e5b89085c2eb17a7bf5a3",
     "packages": [
+        {
+            "name": "abeautifulsite/simple-php-captcha",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/claviska/simple-php-captcha.git",
+                "reference": "f4f6db43cced1db6a82c8a5ff1a4bef48937b39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/claviska/simple-php-captcha/zipball/f4f6db43cced1db6a82c8a5ff1a4bef48937b39b",
+                "reference": "f4f6db43cced1db6a82c8a5ff1a4bef48937b39b",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A simple PHP CAPTCHA script",
+            "homepage": "http://www.abeautifulsite.net/",
+            "time": "2016-02-25 17:04:47"
+        },
         {
             "name": "katzgrau/klogger",
             "version": "1.2.0",
@@ -56,6 +79,62 @@
                 "logging"
             ],
             "time": "2015-11-04 22:43:22"
+        },
+        {
+            "name": "phpmailer/phpmailer",
+            "version": "v6.0.0rc2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "5b34f25e314558a8f7bc94f0f2ee0a09969f0640"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/5b34f25e314558a8f7bc94f0f2ee0a09969f0640",
+                "reference": "5b34f25e314558a8f7bc94f0f2ee0a09969f0640",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "suggest": {
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2016-05-10 22:00:21"
         },
         {
             "name": "psr/log",

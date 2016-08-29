@@ -66,13 +66,13 @@ else {
         <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
     </div>
     <h3 class="text-muted">0. - 4. klasse</h3>
-    <?php print($score->getScoreTableByGroup(1)); ?>
+    <?php print($score->getScoreTableByGroup("A")); ?>
     <h3 class="text-muted">5. - 8. klasse</h3>
-    <?php print($score->getScoreTableByGroup(2)); ?>
+    <?php print($score->getScoreTableByGroup("B")); ?>
     <h3 class="text-muted">9. klasse til 18 år</h3>
-    <?php print($score->getScoreTableByGroup(3)); ?>
+    <?php print($score->getScoreTableByGroup("C")); ?>
     <h3 class="text-muted">Natløb</h3>
-    <?php print($score->getScoreTableByGroup(9)); ?>
+    <?php print($score->getScoreTableByGroup("N")); ?>
 
 <?php
 }

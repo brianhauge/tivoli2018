@@ -52,7 +52,7 @@ class SmsScoreController extends BaseInit
         }
         $scoreTable .= "</tbody>";
         $scoreTable .= "</table>";
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Creating score table");
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Creating score table for group $group");
         return $scoreTable;
     }
 }

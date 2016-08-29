@@ -49,7 +49,7 @@ class DbModel extends BaseInit
                 $score[] = $row;
             }
         }
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$score);
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Getting score from group ".$group);
         return $score;
     }
 

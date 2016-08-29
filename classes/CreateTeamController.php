@@ -35,9 +35,9 @@ class CreateTeamController extends BaseInit
 
     public function insertTeam(CreateTeamModel $teamModel) {
         if ($teamModel->getName() === "") {
-            $this->teamstatus['message'] = "Holdnavn mangler";
+            $this->teamstatus['message'] = "Patruljenavn mangler";
         } elseif ($teamModel->getLeader() === "") {
-            $this->teamstatus['message'] = "Holdleder mangler";
+            $this->teamstatus['message'] = "Patruljeleder mangler";
         } elseif ($teamModel->getMobile() === "") {
             $this->teamstatus['message'] = "Mobil mangler";
         } elseif ($teamModel->getEmail() === "") {
@@ -47,18 +47,18 @@ class CreateTeamController extends BaseInit
         } elseif ($teamModel->getGroup() === "") {
             $this->teamstatus['message'] = "Løbsgruppe mangler";
         } else {
-            $teamid = $this->dbModel->insertTeam($teamModel->getName(), $teamModel->getLeader(), $teamModel->getMobile(),$teamModel->getEmail(),$teamModel->getKreds(),$teamModel->getGroup());
+            $teamid = $this->dbModel->insertTeam($teamModel->getName(), $teamModel->getLeader(), $teamModel->getMobile(),$teamModel->getEmail(),$teamModel->getKreds(),$teamModel->getGroup(),$teamModel->getNumberofmembers());
 
             if($teamid == 0) {
                 $this->teamstatus['status'] = false;
-                $this->teamstatus['message'] = "Der er opstået en fejl, indtast venligst oplysningerne igen. Ændrer eventuelt holdets navn.";
+                $this->teamstatus['message'] = "Der er opstået en fejl, indtast venligst oplysningerne igen. Ændrer eventuelt patruljens navn.";
             } else {
 
-                $mailbody = "<h3>Hold oprettet</h3>";
-                $mailbody .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamModel->getGroup().$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><p><b>Skriv nummeret ned og medbring på dagen. Det skal bruges ved pointgivning på posterne.</b></p></div>";
+                $mailbody = "<h3>Patrulje oprettet</h3>";
+                $mailbody .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamModel->getGroup().$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><p><b>Skriv nummeret ned og medbring på dagen. Det skal angives ved pointgivning på posterne.</b></p></div>";
                 $mailbody .= "<table class=\"table table-striped\">";
-                $mailbody .= "<tr><th align='left'>Holdnavn: </th><td>".$teamModel->getName()." (gruppe: ".$teamModel->getGroup().")</td></tr>";
-                $mailbody .= "<tr><th align='left'>Holdleder: </th><td>".$teamModel->getLeader()."</td></tr>";
+                $mailbody .= "<tr><th align='left'>Patruljenavn: </th><td>".$teamModel->getName()." (gruppe: ".$teamModel->getGroup().")</td></tr>";
+                $mailbody .= "<tr><th align='left'>Patruljeleder: </th><td>".$teamModel->getLeader()."</td></tr>";
                 $mailbody .= "<tr><th align='left'>Mobil: </th><td>".$teamModel->getMobile()."</td></tr>";
                 $mailbody .= "<tr><th align='left'>HoldEmail: </th><td>".$teamModel->getEmail()."</td></tr>";
                 $mailbody .= "<tr><th align='left'>Kreds / Gruppe: </th><td>".$teamModel->getKreds()."</td></tr></table>";
@@ -73,13 +73,14 @@ class CreateTeamController extends BaseInit
                 //send the message, check for errors
                 if (!$this->mail->send()) {
                     $this->logger->error(__CLASS__." > ".__FUNCTION__.": Mailer Error: " . $this->mail->ErrorInfo);
+                    $mailbody .= "<p>Der skete en fejl da vi forsøgte at sende en mail med oplysningerne til: <b>". $teamModel->getEmail()."</b> Kontakt venligst ".MAIL_ADDRESS." for at være sikker på at i er tilmeldt korrekt</p>";
                 } else {
                     $this->logger->info(__CLASS__." > ".__FUNCTION__.": Mail sent!");
+                    $mailbody .= "<p>Du modtager snarest en mail med oplysningerne om patruljen, sendt til: <b>". $teamModel->getEmail()."</b></p>";
                 }
 
-                //mail($teamModel->getEmail(),"Hold ".$teamid." oprettet - ".$teamModel->getName(),$mailbody, $headers);
-                $mailbody .= "<p>Du modtager snarest en mail med oplysningerne om holdet, sendt til: <b>". $teamModel->getEmail()."</b></p>";
-                $mailbody .= "<br /><a class=\"btn btn-primary\" href=\"oprethold.php\" role=\"button\">Opret endnu et hold</a>";
+                
+                $mailbody .= "<br /><a class=\"btn btn-primary\" href=\"oprethold.php\" role=\"button\">Opret endnu en patrulje</a>";
                 $this->teamstatus['status'] = true;
                 $this->teamstatus['message'] = $mailbody;
             }

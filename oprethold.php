@@ -25,7 +25,7 @@ $_SESSION['captcha'] = simple_php_captcha();
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">
-                    <label for="team" class="col-sm-2 control-label">Holdnavn</label>
+                    <label for="team" class="col-sm-2 control-label">Patruljenavn</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="name" id="name" placeholder="Holdnavn">
                     </div>
@@ -49,9 +49,15 @@ $_SESSION['captcha'] = simple_php_captcha();
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label for="leader" class="col-sm-2 control-label">Holdleder</label>
+                    <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="leader" id="leader" placeholder="Holdleder">
+                        <input type="text" class="form-control" name="numberofmembers" id="numberofmembers" placeholder="Antal patruljemedlemmer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="leader" class="col-sm-2 control-label">Patruljeleder</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="leader" id="leader" placeholder="Patruljeleder">
                     </div>
                 </div>
                 <div class="form-group">

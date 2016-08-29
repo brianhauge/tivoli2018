@@ -14,6 +14,7 @@ class CreateTeamModel extends BaseInit
     private $email;
     private $kreds;
     private $group;
+    private $numberofmembers;
 
     /**
      * CreateTeamModel constructor.
@@ -28,6 +29,7 @@ class CreateTeamModel extends BaseInit
         $this->email = (isset($postdata['email']) ? $postdata['email'] : "");
         $this->kreds = (isset($postdata['kreds']) ? $postdata['kreds'] : "");
         $this->group = (isset($postdata['group']) ? $postdata['group'] : "");
+        $this->numberofmembers = (isset($postdata['numberofmembers']) ? $postdata['numberofmembers'] : "");
     }
 
     /**
@@ -77,4 +79,14 @@ class CreateTeamModel extends BaseInit
     {
         return $this->group;
     }
+
+    /**
+     * @return string
+     */
+    public function getNumberofmembers()
+    {
+        return $this->numberofmembers;
+    }
+
+    
 }

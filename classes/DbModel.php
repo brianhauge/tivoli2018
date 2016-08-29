@@ -25,9 +25,9 @@ class DbModel extends BaseInit
         }
     }
 
-    public function insertTeam($name, $leader, $msisdn, $email, $kreds, $group) {
+    public function insertTeam($name, $leader, $msisdn, $email, $kreds, $group, $numberofmembers) {
         $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log create team: $name, $msisdn, $email, $kreds, $group");
-        $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, updated_at) VALUES ('$name', '$leader', '$msisdn', '$email', '$kreds', '$group', now())");
+        $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, numberofmembers, updated_at) VALUES ('$name', '$leader', '$msisdn', '$email', '$kreds', '$group', '$numberofmembers', now())");
         return $this->con->insert_id;
 
     }

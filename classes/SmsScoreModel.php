@@ -13,7 +13,7 @@ class SmsScoreModel extends BaseInit
     private $point;
     private $post;
     private $team;
-    private $sender;
+    private $msisdn;
     private $smscontent;
     private $db;
 
@@ -61,11 +61,11 @@ class SmsScoreModel extends BaseInit
     }
 
     /**
-     * @param mixed $sender
+     * @param mixed $msisdn
      */
-    private function setPost($sender)
+    private function setPost($msisdn)
     {
-        $this->post = $this->db->getCheckedinPost($sender);
+        $this->post = $this->db->getCheckedinPost($msisdn);
     }
 
     /**
@@ -73,24 +73,24 @@ class SmsScoreModel extends BaseInit
      */
     private function setTeam($smscontent)
     {
-        preg_match("/ho?l?d?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
+        preg_match("/([aA]|[bB]|[cC]|[nN])(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
         preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->team);
     }
 
     /**
      * @return mixed
      */
-    public function getSender()
+    public function getMsisdn()
     {
-        return $this->sender;
+        return $this->msisdn;
     }
 
     /**
-     * @param mixed $sender
+     * @param mixed $msisdn
      */
-    private function setSender($sender)
+    private function setMsisdn($msisdn)
     {
-        $this->sender = $sender;
+        $this->msisdn = $msisdn;
     }
 
     /**
@@ -109,7 +109,7 @@ class SmsScoreModel extends BaseInit
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPoint($this->smscontent);
-        $this->setSender($sender);
+        $this->setMsisdn($sender);
         $this->setPost($sender);
         $this->setTeam($this->smscontent);
         $this->logger->info(__CLASS__." > ".__FUNCTION__.": SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());

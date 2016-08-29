@@ -25,26 +25,26 @@ class DbModel extends BaseInit
         }
     }
 
-    public function insertTeam($name, $leader, $mobile, $email, $kreds, $group) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log create team: $name, $mobile, $email, $kreds, $group");
-        $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, updated_at) VALUES ('$name', '$leader', '$mobile', '$email', '$kreds', '$group', now())");
+    public function insertTeam($name, $leader, $msisdn, $email, $kreds, $group) {
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log create team: $name, $msisdn, $email, $kreds, $group");
+        $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, updated_at) VALUES ('$name', '$leader', '$msisdn', '$email', '$kreds', '$group', now())");
         return $this->con->insert_id;
 
     }
 
-    public function insertScore($team, $point, $post, $creator) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log point: $team, $point, $post, $creator");
-        $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$creator', now()) ON DUPLICATE KEY UPDATE point = '$point'");
+    public function insertScore($team, $point, $post, $msisdn) {
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log point: $team, $point, $post, $msisdn");
+        $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$msisdn', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
-    public function insertCheckin($postid, $sender) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log check-in: $postid, $sender");
-        $this->con->query("INSERT INTO tivoli2016_postcheckin (mobile, postid, updated_at) VALUES ('$sender', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
+    public function insertCheckin($postid, $msisdn) {
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log check-in: $postid, $msisdn");
+        $this->con->query("INSERT INTO tivoli2016_postcheckin (mobile, postid, updated_at) VALUES ('$msisdn', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
     }
 
     public function getScore($group) {
         $score = array();
-        if ($result = $this->con->query("select concat(t.id, \". \", t.name) team, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id where t.groups = '$group' group by t.id order by point desc")) {
+        if ($result = $this->con->query("select t.name team, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id where t.groups = '$group' group by t.id order by point desc")) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $score[] = $row;
             }
@@ -53,9 +53,9 @@ class DbModel extends BaseInit
         return $score;
     }
 
-    public function getCheckedinPost($sender) {
+    public function getCheckedinPost($msisdn) {
         $postid = 0;
-        if ($result = $this->con->query("select postid from tivoli2016_postcheckin where mobile = '$sender'")) {
+        if ($result = $this->con->query("select postid from tivoli2016_postcheckin where mobile = '$msisdn'")) {
             $row = mysqli_fetch_assoc($result);
             $postid = $row['postid'];
         }
@@ -73,6 +73,11 @@ class DbModel extends BaseInit
         return $postid;
     }
 
+    public function insertTrace($msisdn, $input = "", $output = "") {
+        $stmt = $this->con->prepare("INSERT INTO tivoli2016_trace (msisdn, method, input, output) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $msisdn, $this->get_calling_function(), $input, $output);
+        $stmt->execute();
+    }
 
     public function __destruct()
     {

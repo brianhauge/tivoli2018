@@ -40,7 +40,7 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
     if($_GET['body'] == '' || $_GET['sender'] == '') {
         die("<br /><br /><div class=\"alert alert-danger\" role=\"alert\">Empty fields. Aborting</div>");
     }
-    if(preg_match("/[Cc]heck|[Ttjek]/",$_GET['body'])) {
+    if(preg_match("/[Cc]heck|[Tt]jek/",$_GET['body'])) {
         $checkinPostModel = new PostCheckInModel();
         $checkin = new PostCheckInController();
         $checkinPostModel->setSmscontent($_GET['body'],$_GET['sender']);
@@ -51,8 +51,12 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
         $SmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
         $score->handleReceivedPoints($SmsScoreModel);
     }
+}
+
+if(isset($_GET['logging'])) {
     print("</pre><h3>Log:</h3><pre style='font-size: 8px'>");
-    print(str_replace(PHP_EOL, '<br />', shell_exec("tail -n50 logs/log_2016-08-18.txt")));
+    $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
+    print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
     print("</pre>");
 }
 

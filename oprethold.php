@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
+$_SESSION['captcha'] = simple_php_captcha();
+?>
+
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -28,16 +34,16 @@
                     <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
                     <div class="col-sm-10">
                         <div class="radio">
-                            <label><input type="radio" name="group" id="1" value="1">0. - 4. klasse</label>
+                            <label><input type="radio" name="group" id="A" value="A">0. - 4. klasse</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio" name="group" id="2" value="2">5. - 8. klasse</label>
+                            <label><input type="radio" name="group" id="B" value="B">5. - 8. klasse</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio" name="group" id="3" value="3">9. klasse til 18 år</label>
+                            <label><input type="radio" name="group" id="C" value="C">9. klasse til 18 år</label>
                         </div>
                         <div class="radio disabled">
-                            <label><input type="radio" name="group" id="9" value="9" disabled>Natløb</label>
+                            <label class="text-muted"><input type="radio" name="group" id="N" value="N" disabled>Natløb (tilmelding åbner på dagen)</label>
                         </div>
                     </div>
                 </div>
@@ -64,6 +70,15 @@
                     <label for="kreds" class="col-sm-2 control-label">Kreds / Gruppe</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="captcha" class="col-sm-2 control-label">Sikkerhedskode</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Kode">
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="<?php print($_SESSION['captcha']['image_src']); ?>" />
                     </div>
                 </div>
                 <div class="form-group">

@@ -26,4 +26,22 @@ abstract class BaseInit
         $this->premessage = str_pad(basename($_SERVER['PHP_SELF']),20)." | ";
         $this->logger = new Logger(LOGPATH);
     }
+
+    /**
+     * Returns the calling function through a backtrace
+     */
+    public function get_calling_function() {
+        // a funciton x has called a function y which called this
+        // see stackoverflow.com/questions/190421
+        $caller = debug_backtrace();
+        $caller = $caller[2];
+        $r = $caller['function'] . '()';
+        if (isset($caller['class'])) {
+            $r .= ' in ' . $caller['class'];
+        }
+        if (isset($caller['object'])) {
+            $r .= ' (' . get_class($caller['object']) . ')';
+        }
+        return $r;
+    }
 }

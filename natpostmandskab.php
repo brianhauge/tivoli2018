@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: bhansen
+ * Date: 01/09/16
+ * Time: 10:58
+ */
+
 session_start();
 include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
 $_SESSION['captcha'] = simple_php_captcha();
@@ -12,7 +19,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Brian Hauge Hansen">
     <meta name="description" content="FDF og spejderne indtager Tivoli">
-    <title>FDF og spejderne indtager Tivoli - Score</title>
+    <title>FDF og spejderne indtager Tivoli - Tilmeld nat postmandskab</title>
     <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
@@ -25,45 +32,9 @@ $_SESSION['captcha'] = simple_php_captcha();
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">
-                    <label for="team" class="col-sm-2 control-label">Patruljenavn</label>
+                    <label for="team" class="col-sm-2 control-label">Navn</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Holdnavn">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
-                    <div class="col-sm-10">
-                        <div class="radio">
-                            <label><input type="radio" name="group" id="A" value="A">0. - 4. klasse</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="group" id="B" value="B">5. - 8. klasse</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="group" id="C" value="C">9. klasse til 18 år</label>
-                        </div>
-                        <div class="radio disabled">
-                            <label class="text-muted"><input type="radio" name="group" id="N" value="N" disabled>Natløb (tilmelding åbner på dagen)</label>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
-                    <div class="col-sm-10">
-                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" placeholder="Antal patruljemedlemmer">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="leader" class="col-sm-2 control-label">Patruljeleder</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="leader" id="leader" placeholder="Patruljeleder">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
                     </div>
                 </div>
                 <div class="form-group">
@@ -89,7 +60,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Opret hold</button>
+                        <button type="submit" class="btn btn-default">Send</button>
                     </div>
                 </div>
             </form>
@@ -117,7 +88,7 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $("#createteam").submit(function(){
-        $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {
+        $.post('createnightcrewhandler.php', $('#createteam').serialize(), function (data) {
             obj = JSON.parse(data);
             if(!obj.status) {
                 $('input').each(function () {

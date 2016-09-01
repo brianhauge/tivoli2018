@@ -29,16 +29,23 @@ class DbModel extends BaseInit
         $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, numberofmembers, updated_at) VALUES ('$name', '$leader', '$msisdn', '$email', '$kreds', '$group', '$numberofmembers', now())");
         $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Inserting team: ".$group.$this->con->insert_id." $name, $msisdn, $email, $kreds");
         return $this->con->insert_id;
+    }
 
+    public function insertNightCrew($name, $msisdn, $kreds) {
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $name, $msisdn, $kreds");
+        $stmt = $this->con->prepare("INSERT INTO tivoli2016_nightpeople (name, mobile, kreds) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $name, $msisdn, $kreds);
+        $stmt->execute();
+        return $stmt->sqlstate;
     }
 
     public function insertScore($team, $point, $post, $msisdn) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log point: $team, $point, $post, $msisdn");
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $team, $point, $post, $msisdn");
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$msisdn', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
     public function insertCheckin($postid, $msisdn) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Log check-in: $postid, $msisdn");
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $postid, $msisdn");
         $this->con->query("INSERT INTO tivoli2016_postcheckin (mobile, postid, updated_at) VALUES ('$msisdn', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
     }
 
@@ -49,7 +56,7 @@ class DbModel extends BaseInit
                 $score[] = $row;
             }
         }
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": "."Getting score from group ".$group);
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Group ".$group);
         return $score;
     }
 

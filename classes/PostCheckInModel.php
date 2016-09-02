@@ -66,7 +66,5 @@ class PostCheckInModel extends BaseInit
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPost($this->smscontent);
         $this->setMsisdn($msisdn);
-        $this->logger->info("SMS Content: ".$this->getSmscontent() . " Checking in on post: " . $this->getPost() . " Mobile: " . $this->getMsisdn()
-        );
     }
 }

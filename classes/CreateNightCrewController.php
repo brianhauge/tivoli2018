@@ -45,10 +45,10 @@ class CreateNightCrewController extends BaseInit
             }
         }
         if($this->status['status']) {
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Created: ".$nightCrewModel->getName()." ".$nightCrewModel->getMobile());
+            $this->logger->info(__METHOD__.": Created: ".$nightCrewModel->getName()." ".$nightCrewModel->getMobile());
         }
         else {
-            $this->logger->warning(__CLASS__." > ".__FUNCTION__.": Error creating: ".$nightCrewModel->getName()." ".$nightCrewModel->getMobile());
+            $this->logger->warning(__METHOD__.": Error creating: ".$nightCrewModel->getName()." ".$nightCrewModel->getMobile());
         }
         return $this->status;
     }

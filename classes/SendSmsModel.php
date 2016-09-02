@@ -29,16 +29,14 @@ class SendSmsModel extends BaseInit
         if (!curl_errno($curl)) {
             switch ($info['http_code']) {
                 case 200:  # OK
-                    $this->logger->info(__CLASS__." > ".__FUNCTION__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($msisdn). " - Response code: ".$info['http_code']);
+                    $this->logger->info(__METHOD__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($msisdn). " - Response code: ".$info['http_code']);
                 default:
-                    $this->logger->error(__CLASS__." > ".__FUNCTION__.": Unexpected HTTP answer from SMSGW ". $info['url']." - Response code: ".$info['http_code']);
+                    $this->logger->error(__METHOD__.": Unexpected HTTP answer from SMSGW ". $info['url']." - Response code: ".$info['http_code']);
             }
         }
         else {
-            $this->logger->error(__CLASS__." > ".__FUNCTION__.": Unexpected issue calling SMSGW ". $info['url']." - Response code: ".$info['http_code']);
+            $this->logger->error(__METHOD__.": Unexpected issue calling SMSGW ". $info['url']." - Response code: ".$info['http_code']);
         }
-
-
         curl_close($curl);
     }
 

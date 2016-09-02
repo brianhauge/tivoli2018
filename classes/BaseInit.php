@@ -20,20 +20,22 @@ use Katzgrau\KLogger\Logger;
 abstract class BaseInit
 {
     var $logger;
-    var $premessage;
     function __construct()
     {
-        $this->premessage = str_pad(basename($_SERVER['PHP_SELF']),20)." | ";
-        $this->logger = new Logger(LOGPATH);
+        $this->logger = new Logger(LOGPATH,Psr\Log\LogLevel::DEBUG, array(
+            'dateFormat' => 'Y-m-d G:i:s',
+            'logFormat' =>  '[{date}] [{level}]{level-padding} {message}'
+        ));
     }
 
     /**
      * Returns the calling function through a backtrace
      */
     public function get_calling_function() {
-        // a funciton x has called a function y which called this
+        // a function x has called a function y which called this
         // see stackoverflow.com/questions/190421
         $caller = debug_backtrace();
+        print_r($caller);
         $caller = $caller[2];
         $r = $caller['function'] . '()';
         if (isset($caller['class'])) {

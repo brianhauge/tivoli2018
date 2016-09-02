@@ -72,10 +72,10 @@ class CreateTeamController extends BaseInit
 
                 //send the message, check for errors
                 if (!$this->mail->send()) {
-                    $this->logger->error(__CLASS__." > ".__FUNCTION__.": Mailer Error: " . $this->mail->ErrorInfo);
+                    $this->logger->error(__METHOD__.": Mailer Error: " . $this->mail->ErrorInfo);
                     $mailbody .= "<p>Der skete en fejl da vi forsøgte at sende en mail med oplysningerne til: <b>". $teamModel->getEmail()."</b> Kontakt venligst ".MAIL_ADDRESS." for at være sikker på at i er tilmeldt korrekt</p>";
                 } else {
-                    $this->logger->info(__CLASS__." > ".__FUNCTION__.": Mail sent!");
+                    $this->logger->info(__METHOD__.": Mail sent!");
                     $mailbody .= "<p>Du modtager snarest en mail med oplysningerne om patruljen, sendt til: <b>". $teamModel->getEmail()."</b></p>";
                 }
 
@@ -86,10 +86,10 @@ class CreateTeamController extends BaseInit
             }
         }
         if($this->teamstatus['status']) {
-            $this->logger->info(__CLASS__." > ".__FUNCTION__.": Status: ".$this->teamstatus['status']." - Message: Team created: ".$teamModel->getGroup().$teamid." - ".$teamModel->getName());
+            $this->logger->info(__METHOD__.": Status: ".$this->teamstatus['status']." - Message: Team created: ".$teamModel->getGroup().$teamid." - ".$teamModel->getName());
         }
         else {
-            $this->logger->warning(__CLASS__." > ".__FUNCTION__.": Status: ".$this->teamstatus['status']." - Message: Problem creating team: ".$teamModel->getGroup().$teamid." - ".$teamModel->getName());
+            $this->logger->warning(__METHOD__.": Status: ".$this->teamstatus['status']." - Message: Problem creating team: ".$teamModel->getGroup().$teamid." - ".$teamModel->getName());
         }
         return $this->teamstatus;
     }

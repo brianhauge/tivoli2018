@@ -27,12 +27,12 @@ class DbModel extends BaseInit
 
     public function insertTeam($name, $leader, $msisdn, $email, $kreds, $group, $numberofmembers) {
         $this->con->query("INSERT INTO tivoli2016_teams (name, leader, mobile, email, kreds, groups, numberofmembers, updated_at) VALUES ('$name', '$leader', '$msisdn', '$email', '$kreds', '$group', '$numberofmembers', now())");
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$group.$this->con->insert_id." $name, $kreds");
+        $this->logger->info(__METHOD__.": ".$group.$this->con->insert_id." $name, $kreds");
         return $this->con->insert_id;
     }
 
     public function insertNightCrew($name, $msisdn, $kreds) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $name, $kreds");
+        $this->logger->info(__METHOD__.": $name, $kreds");
         $stmt = $this->con->prepare("INSERT INTO tivoli2016_nightpeople (name, mobile, kreds) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $name, $msisdn, $kreds);
         $stmt->execute();
@@ -40,12 +40,12 @@ class DbModel extends BaseInit
     }
 
     public function insertScore($team, $point, $post, $msisdn) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $team, $point, $post");
+        $this->logger->info(__METHOD__.": $team, $point, $post");
         $this->con->query("INSERT INTO tivoli2016_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$msisdn', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
     public function insertCheckin($postid, $msisdn) {
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $postid");
+        $this->logger->info(__METHOD__.": $postid");
         $this->con->query("INSERT INTO tivoli2016_postcheckin (mobile, postid, updated_at) VALUES ('$msisdn', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
     }
 
@@ -65,7 +65,7 @@ class DbModel extends BaseInit
             $row = mysqli_fetch_assoc($result);
             $postid = $row['postid'];
         }
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": ".$postid);
+        $this->logger->info(__METHOD__.": $postid");
         return $postid;
     }
 
@@ -75,7 +75,7 @@ class DbModel extends BaseInit
             $row = mysqli_fetch_assoc($result);
             $point = $row['point'];
         }
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $team, $point");
+        $this->logger->info(__METHOD__.": $team, $point");
         return $point;
     }
 

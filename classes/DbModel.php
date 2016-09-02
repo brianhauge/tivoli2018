@@ -82,6 +82,15 @@ class DbModel extends BaseInit
         return array("count" => $row_count, "table" => $tmp . "</table>");
     }
 
+    public function getMemberCount() {
+        $numberofmembers = 0;
+        if ($result = $this->con->query("SELECT if(sum(t.numberofmembers), sum(t.numberofmembers), 0) numberofmembers from tivoli2016_teams t")) {
+            $row = mysqli_fetch_assoc($result);
+            $numberofmembers = $row['numberofmembers'];
+        }
+        return $numberofmembers;
+    }
+
     public function getCheckedinPost($msisdn) {
         $postid = 0;
         if ($result = $this->con->query("select postid from tivoli2016_postcheckin where mobile = '$msisdn'")) {

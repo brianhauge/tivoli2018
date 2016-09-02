@@ -58,7 +58,7 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
     $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
     print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
     print("</pre>");
-    $sql = "select concat(t.groups,t.id) id, t.name holdnavn, t.kreds, t.leader holdleder, t.mobile mobil, t.email, t.numberofmembers antal, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id group by t.id order by id asc";
+    $sql = "select concat(t.groups,t.id) id, t.name holdnavn, t.kreds 'kreds / gruppe', t.leader holdleder, t.mobile mobil, t.email, t.numberofmembers antal, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id group by t.id order by id asc";
     $db = new DbModel();
     $result = $db->printResultTable($sql);
     print("<h3>Antal hold: ".$result['count']." - Antal deltagere: ".$db->getMemberCount()."</h3>");

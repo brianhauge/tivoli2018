@@ -59,6 +59,29 @@ class DbModel extends BaseInit
         return $score;
     }
 
+    public function printResultTable($sql) {
+        $tmp = "<table class=\"table table-striped\">";
+        $row_count = 0;
+        if ($result = $this->con->query($sql)) {
+            $fields_num = $result->field_count;
+            $row_count = $result->num_rows;
+            for($i=0; $i<$fields_num; $i++) {
+                $field = $result->fetch_field();
+                $tmp .= "<th>{$field->name}</th>";
+            }
+            $tmp .= "</tr>\n";
+            // printing table rows
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $tmp .= "<tr>";
+                foreach($row as $cell)
+                    $tmp .= "<td>$cell</td>";
+                $tmp .= "</tr>\n";
+            }
+            $result->close();
+        }
+        return array("count" => $row_count, "table" => $tmp . "</table>");
+    }
+
     public function getCheckedinPost($msisdn) {
         $postid = 0;
         if ($result = $this->con->query("select postid from tivoli2016_postcheckin where mobile = '$msisdn'")) {

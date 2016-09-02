@@ -53,9 +53,14 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
     }
 }
 
-if(isset($_GET['logging'])) {
+if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
     print("</pre><h3>Log:</h3><pre style='font-size: 8px'>");
     $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
+    print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
+    print("</pre>");
+    $sql = "select concat(t.groups,t.id) id, t.name holdnavn, t.kreds, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id group by t.id order by id asc";
+    $cmd = "mysql -u".DBUSER." -p".DBPASS." -h".DBHOST." haugemedia_net_db -e '$sql'";
+    print("</pre><h3>All teams:</h3><pre style='font-size: 8px'>");
     print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
     print("</pre>");
 }

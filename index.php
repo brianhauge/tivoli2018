@@ -54,7 +54,7 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
 }
 
 if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
-    print("<h3>Log:</h3><pre style='font-size: 8px'>");
+    print("<pre style='font-size: 8px'>");
     $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
     print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
     print("</pre>");

@@ -60,7 +60,7 @@ class DbModel extends BaseInit
     }
 
     public function printResultTable($sql) {
-        $tmp = "<table class=\"table table-striped\">";
+        $tmp = "<table class=\"table table-striped\"><tr>";
         $row_count = 0;
         if ($result = $this->con->query($sql)) {
             $fields_num = $result->field_count;

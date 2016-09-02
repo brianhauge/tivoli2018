@@ -56,7 +56,6 @@ class DbModel extends BaseInit
                 $score[] = $row;
             }
         }
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": Group ".$group);
         return $score;
     }
 
@@ -71,13 +70,13 @@ class DbModel extends BaseInit
     }
 
     public function getTeamPoints($team) {
-        $postid = 0;
+        $point = 0;
         if ($result = $this->con->query("select sum(point) point from tivoli2016_score where teamid = '$team'")) {
             $row = mysqli_fetch_assoc($result);
-            $postid = $row['point'];
+            $point = $row['point'];
         }
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $team, $postid");
-        return $postid;
+        $this->logger->info(__CLASS__." > ".__FUNCTION__.": $team, $point");
+        return $point;
     }
 
     public function insertTrace($msisdn, $input = "", $output = "") {

@@ -58,15 +58,15 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
     ?>
     <div>
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#trace" aria-controls="trace" role="tab" data-toggle="tab">Trace</a></li>
-            <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+            <li role="presentation" class="active"><a href="#trace" aria-controls="trace" role="tab" data-toggle="tab">SMS Trafik</a></li>
+            <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Hold Oversigt</a></li>
             <li role="presentation"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="trace">
                 <?php
                 // Trace
-                $sql = "select tstamp,msisdn,input,output from tivoli2016_trace ORDER BY tstamp desc limit 20";
+                $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2016_trace ORDER BY tstamp desc limit 20";
                 $result = $db->printResultTable($sql);
                 print($result['table']);
                 ?>
@@ -83,7 +83,7 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
             <div role="tabpanel" class="tab-pane" id="log">
                 <?php
                 // Log
-                print("<pre style='font-size: 8px'>");
+                print("<h3>Log fra denne server:</h3><pre style='font-size: 8px'>");
                 $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
                 print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
                 print("</pre>");

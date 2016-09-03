@@ -113,7 +113,8 @@ class DbModel extends BaseInit
 
     public function insertTrace($msisdn, $input = "", $output = "") {
         $stmt = $this->con->prepare("INSERT INTO tivoli2016_trace (msisdn, method, input, output) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $msisdn, $this->get_calling_function(), $input, $output);
+        $method = $this->get_calling_function();
+        $stmt->bind_param("ssss", $msisdn, $method, $input, $output);
         $stmt->execute();
     }
 

@@ -112,7 +112,7 @@ class SmsScoreModel extends BaseInit
         $this->setMsisdn($sender);
         $this->setPost($sender);
         $this->setTeam($this->smscontent);
-        $this->logger->info(__CLASS__." > ".__FUNCTION__.": SMS Content: ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
+        $this->logger->info(__METHOD__.": ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
     }
 
 

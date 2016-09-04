@@ -16,28 +16,25 @@ class SendSmsModel extends BaseInit
     public function sendSms($msisdn, $message) {
         $msisdn = urlencode($msisdn);
         $message = urlencode($message);
-
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => "http://".SMSGW_HOST.":".SMSGW_PORT."/send.html?smsto=".$msisdn."&smsbody=".$message."&smstype=sms",
             CURLOPT_USERAGENT => 'PHP Tivoli'
         ));
-        curl_exec($curl);
-        $info = curl_getinfo($curl);
-
-        if (!curl_errno($curl)) {
-            switch ($info['http_code']) {
-                case '200':  # OK
-                    $this->logger->info(__METHOD__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($msisdn). " - Response code: ".$info['http_code']);
-                default:
-                    $this->logger->error(__METHOD__.": Unexpected HTTP answer from SMSGW ". $info['url']." - Response code: ".$info['http_code']);
+        curl_exec($ch);
+        $info = curl_getinfo($ch);
+        if (!curl_errno($ch)) {
+            if ($info['http_code'] != "200") {
+                $this->logger->error(__METHOD__.": Unexpected HTTP answer from SMSGW ". $info['url']." - Response code: ".$info['http_code']);
+            } else {
+                $this->logger->info(__METHOD__.": Sending SMS: '".urldecode($message)."' To: ".urldecode($msisdn). " - Response code: ".$info['http_code']);
             }
         }
         else {
             $this->logger->error(__METHOD__.": Unexpected issue calling SMSGW ". $info['url']." - Response code: ".$info['http_code']);
         }
-        curl_close($curl);
+        curl_close($ch);
     }
 
 }

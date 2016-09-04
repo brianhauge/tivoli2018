@@ -61,6 +61,7 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
             <li role="presentation" class="active"><a href="#trace" aria-controls="trace" role="tab" data-toggle="tab">SMS Trafik</a></li>
             <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Hold Oversigt</a></li>
             <li role="presentation"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
+            <li role="presentation"><a href="#smsflow" aria-controls="smsflow" role="tab" data-toggle="tab">SMS Flow</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="trace">
@@ -88,6 +89,10 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
                 print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
                 print("</pre>");
                 ?>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="smsflow">
+                <p><img src="Tivoli_2016_SMS_Flow_-_tjekke_ind.png" width="800" /></p>
+                <p><img src="Tivoli_2016_SMS_Flow_-_give_point.png" width="800" /></p>
             </div>
         </div>
     </div>

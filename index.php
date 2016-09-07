@@ -91,8 +91,8 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="smsflow">
-                <p><img src="Tivoli_2016_SMS_Flow_-_tjekke_ind.png" width="800" /></p>
-                <p><img src="Tivoli_2016_SMS_Flow_-_give_point.png" width="800" /></p>
+				<p><a href="Tivoli_2016_SMS_Flow.pdf">Download Tivoli_2016_SMS_Flow.pdf</a></p>
+                <p><img src="Tivoli_2016_SMS_Flow.png" width="800" /></p>
             </div>
         </div>
     </div>

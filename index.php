@@ -63,6 +63,7 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
             <li role="presentation"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
             <li role="presentation"><a href="#smsflow" aria-controls="smsflow" role="tab" data-toggle="tab">SMS Flow</a></li>
         </ul>
+
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="trace">
                 <?php
@@ -91,7 +92,7 @@ if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
                 ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="smsflow">
-				<p><a href="Tivoli_2016_SMS_Flow.pdf">Download Tivoli_2016_SMS_Flow.pdf</a></p>
+				<p class="bg-primary" style="padding: 15px;"><a href="Tivoli_2016_SMS_Flow.pdf" style="color: #FFF">Download Tivoli 2016 SMS Flow.pdf</a></p>
                 <p><img src="Tivoli_2016_SMS_Flow.png" width="800" /></p>
             </div>
         </div>

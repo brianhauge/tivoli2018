@@ -35,7 +35,6 @@ abstract class BaseInit
         // a function x has called a function y which called this
         // see stackoverflow.com/questions/190421
         $caller = debug_backtrace();
-        print_r($caller);
         $caller = $caller[2];
         $r = $caller['function'] . '()';
         if (isset($caller['class'])) {

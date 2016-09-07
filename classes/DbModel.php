@@ -59,6 +59,16 @@ class DbModel extends BaseInit
         return $score;
     }
 
+    public function queryToArray($sql) {
+        $array = array();
+        if ($result = $this->con->query($sql)) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $array[] = $row;
+            }
+        }
+        return $array;
+    }
+
     public function printResultTable($sql) {
         $tmp = "<table class=\"table table-striped\"><tr>";
         $row_count = 0;
@@ -70,7 +80,6 @@ class DbModel extends BaseInit
                 $tmp .= "<th>{$field->name}</th>";
             }
             $tmp .= "</tr>\n";
-            // printing table rows
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $tmp .= "<tr>";
                 foreach($row as $cell)

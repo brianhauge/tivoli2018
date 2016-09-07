@@ -56,8 +56,8 @@ class SmsScoreModel extends BaseInit
      */
     private function setPoint($smscontent)
     {
-        preg_match("/po?i?n?t?(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
-        preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->point);
+        preg_match("/po?i?n?t?(\\d{1,2}|100)(?!\\d)/",$smscontent,$tmpmatch);
+        preg_match("/".POINT_REGEX."/",$tmpmatch[0],$this->point);
     }
 
     /**
@@ -73,8 +73,8 @@ class SmsScoreModel extends BaseInit
      */
     private function setTeam($smscontent)
     {
-        preg_match("/([aA]|[bB]|[cC]|[nN])(\\d{1,2}(?!\\d)|100)/",$smscontent,$tmpmatch);
-        preg_match("/(\\d{1,2}(?!\\d)|100)/",$tmpmatch[0],$this->team);
+        preg_match("/".GROUP_REGEX.TEAM_REGEX."/",$smscontent,$tmpmatch);
+        preg_match("/".TEAM_REGEX."/",$tmpmatch[0],$this->team);
     }
 
     /**

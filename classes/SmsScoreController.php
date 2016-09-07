@@ -18,15 +18,15 @@ class SmsScoreController extends BaseInit
     }
 
     public function handleReceivedPoints(SmsScoreModel $smsModel) {
-        if ($smsModel->getPost() < 1) {
-            $message = "Du er ikke tjekket ind på en post. Send 'checkin post 9' for at tjekke ind.".SMS_HELPTEXT;
+        if (!$smsModel->getPost()) {
+            $message = "Du er ikke tjekket ind på en post. Send 'checkin post X' for at tjekke ind.".SMS_HELPTEXT;
 
         }
-        elseif($smsModel->getTeam() < 1) {
-            $message = "'a', 'b', 'c' eller 'n' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig.".SMS_HELPTEXT;
+        elseif(!$smsModel->getTeam()) {
+            $message = "'a', 'b', 'c' eller 'n' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig (ex A134).".SMS_HELPTEXT;
         }
-        elseif ($smsModel->getPoint() < 1) {
-            $message = "'point' ikke fundet i beskeden eller dens værdi er ugyldig.".SMS_HELPTEXT;
+        elseif (!$smsModel->getPoint()) {
+            $message = "'point' ikke fundet i beskeden eller dens værdi er ugyldig (1 - 100 point).".SMS_HELPTEXT;
         }
         else {
             // Insert Score

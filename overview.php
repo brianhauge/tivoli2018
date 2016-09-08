@@ -27,13 +27,18 @@ if ($_GET['postoverview'] == LOGCODE) {
     foreach($uniqteam as $team) {
         print("<tr><th>".$team['cid']."</th>");
         foreach ($uniqpost as $post) {
-            $s = $db->queryToArray("select point from tivoli2016_score where postid = ".$post['postid']." and teamid = ".$team['id']);
+            $s = $db->queryToArray("select * from tivoli2016_score_change_log where postid = ".$post['postid']." and teamid = ".$team['id']." order by updated_at desc");
             if($s[0]['point']) {
-                print("<td class='bg-success'>".$s[0]['point']."</td>");
+                print("");
+                if ($s[0]['action'] == "INSERT") print ("<td class='bg-success'>".$s[0]['point']."</td>");
+                else if ($s[0]['action'] == "UPDATE") print ("<td class='bg-warning'>".$s[0]['point']."</td>");
+                else if ($s[0]['action'] == "DELETE") print ("<td class='bg-danger'><del>".$s[0]['point']."</del></td>");
+
+                print("");
             }
             else
             {
-                print("<td class='bg-warning'></td>");
+                print("<td></td>");
             }
 
         }

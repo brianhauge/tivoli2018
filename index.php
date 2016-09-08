@@ -144,7 +144,12 @@ else {
 <script type="text/javascript">
     $().ready(function() {
         $("#postoverview").load('overview.php?postoverview=<?php print(LOGCODE); ?>');
+
+        $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
+            $( this ).popover('show');
+        });
     });
+
 </script>
 <? } ?>
 </body>

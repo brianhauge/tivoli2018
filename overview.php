@@ -27,14 +27,18 @@ if ($_GET['postoverview'] == LOGCODE) {
     foreach($uniqteam as $team) {
         print("<tr><th>".$team['cid']."</th>");
         foreach ($uniqpost as $post) {
-            $s = $db->queryToArray("select * from tivoli2016_score_change_log where postid = ".$post['postid']." and teamid = ".$team['id']." order by updated_at desc");
+            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at from tivoli2016_score_change_log where postid = ".$post['postid']." and teamid = ".$team['id']." order by updated_at desc");
             if($s[0]['point']) {
-                print("");
-                if ($s[0]['action'] == "INSERT") print ("<td class='bg-success'>".$s[0]['point']."</td>");
-                else if ($s[0]['action'] == "UPDATE") print ("<td class='bg-warning'>".$s[0]['point']."</td>");
-                else if ($s[0]['action'] == "DELETE") print ("<td class='bg-danger'><del>".$s[0]['point']."</del></td>");
+                $history = "";
+                foreach ($s as $s1) {
+                    $history .= $s1['updated_at']." ".$s1['creator'].": ".$s1['point']."<br>";
+                }
+                $popover = "tabindex=\"0\" data-placement=\"top\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"Pointhistorik\" data-html=\"true\" data-content=\"".$history."\"";
+                if ($s[0]['action'] == "INSERT") print ("<td class='bg-success' $popover>".$s[0]['point']."</td>");
+                else if ($s[0]['action'] == "UPDATE") print ("<td class='bg-warning' $popover>".$s[0]['point']."</td>");
+                else if ($s[0]['action'] == "DELETE") print ("<td class='bg-danger' $popover><del>".$s[0]['point']."</del></td>");
 
-                print("");
+
             }
             else
             {

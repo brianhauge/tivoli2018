@@ -34,11 +34,9 @@ if ($_GET['postoverview'] == LOGCODE) {
                     $history .= $s1['updated_at']." ".$s1['creator'].": ".$s1['point']."<br>";
                 }
                 $popover = "tabindex=\"0\" data-placement=\"top\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"Pointhistorik\" data-html=\"true\" data-content=\"".$history."\"";
-                if ($s[0]['action'] == "INSERT") print ("<td class='bg-success' $popover>".$s[0]['point']."</td>");
-                else if ($s[0]['action'] == "UPDATE") print ("<td class='bg-warning' $popover>".$s[0]['point']."</td>");
-                else if ($s[0]['action'] == "DELETE") print ("<td class='bg-danger' $popover><del>".$s[0]['point']."</del></td>");
-
-
+                if ($s[0]['action'] == "INSERT") print ("<td class='bg-success' style='cursor: pointer' $popover>".$s[0]['point']."</td>");
+                else if ($s[0]['action'] == "UPDATE") print ("<td class='bg-warning' style='cursor: pointer' $popover>".$s[0]['point']."</td>");
+                else if ($s[0]['action'] == "DELETE") print ("<td class='bg-danger' style='cursor: pointer' $popover><del>".$s[0]['point']."</del></td>");
             }
             else
             {

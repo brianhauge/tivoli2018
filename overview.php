@@ -27,11 +27,11 @@ if ($_GET['postoverview'] == LOGCODE) {
     foreach($uniqteam as $team) {
         print("<tr><th>".$team['cid']."</th>");
         foreach ($uniqpost as $post) {
-            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at from tivoli2016_score_change_log where postid = '".$post['postid']."' and teamid = '".$team['id']."' order by updated_at desc");
+            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at1 from tivoli2016_score_change_log where postid = '".$post['postid']."' and teamid = '".$team['id']."' order by updated_at desc");
             if($s[0]['point']) {
                 $history = "";
                 foreach ($s as $s1) {
-                    $history .= $s1['updated_at']." ".$s1['creator'].": ".$s1['point']."<br>";
+                    $history .= $s1['updated_at1']." ".$s1['creator'].": ".$s1['point']."<br>";
                 }
                 $popover = "tabindex=\"0\" data-placement=\"top\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"Pointhistorik\" data-html=\"true\" data-content=\"".$history."\"";
                 if ($s[0]['action'] == "INSERT") print ("<td class='bg-success' style='cursor: pointer' $popover>".$s[0]['point']."</td>");

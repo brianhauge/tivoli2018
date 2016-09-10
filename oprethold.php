@@ -43,7 +43,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                             <label><input type="radio" name="group" id="C" value="C">9. klasse til 18 år</label>
                         </div>
                         <div class="radio disabled">
-                            <label class="text-muted"><input type="radio" name="group" id="N" value="N" disabled>Natløb (tilmelding åbner på dagen)</label>
+                            <label class="text-muted"><input type="radio" name="group" id="N" value="N" disabled>Natløb (tilmelding åbner kl. 14)</label>
                         </div>
                     </div>
                 </div>

@@ -56,7 +56,7 @@ class SmsScoreModel extends BaseInit
      */
     private function setPoint($smscontent)
     {
-        preg_match("/po?i?n?t?(\\d{1,2}|100)(?!\\d)/",$smscontent,$tmpmatch);
+        preg_match("/po?i?n?t?".POINT_REGEX."/",$smscontent,$tmpmatch);
         preg_match("/".POINT_REGEX."/",$tmpmatch[0],$this->point);
     }
 

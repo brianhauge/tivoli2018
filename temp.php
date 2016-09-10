@@ -6,17 +6,31 @@
  * Time: 12:17
  */
 
+require 'vendor/autoload.php';
+use Katzgrau\KLogger\Logger;
+
 setlocale(LC_ALL, "da_DK");
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
 
-$db = new DbModel();
-$sms = new SendSmsModel();
 
-$postmandskab = $db->queryToArray("select * from tivoli2016_postcheckin");
-//$sms->sendSms("+4525212002","Lidt info. Der kan gives mellem 1-100 point, brug jeres egen vurdering og sunde fornuft til at give point. En mobil kan kun tjekke ind på en post af gangen.");
-//die();
-foreach ($postmandskab as $m) {
-    $sms->sendSms($m['mobile'],"Som i nok allerede har opdaget, så modtager i ikke kvitteringer. Systemet kan ikke følge med, så vi har nu slået det helt fra. Send point ind, men i vil ikke modtage en kvittering.");
+$send = new SendSmsModel();
+
+$directory = '/Users/bhansen/Desktop/sms/incoming/';
+$scanned_directory = array_diff(scandir($directory), array('..', '.'));
+
+foreach ($scanned_directory as $file11) {
+    $handle = fopen($directory.$file11, "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            
+            $send->tjekInSMS($line,"12345678");
+        }
+
+        fclose($handle);
+    } else {
+        print("issue with ".$directory);
+    }
 }
+

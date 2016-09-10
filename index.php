@@ -148,6 +148,8 @@ else {
         $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
             $( this ).popover('show');
         });
+
+        setInterval(function(){ $("#postoverview").load('overview.php?postoverview=<?php print(LOGCODE); ?>'); }, 60000);
     });
 
 </script>

@@ -27,7 +27,7 @@ if ($_GET['postoverview'] == LOGCODE) {
     foreach($uniqteam as $team) {
         print("<tr><th>".$team['cid']."</th>");
         foreach ($uniqpost as $post) {
-            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at from tivoli2016_score_change_log where postid = ".$post['postid']." and teamid = ".$team['id']." order by updated_at desc");
+            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at from tivoli2016_score_change_log where postid = '".$post['postid']."' and teamid = '".$team['id']."' order by updated_at desc");
             if($s[0]['point']) {
                 $history = "";
                 foreach ($s as $s1) {

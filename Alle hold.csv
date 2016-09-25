@@ -1,0 +1,337 @@
+id,groups,cid,name,leder,mobil,email,kreds,antal,updated_at
+8,C,C8,Heltehundene,Simon GrÃ¸nning,93992971,simon.eg@hotmail.com,Egebjerg,5,2016-08-30 12:19:15
+9,C,C9,Mixerne ,Per Nielsen ,21917298,plamse@hotmail.com,Galten ,5,2016-08-30 12:28:57
+13,A,A13,BlÃ¥,William Ziska,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,5,2016-08-30 17:06:49
+14,A,A14,RÃ¸d,Viggo Stokholm StubkjÃ¦r,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,6,2016-08-30 17:07:47
+15,A,A15,Mohikaner,Sigurd Aaberg Svarer,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,6,2016-08-30 17:21:36
+16,A,A16,Inka,Niels Anton Kjems,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,6,2016-08-30 17:22:19
+17,A,A17,Apache,Adam Ruge MÃ¸ller,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,6,2016-08-30 17:22:52
+20,A,A20,StÃ¦rkodder Ulve,Yazan,22637464,annelise.kallin@12move.dk,DDS StÃ¦rkodder,3,2016-08-30 19:07:24
+21,A,A21,StÃ¦rkodder tÃ¸ser,Sanne,22637464,annelise.kallin@12move.dk,DDS StÃ¦rkodder,4,2016-08-30 19:12:20
+33,A,A33,Ellevang-Risskov 1,Sara Gramstrup,60638639,sara_gramstrup@hotmail.com,Ellevang-Risskov,7,2016-09-04 12:47:45
+40,A,A40,Brabrands seje piger,Jacob Reinholdt,20713630,jare@tulip.dk,FDF Brabrand,5,2016-09-07 12:29:40
+41,A,A41,Brabrands seje drenge,Kathrine Kofoed,93508204,Kofoed@au.dk,FDF Brabrand,6,2016-09-07 12:32:44
+42,A,A42,Team Brabrand,SÃ¸ren Peter Jonstrup,60131510,spjonstrup@gmail.com,FDF Brabrand,4,2016-09-07 12:34:46
+44,A,A44,KalÃ¸vig bÃ¦verpiger,Annette,50436344,vang.bjerrum@email.dk,KalÃ¸vig,5,2016-09-07 19:39:44
+45,A,A45,KalÃ¸vig bÃ¦verdrenge,Annette,50436344,vang.bjerrum@email.dk,KalÃ¸vig,5,2016-09-07 19:41:03
+46,A,A46,Risskov Piger,Julie,29893904,majameng@gmail.com,Risskov Piger,8,2016-09-07 22:15:58
+47,A,A47,Flammegruppen junior 1,Signe,60688639,signe_christiansen89@hotmail.com,Stavstrup ,7,2016-09-07 22:44:01
+48,A,A48,Flammegruppen juniore 2,Nana,60688639,signe_christiansen89@hotmail.com,Stavstrup KFUM ,7,2016-09-07 22:46:24
+52,A,A52,vk.mini1,Clara ,60604648,lone.m.n@gmail.com,viby-kongsvang dds ,6,2016-09-08 08:00:03
+53,A,A53,vk.mini2 ,Maiken ,60604648,lone.m.n@gmail.com,viby-kongsvang dds,6,2016-09-08 08:02:17
+59,A,A59,HÃ¸jbjerg drenge,Jens holtet,40242866,familien_holtet@me.com,Ã…rhus skov,6,2016-09-08 13:54:10
+66,A,A66,De Skarpe KlÃ¸er,Birk Sandvei,31343760,mikkelsteen.petersen@gmail.com,KFUM Marselis Distrikt / KalÃ¸vig Gruppe,4,2016-09-09 13:00:27
+67,A,A67,De Fede Egern,Elisabeth Kristensen,31343760,mikkelsteen.petersen@gmail.com,KFUM Marselis Distrikt / KalÃ¸vig Gruppe,7,2016-09-09 13:01:39
+68,A,A68,RÃ¦vepoterne,Nicola Bjerrum,31343760,mikkelsteen.petersen@gmail.com,KFUM Marselis Distrikt / KalÃ¸vig Gruppe,7,2016-09-09 13:02:24
+70,A,A70,FDF Vibys 1. hold,Maiken Hyllested,22551016,hylle@fdf.dk,FDF Viby J,7,2016-09-09 16:40:15
+73,A,A73,Junior patrulje kalÃ¸vig,Noah,22229418,nm0904@hotmail.com,KalÃ¸vig,7,2016-09-09 17:05:55
+75,A,A75,De grÃ¸nne skovvenner,Bitten Nedergaard,51212534,b_vad@hotmail.com,DGP Brabrand,4,2016-09-09 17:43:29
+79,A,A79,kragetÃ¦erne,annette juul simonsen,61518853,jansimonsenfdf@hotmail.com,fdf kragelund,4,2016-09-09 20:00:18
+80,A,A80,Pinlige pilte,jan simonsen,24627761,jansimonsenfdf@hotmail.com,fdf kragelund,6,2016-09-09 20:01:42
+83,A,A83,SUPERpuslinge,Signe Randorff,61715103,signerandorff@hotmail.com,Aarhus 2,3,2016-09-09 20:29:06
+84,A,A84,Tumlingebanden ,Anna Hvarregaard Christensen ,31664310,anna.h.christensen@gmail.com,FDF Aarhus 2,5,2016-09-09 20:31:23
+85,A,A85,Pilskadderne ,Jan Lundum ,2848425 ,jlundum@gmail.com,FDF Aarhus 2,6,2016-09-09 20:35:51
+86,A,A86,Pil af,Katharina Wolter ,51250162,katharinawolter@hotmail.com,FDF Aarhus 2,6,2016-09-09 20:37:37
+10,B,B10,KÃ¸benhavnerne pÃ¥ afveje ,Izabella Rasmussen ,53378151,izabella.rasmussen@gmail.com,FDF K27/galten/hvidovre,4,2016-08-30 16:16:19
+11,B,B11,Ã˜rne,Ask Garsdal,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,5,2016-08-30 17:01:48
+12,B,B12,HÃ¸ge,Nicolai Damm,61314069,Fmunchhansen@gmail.com,1. Risskov Drenge,6,2016-08-30 17:02:24
+18,B,B18,Puma,BergrÃºn ,53763046,bergrununa.is@gmail.com,Egebjerg,5,2016-08-30 17:32:08
+19,B,B19,De StÃ¦rke BlÃ¥,Silas Kosior,22637464,annelise.kallin@12move.dk,dds stÃ¦rkodder,5,2016-08-30 19:01:47
+22,B,B22,Powergirls,Julie,22637464,annelise.kallin@12move.dk,DDS StÃ¦rkodder,4,2016-08-30 22:10:09
+23,B,B23,StÃ¦rkodder Drengene,Lasse,22637464,annelise.kallin@12move.dk,DDS StÃ¦rkodder,5,2016-08-30 22:12:37
+24,B,B24,De store piger,x,20960937,Henriette.nielsen1991@hotmail.com,AndstVejenSkodborg,6,2016-09-01 11:43:00
+25,B,B25,De store drenge,x,20960937,Henriette.nielsen1991@hotmail.com,AndstVejenSkodborg,6,2016-08-31 19:53:05
+26,B,B26,De smÃ¥ piger,x,20960937,Henriette.nielsen1991@hotmail.com,AndstVejenSkodborg,5,2016-08-31 19:56:30
+27,B,B27,De smÃ¥ drenge,x,20960937,Henriette.nielsen1991@hotmail.com,AndstVejenSkodborg,7,2016-08-31 19:57:36
+29,B,B29,Kajkagerne,2,25140167,christina.faarup@skolekom.dk,2. Randers,6,2016-08-31 22:03:36
+30,B,B30,PrÃ¦riestammen,Sonny,53553410,jpb@spejdernet.dk,Horsens Gruppe,7,2016-08-31 22:45:11
+31,B,B31,Salte delfiner ,Peter Nieman,24477885,pfn117@gmail.com,FDF Ã˜rting-Falling ,5,2016-09-01 20:49:17
+32,B,B32,FDF Frederiks,na,26455105,brianalbrektsen170380@gmail.com,FDF Frederiks,5,2016-09-01 22:48:27
+34,B,B34,Ellevang-Risskov 2,Sara Linde,30707749,sara-linde@hotmail.com,Ellevang-Risskov,7,2016-09-04 12:52:57
+35,B,B35,Ellevang-Risskov sv1,Sara Linde,30707749,sara-linde@hotmail.com,ellevang-Risskov,4,2016-09-04 12:54:21
+36,B,B36,Ellevang-Risskov sv2,Sara Linde,30707749,sara-linde@hotmail.com,Ellevang-Risskov,4,2016-09-04 12:55:29
+37,B,B37,FDF Tvis,Natascha Rosenbeck,22190068,f@rosenbeck.it,FDF Tvis,1,2016-09-05 14:41:24
+39,B,B39,Sika,Charlotte Salling,26782199,tejsdupont@gmail.com,DDS / 1. HÃ¸jberg,5,2016-09-06 20:03:38
+43,B,B43,Team JOSA,SÃ¸ren Peter Jonstrup,60131510,spjonstrup@gmail.com,FDF Brabrand,4,2016-09-07 12:36:01
+49,B,B49,Flammegruppen 1,Liv,60688639,signe_christiansen89@hotmail.com,Stavstrup KFUM ,4,2016-09-07 22:48:49
+50,B,B50,Flammegruppen trop 2,Maria,60688639,signe_christiansen89@hotmail.com,Stavstrup KFUM ,4,2016-09-07 22:50:20
+51,B,B51,Flammegruppen trop 3,Jonas,60688639,signe_christiansen89@hotmail.com,Stavstrup KFUM ,4,2016-09-07 22:51:51
+54,B,B54,Team Fjeld-Kjeld,Jens Madsen,91112364,pernillepilgaard@hotmail.com,Gl. Rye,8,2016-09-08 09:43:07
+55,B,B55,Makrel,Karla ,26294262,astrid.kaervang@hotmail.com,Viby-Kongsvang ,4,2016-09-08 11:06:28
+56,B,B56,Sild ,Karoline ,26294262,astrid.kaervang@hotmail.com,Viby-Kongsvang ,4,2016-09-08 11:07:14
+57,B,B57,RÃ¸dspÃ¦tte,Frida,26294262,astrid.kaervang@hotmail.com,Viby-Kongsvang ,4,2016-09-08 11:09:25
+58,B,B58,Stenbider ,Mille ,26294262,astrid.kaervang@hotmail.com,Vib,4,2016-09-08 11:11:46
+61,B,B61,Sortefod,Sofie Flindt,21186699,ik1507@live.dk,KFUM Spejderne i RÃ¸dekeo,5,2016-09-08 19:55:51
+62,B,B62,Sortefod 2 - De andre har stjÃ¥let vore navn,Klara Eisenhardt,60710607,ik1507@live.dk,KFUM Spejderne i RÃ¸dekro,5,2016-09-08 19:57:39
+63,B,B63,Panter,Mia JÃ¸rgensen,60599880,ik1507@live.dk,KFUM Spejderne i RÃ¸dekro,5,2016-09-08 19:59:06
+64,B,B64,Vaks,Lea,22287977,Lundby@toggerbo.dk,Stifindererne SÃ¸,6,2016-09-08 21:12:21
+65,B,B65,Ratata,Denise,22287977,Lundby@toggerbo.dk,Stifindererne SÃ¸,5,2016-09-08 21:13:56
+69,B,B69,Rolade ridderne,SÃ¸ren,22537724,soren7773@gmail.com,HÃ¸jen gruppe,6,2016-09-09 15:30:40
+71,B,B71,FDF Vibys 2.hold,Kasper SÃ¸rensen,22838251,hylle@fdf.dk,FDF Viby J,4,2016-09-09 16:42:30
+72,B,B72,100 m skoven,Ida press mathiasen,30440501,nm0904@hotmail.com,KalÃ¸vig gruppe,4,2016-09-09 16:45:30
+76,B,B76,FÃ¦tter BRs fÃ¦tre ,Mikkel ,30257188,maleneholm1@hotmail.com,Ã…rhus 9 ,4,2016-09-09 17:55:23
+77,B,B77,Team Ã…ge ,Lars,28187010,maleneholm1@hotmail.com,Ã…rhus 9,5,2016-09-09 17:56:54
+78,B,B78,VÃ¦slerne,Lysander,40242866,familien_holtet@me.com,Ã…rhus skov div. HÃ¸jbjerg drenge,3,2016-09-10 17:08:21
+81,B,B81,vilde vÃ¦bnere,dennis klitgaard,42416083,jansimonsenfdf@hotmail.com,fdf kragelund,7,2016-09-09 20:03:13
+82,B,B82,Mors drenge,janus schiÃ¸tte,53635970,jansimonsenfdf@hotmail.com,fdf kragelund,4,2016-09-09 20:05:03
+87,B,B87,Klovborg FDF - Hold 1,Line HasselstrÃ¸m,52397800,susannehave@live.dk,KlovborgFDF,6,2016-09-09 20:37:40
+88,B,B88,Klovborg FDF - Hold 2,Susanne Have,52397800,susannehave@live.dk,KlovborgFDF,6,2016-09-09 20:39:11
+89,B,B89,Klovborg FDF - Hold 3,Pernille Have,52397800,susannehave@live.dk,KlovborgFDF,6,2016-09-09 20:40:40
+90,B,B90,Girafferne ,Martin WolsgÃ¥rd ,60747567,wolsgaard14000@gmail.com,FDF Aarhus 2,4,2016-09-09 20:41:44
+92,B,B92,Seniorvaflerne ,Louise Simonsen ,21666227,louise.simonsen@hotmail.com,FDF Aarhus 2,6,2016-09-09 20:42:49
+93,B,B93,R P Junior 1,Camilla Marie,40422308,chchrosen@outlook.dk,Risskv-piger,6,2016-09-09 23:16:59
+94,B,B94,R P Junior 2,Marie,40422308,chchrosen@outlook.dk,Risskov piger,7,2016-09-09 23:20:29
+96,B,B96,Teletopies ,Katrine,42727590,schrammming@gmail.com,MÃ¥rslet ,4,2016-09-10 09:20:31
+98,B,B98,De blÃ¥ gifler,Marie Mortensen ,20253758,morten.sen@hotmail.com,Solbjerg FDF ,4,2016-09-10 10:42:48
+99,B,B99,Pip paf,Ida Stokholm,71780101,morten.sen@hotmail.com,Solbjerg FDF ,4,2016-09-10 10:44:30
+28,C,C28,Dragen med unger,Trine Riber Poulsen,24277518,trine_riber@hotmail.com,FDF Vind,7,2016-08-31 20:54:33
+38,C,C38,FDF ODDER,"Jeppe Haugaard, Christian From",60645069,Jepphau95@gmail.com,ODDER FDF ,7,2016-09-06 08:10:30
+60,C,C60,Kajakkerne fra Lemvig,1,31270151,lemvig@fdf.dk,Lemvig,5,2016-09-08 19:10:30
+74,C,C74,Team havetraktor,Signe ,40274722,maleneholm1@hotmail.com,Ã…rhus 9 ,6,2016-09-09 17:43:04
+91,C,C91,Klovborg FDF - Hold 4,Jesper Kristensen,52397800,susannehave@live.dk,KlovborgFDF,5,2016-09-09 20:42:09
+95,C,C95,The Weasleys,Mathilde Sofie Holm,21569562,mathildesholm@gmail.com,3. Silkeborg,4,2016-09-10 08:25:10
+97,C,C97,Lederne,Mig selv,23298394,prebse90@gmail.com,DDS Friheden,3,2016-09-10 10:36:50
+101,A,A101,Junier,Iben mikkeline,61276287,svaneby@yahoo.dk,KFUM Egebjeg,5,2016-09-10 10:47:31
+102,A,A102,Marselis RÃ¦vehaler,Alfred,20939687,maria@marselisspejderne.dk,Marselisspejderne ,6,2016-09-10 10:49:04
+103,A,A103,2. Risskov mini,Peter Klahn,27825846,peter-klahn@live.dk,2. Risskov,3,2016-09-10 10:50:57
+104,A,A104,Dalmatinerne ,Sophie,60117249,sophielyngaa@gmail.com,Beder Malling FDF ,5,2016-09-10 10:51:01
+105,A,A105,Marselis Egernhaler,Rose,20939687,maria@marselisspejderne.dk,Marselisspejderne ,6,2016-09-10 10:51:08
+118,A,A118,Slikposen,Sofie kroll,30349625,marie-falch@hotmail.com,1. HÃ¸jbjerg ,3,2016-09-10 10:56:19
+119,A,A119,P T go ,Linda simonsen,23441221,lindarisum@outlook.dk,Skanderborg / stilling fdf,10,2016-09-10 10:56:39
+120,A,A120,Marselis BÃ¦ver,Margrethe,20939687,maria@marselisspejderne.dk,Marselisspejderne ,6,2016-09-10 10:56:47
+124,A,A124,Marselis,Astrid ,20939687,maria@marselisspejderne.dk,Marselisspejderne ,7,2016-09-10 10:58:05
+125,A,A125,Banana Joe,Clara Pang,30349625,marie-falch@hotmail.com,1. HÃ¸jbjerg ,4,2016-09-10 10:58:11
+128,A,A128,BÃ¦ver SkjoldhÃ¸j,Emilie,27125458,hellebirkmose@gmail.com,KFUM SkjoldhÃ¸j,4,2016-09-10 10:59:17
+130,A,A130,Ulve 1 SkjoldhÃ¸j,Tobias,27125458,hellebirkmose@gmail.com,KFUM SkjoldhÃ¸j,5,2016-09-10 11:01:21
+132,A,A132,Ulve 2 SkjoldhÃ¸j,Lisa,27125458,hellebirkmose@gmail.com,KFUM SkjoldhÃ¸j,4,2016-09-10 11:02:42
+133,A,A133,Dybthavstudsefisk (gallerne),Ingrid (Chua),42257549,e.borsen@outlook.dk,Gallerne DDS,7,2016-09-10 11:03:43
+135,A,A135,Marselis MÃ¥r,Viggo,20939687,maria@marselisspejderne.dk,Marselisspejderne ,5,2016-09-10 11:05:01
+137,A,A137,Junior AVS,Malthe,22460925,lene@ixx.dk,Kfum alminde/viuf,4,2016-09-10 11:06:49
+138,A,A138,Team Tivoli,Rachel,41628777,nicolinetk@gmail.com,2. HÃ¸jbjerg,6,2016-09-10 11:07:11
+139,A,A139,Marselis Hermelin,Christian ,20939687,maria@marselisspejderne.dk,Marselisspejderne ,4,2016-09-10 11:07:25
+142,A,A142,Svalerne,Christian,40186396,nicolinetk@gmail.com,2. HÃ¸jbjerg,5,2016-09-10 11:08:52
+154,A,A154,Thebe,Isabelle,40500577,darmaduus@live.dk,DDS 12. Aarhus,5,2016-09-10 11:15:43
+160,A,A160,Sinobe,Maja,40500577,darmaduus@live.dk,DDS 12. Aarhus,6,2016-09-10 11:17:05
+161,A,A161,De fire smÃ¥ kaniner,Julie KÃ¼hnell ,60169546,julie-kuhnell@hotmail.com,Lystrup-Elev,4,2016-09-10 11:17:24
+163,A,A163,Metis,Liva,40500577,darmaduus@live.dk,DDS 12. Aarhus,5,2016-09-10 11:18:01
+165,A,A165,Slikkepindende,Hans ,20830516,bekce_beckham@hotmail.com,Erik den rÃ¸de 1. patrujle,5,2016-09-10 11:19:02
+167,A,A167,Tip top,Binemarie,26858739,mariehalberstadtnorgaard@gmail.com,Gl. Rye FDF ,6,2016-09-10 11:19:52
+169,A,A169,Skumfiduserne,Mie,20830516,bekce_beckham@hotmail.com,Erik den rÃ¸de,5,2016-09-10 11:20:21
+174,A,A174,Hold hurtig,Marie nÃ¸rgaard,26858739,mariehalberstadtnorgaard@gmail.com,Gl. Rye fdf,4,2016-09-10 11:23:45
+178,A,A178,Cool boys,Marie nÃ¸rgaard,26858739,mariehalberstadtnorgaard@gmail.com,Gl. Rye FDF ,6,2016-09-10 11:25:33
+181,A,A181,1. Pilt,Elvira,27824978,mariespanggaard@gmail.com,FDF HjortshÃ¸j,4,2016-09-10 11:28:12
+185,A,A185,2. Pilt,Karl,60198122,mariespanggaard@gmail.com,FDF HjortshÃ¸j,4,2016-09-10 11:30:07
+191,A,A191,3. Pilt,Karla,24930271,mariespanggaard@gmail.com,FDF HjortshÃ¸j,4,2016-09-10 11:31:36
+193,A,A193,Bananasplit ,1,30359390,sigridmariedahl@gmail.com,Aarhus 1 ,5,2016-09-10 11:32:33
+196,A,A196,4. Pilt,Marie,93993018,mariespanggaard@gmail.com,FDF HjortshÃ¸j,5,2016-09-10 11:32:42
+201,A,A201,Scones,Tine Bunk,61856990,tinebunk@msn.com,FDF Aarhus 1,5,2016-09-10 11:33:24
+203,A,A203,LÃ¦derlÃ¸berne,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 11:33:34
+207,A,A207,Spyfluerne,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,4,2016-09-10 11:34:10
+210,A,A210,BlÃ¥ skjoldunger,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 11:35:06
+215,A,A215,RÃ¸d Skjoldunger,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 11:35:48
+217,A,A217,Mikro,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,8,2016-09-10 11:36:23
+218,A,A218,BlÃ¥hvalerne,Ea,25348188,niclasseth@gmail.com,Delfinerne,6,2016-09-10 11:36:38
+222,A,A222,Hod Aarhus,Michael,22825416,rolff@live.dk,12 Aarhus spejderne,7,2016-09-10 11:38:05
+223,A,A223,Risskov/EgÃ¥ smutter,Desiree,24445402,karin_lis@hotmail.com,Risskov DGP,4,2016-09-10 11:40:56
+224,A,A224,Risskov/EgÃ¥ smutter (2),Bente,21298227,karin_lis@hotmail.com,Risskov DGP,5,2016-09-10 11:43:35
+228,A,A228,Lilla Kuld,Cecilie,22645704,trinehoejen@hotmail.com,Delfinerne,5,2016-09-10 11:56:53
+229,A,A229,RÃ¸d Kuld,Annika,28777192,soffi.ester@gmail.com,Delfinerne,4,2016-09-10 11:57:58
+230,A,A230,BlÃ¥t Kuld,Alexander,30809973,henrik_amtoft@hotmail.com,Delfinerne,6,2016-09-10 11:59:22
+232,A,A232,Niels og bÃ¸rnene,Niels,26719104,murermester.niels.kristensen@mail.dk,DDS Risskov,3,2016-09-10 12:41:01
+100,B,B100,Nibenitterne,Kristina Hjorth Jensen,40295973,Kattearm@hotmail.com,FDF Nibe,4,2016-09-10 10:46:47
+106,B,B106,Pegasus,Nikolai,61276287,svaneby@yahoo.dk,Kfum egebjerg,5,2016-09-10 10:52:17
+108,B,B108,Skanderborg StrÃ¦berne,Nicklas Lauritzen,22428297,nicklaslauritzen@hotmail.com,FDF Skanderborg-Stilling,9,2016-09-10 10:53:03
+109,B,B109,Labre larver,Alexander,28251140,alexanderdueholm@hotmail.com,Beder Malling FDF ,5,2016-09-10 10:53:06
+110,B,B110,Combined,Jonathan ,23676045,buggychamp@gmail.com,SkjoldhÃ¸j ,5,2016-09-10 10:53:13
+111,B,B111,2. Risskov junior,Marius GjÃ¸derum-Svenningsen,61665364,ussi0506@gmail.com,2. Risskov,5,2016-09-10 10:53:28
+112,B,B112,HG1,Jannie,29399571,rikkechristensen412@gmail.com,Hampen Gludsted,4,2016-09-10 10:53:42
+116,B,B116,Panter Galten ,Jens,28978410,jensbm@live.dk,1. Galten,7,2016-09-10 11:05:12
+117,B,B117,De vilde vipse,Miriam ,42724320,buggychamp@gmail.com,SkjoldhÃ¸j,4,2016-09-10 10:55:55
+121,B,B121,Ã…rhus 14 vÃ¦bnere,Anita Laustsen,20705882,Anitazrl@gmail.com,FDF Ã…rhus 14,7,2016-09-10 10:58:01
+122,B,B122,De vilde lÃ¸ver ,Cecilie ,22932991,buggychamp@gmail.com,SkjoldhÃ¸j,4,2016-09-10 10:58:01
+123,B,B123,BÃ¦ver,Katrine ,21656324,katrine.duedal@gmail.com,1. Galten gruppe,6,2016-09-10 10:58:01
+126,B,B126,De saltede delfiner!!?,Niklas ,28914492,niklas96gaarde@gmail.com,Ã˜rting ,5,2016-09-10 10:58:25
+127,B,B127,KnÃ¦kket arm,Emil Leth,53291299,andreas.lunderskov@gmail.com,KFUM-spejderne MÃ¥rslet,8,2016-09-10 10:59:04
+129,B,B129,CitronmÃ¥ne 4 The win,Lucas,23263101,lucasgrene@gmail.com,Giber Ã¥,4,2016-09-10 10:59:39
+134,B,B134,Din Mor,Naiobe,50701823,shd1@live.dk,Viby Kongsvang,7,2016-09-10 11:04:21
+136,B,B136,Ninja Chickens,Charlotte,41886017,nicolinetk@gmail.com,2. HÃ¸jbjerg,4,2016-09-10 11:05:49
+141,B,B141,AppÃ£s Disciple,Halfdan Magnus Stefansson,61726017,tegnedrengen123@gmail.com,Gallerne,5,2016-09-10 11:08:31
+143,B,B143,Sesams,Agnes,20608605,margrethe@schimmelmann.dk,DDS Gallerne,6,2016-09-10 11:09:50
+144,B,B144,DASK,Sofif ,51950510,sofie@bruuna.dk,Gallerne,4,2016-09-10 11:10:09
+146,B,B146,diddi,Hjalte Eriksen,51869916,rysgaard@post.tele.dk,Gl Rye,6,2016-09-10 11:11:38
+148,B,B148,H2O,Laura ,31349866,wolder.laura@gmail.com,Kfum alminde viuf,4,2016-09-10 11:12:54
+149,B,B149,Team Hold,Rasmus,30492015,rasmusslind@gmail.com,DDS Gallerne,4,2016-09-10 11:13:02
+150,B,B150,Gl. Rye 2,Simon Gosvig,24220692,rysgaard@post.tele.dk,Gl Rye,5,2016-09-10 11:13:18
+151,B,B151,Solpatruljen,Nanna Michelle Rasmussen ,60604820,nannamichella@yahoo.dk,FDF Odense 4,7,2016-09-10 11:13:58
+153,B,B153,Agnes,Agnes Frydensbjerg,24220692,rysgaard@post.tele.dk,Gl Rye,4,2016-09-10 11:14:28
+155,B,B155,snikers,Oliver,30799008,oliver_buur@yahoo.com,kfum alminde viuf ,4,2016-09-10 11:15:59
+157,B,B157,Unicorns,Anna L,42602622,annalaurberg@gmail.com,Unicorns,7,2016-09-10 11:16:08
+159,B,B159,Team lemans,Emilie Hansen,22435125,eoh@live.dk,MS Grindsted,6,2016-09-10 11:16:53
+162,B,B162,FDF pÃ¥ toppen,Mads Tornvig ,61311017,allanbroe@gmail.com,FDF holstebro ,5,2016-09-10 11:17:36
+164,B,B164,Vipper,Peter KÅ±hnell,28778462,peter.kuhnell@gmail.com,Lystrup-Elev,3,2016-09-10 11:18:24
+170,B,B170,#Ggged ,jakob hovgÃ¥rd,61735354,isabellamortensen1337@gmail.com,hermom trop Grindsted,4,2016-09-10 17:07:55
+171,B,B171,De 5 dyr i skoven,Amalie ,60577175,allanbroe@gmail.com,FDF Holstebro ,5,2016-09-10 11:21:18
+172,B,B172,Donuts,Cecilie,60557533,ceciliemafi@gmail.com,DDS,6,2016-09-10 11:22:06
+175,B,B175,Marselis Vildkatte ,Thomas,20939687,maria@marselisspejderne.dk,Marselisspejderne ,5,2016-09-10 11:24:20
+176,B,B176,Kit Kat,Astrid,61452614,abkn@outlook.dk,DDS Risskov Piger,4,2016-09-10 11:24:38
+177,B,B177,De frie pÃ¥fugle,Line olsen,93886151,allanbroe@gmail.com,FDF Holstebro ,6,2016-09-10 11:25:10
+179,B,B179,Marselis Missekatte,Veronica,20939687,maria@marselisspejderne.dk,Marselisspejderne ,5,2016-09-10 11:27:15
+180,B,B180,Black Star,Lauge,42443026,kristianlindgren@yahoo.dk,12. Ã…RHUS,4,2016-09-10 11:27:31
+182,B,B182,sÃ¸hesten,Emilie pedersen,28748771,k.moller@clin.au.dk,delfinerne,5,2016-09-10 11:29:24
+183,B,B183,Istapperne ,Sandi ,60157581,Sandielin@live.dk,Horsens 1,5,2016-09-10 11:29:59
+184,B,B184,Piratfiskene,Noah StrÃ¸m,29497361,gnided@gmail.com,Delfinerne,4,2016-09-10 11:30:06
+186,B,B186,MjÃ¸lner EDR,Magnus HB,20259344,magnusholmelundboye@gmail.com,Erik den rÃ¸de,6,2016-09-10 11:30:43
+187,B,B187,sÃ¸hesten01,kathrine Kalestrup,28748771,k.moller@clin.au.dk,delfinerne,4,2016-09-10 11:30:57
+188,B,B188,Knorr,Ingrid,25622529,ingridbrocker@hotmail.dk,Erik den rÃ¸de,7,2016-09-10 11:31:12
+189,B,B189,Pighajen,Casper Schneider,29497361,gnided@gmail.com,Delfinerne,4,2016-09-10 11:31:14
+190,B,B190,Tyren,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 11:31:32
+192,B,B192,Kevin og vennerne,Joachim Seiler,40849840,tjuki90@yahoo.dk,Aarhus 1,4,2016-09-10 11:31:57
+194,B,B194,RÃ¸dspÃ¦tten,Holger Wundahl,29497361,gnided@gmail.com,Delfinerne,4,2016-09-10 11:32:35
+195,B,B195,Mikkel og co. ,Sidsel Dahl,30641738,sidselalmind@gmail.com,Ã…rhus 1,4,2016-09-10 11:32:36
+197,B,B197,Sleipner,Julie,21260325,jgrumme2002@gmail.com,EDR,4,2016-09-10 11:41:38
+198,B,B198,VÃ¦dderen,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 11:32:46
+199,B,B199,Galten 1,Heidi,28765966,heidid8@hotmail.com,Galten,6,2016-09-10 11:33:03
+200,B,B200,The swag girls,Anne Sofie,20865500,aak2308@gmail.com,Gallerne,7,2016-09-10 11:33:13
+205,B,B205,Ã…len,Julie Damgaard,28748771,k.moller@clin.au.dk,Delfinerne,5,2016-09-10 11:33:41
+206,B,B206,VÃ¦bner,David,40221419,mariespanggaard@gmail.com,FDF HjortshÃ¸j,3,2016-09-10 11:34:08
+209,B,B209,Galten 2,William,29908387,hammedkaninerne@gmail.com,Galten,6,2016-09-10 11:35:00
+211,B,B211,Galler drenge,Harald,20865500,aak2308@gmail.com,Gallerne,7,2016-09-10 11:35:34
+212,B,B212,Marseilis killinger,Amalie,20939687,maria@marselisspejderne.dk,Marselis spejderne,4,2016-09-10 11:35:34
+214,B,B214,Hajen,Cristoffer,42450105,gnided@gmail.com,delfinerne,6,2016-09-10 11:35:42
+216,B,B216,VÃ¦bner 2,Zenia,60557412,mariespanggaard@gmail.com,FDF HjortshÃ¸j,5,2016-09-10 11:35:51
+219,B,B219,De grÃ¸nne bananer,Laura,51924125,karin_lis@hotmail.com,Risskov DGP,8,2016-09-10 11:37:08
+220,B,B220,Den halvdÃ¸de sÃ¦l,Christian Schneider,71204044,christianvschneider@gmail.com,delfinerne,6,2016-09-10 11:37:15
+221,B,B221,VÃ¦bner 3,Silje,91542024,mariespanggaard@gmail.com,FDF HjortshÃ¸j,6,2016-09-10 11:37:50
+225,B,B225,SeniorvÃ¦bner,Maria,51151351,mariespangggaard@gmail.com,FDF HjortshÃ¸j,7,2016-09-10 11:44:36
+226,B,B226,Ukendt,VÃ¥ge,26390353,spejder.silas@gmail.com,12Ã¥hus,4,2016-09-10 11:45:09
+227,B,B227,Ã˜Ã¸h lÃ¸g,Olivia Marie ,42248343,Oliviabroe@gmail.com,12 Aarhus ,5,2016-09-10 11:53:11
+276,B,B276,De 3 tosser,Maja Filtenborg ,28897825,maja.filt@hotmail.com,Haderup/Feldborg ,3,2016-09-10 15:03:09
+107,C,C107,Pirana ,K,30720477,khansan075@gmail.com,1. Galten gruppe,4,2016-09-10 10:52:43
+113,C,C113,HG2,Louise ,42754972,louiselassen1@gmail.com,Hampen-Gludsted,4,2016-09-10 10:53:43
+131,C,C131,Squadet,Kirstine,26850828,kirstinethers31@gmail.com,Giber Ã… Gruppe,4,2016-09-10 11:01:42
+140,C,C140,Team Tights,Ingrid Ejskjaer,41442928,ingrid.ejskjaer@gmail.com,12. Aarhus,4,2016-09-10 11:07:38
+145,C,C145,Peter GÃ¦sing,Ildshamanen,42303145,asbjoern.r.e@gmail.com,Gl. Vang,4,2016-09-10 11:10:50
+147,C,C147,Pernille og pigerne,Peter,23656823,moni.kri10@gmail.com,Fredensvang,4,2016-09-10 11:12:19
+152,C,C152,Hold mund,Emil dammeyer,27991649,allanbroe@gmail.com,FDF Holstebro 1,4,2016-09-10 11:14:23
+156,C,C156,Gravers mÃ¸gunger....,Carsten Graversen,28558968,carsten@smukel.dk,Lystrup-elev,3,2016-09-10 11:22:12
+158,C,C158,Holda fast,Cecilie,53500308,cecilieivolesen@gmail.com,FDF Odense 3,6,2016-09-10 11:16:43
+166,C,C166,Aquaholics pt. Solbjerg,Marie Bay Mortensen,23108626,kamilla_andersen123@hotmail.com,Solbjerg,2,2016-09-10 11:19:23
+173,C,C173,Glenter 2.0,Alexander Nim JÃ¸rgensen,30125272,alexandernim@live.dk,Waingunga-stammen Viborg,4,2016-09-10 11:23:44
+202,C,C202,SÃ¸pÃ¸lsen,Terese hÃ¸j,20159039,terese@furillu.dk,delfinerne,5,2016-09-10 11:33:24
+204,C,C204,Risskov klan,Mathilde,42572022,karin_lis@hotmail.com,Risskov DGP,4,2016-09-10 11:33:36
+233,N,N233,Team Lars,Brian,25212002,larssoe@gmail.com,Her,3,2016-09-11 00:45:21
+236,N,N236,Wapiti,Charlotte Salling,27595275,sarahh2002@hotmail.com,1. HÃ¸jbjerg ,5,2016-09-10 13:35:14
+239,N,N239,Pirahna,Katrine ,30720477,khansen075@gmail.com,1. Galten gruppe,4,2016-09-10 13:51:46
+240,N,N240,BÃ¦ver,Katrine,21656324,katrine.duedal@gmail.com,1. Galten gruppe,6,2016-09-10 13:55:42
+241,N,N241,LÃ¦derlÃ¸berne,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j,5,2016-09-10 13:56:00
+242,N,N242,Spyfluene,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j,4,2016-09-10 13:57:28
+243,N,N243,Kit Kat,Astrid,61452614,abkn@outlook.dk,Risskov piger,4,2016-09-10 14:00:06
+244,N,N244,De store piger,X ,20960937,henriette.nielsen1991@gmail.com,AndstVejenSkodborg,6,2016-09-10 14:04:46
+245,N,N245,De store drenge ,Q ,20960937,henriette.nielsen1991@gmail.com,AndstVejenSkodborg,6,2016-09-10 14:05:34
+246,N,N246,De smÃ¥ piger ,R ,20960937,henriette.nielsen1991@gmail.com,AndstVejenSkodborg,6,2016-09-10 14:06:43
+247,N,N247,De smÃ¥ drenge ,G,20960937,henriette.nielsen1991@gmail.com,AndstVejenSkodborg,6,2016-09-10 14:07:13
+248,N,N248,Pighajen,Casper V. Schneider,29497361,Gnided@gmail.com,Delfinerne,4,2016-09-10 14:07:52
+249,N,N249,Galten 1,Heidi,28765966,heidid8@hotmail.com,Galten,5,2016-09-10 14:08:15
+250,N,N250,Unicorns,Anna L,42602622,annalaurberg@gmail.com,DDS Risskov piger,7,2016-09-10 14:09:03
+251,N,N251,Sesams,Eva,29412459,signeriet@stofanet.dk,Gallerne,6,2016-09-10 14:10:29
+252,N,N252,Glenter 2.0,Alexander Nim JÃ¸rgensen,30125272,alexandernim@live.dk,Waingunga-stammen viborg,4,2016-09-10 14:12:03
+253,N,N253,Stautrup trop 1,Liv,60688639,signe_christiansen89@hotmail.com,KFUM Stautrup,4,2016-09-10 14:12:38
+254,N,N254,Stautrup trop 2,Maria,60688639,signe_christiansen89@hotmail.com,KFUM Stautrup,4,2016-09-10 14:14:10
+255,N,N255,Stautrup trop 3,Jonas,60688639,signe_christiansen89@hotmail.com,KFUM Stautrup,4,2016-09-10 14:15:02
+256,N,N256,Tyren,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 14:15:17
+257,N,N257,VÃ¦dderen,Tine,28513581,tinelarsen55@hotmail.com,DDS SkjoldhÃ¸j ,5,2016-09-10 14:16:18
+258,N,N258,HB,Sandi ,60157581,Sandielin@live.dk,Horsens 1 - Brabrand ,9,2016-09-10 14:17:07
+259,N,N259,The weasleys ,Mathilde Sofie Holm ,21569562,Mathildesholm@gmail.com,3. Silkeborg ,4,2016-09-10 14:20:48
+260,N,N260,AppÃ£s Disciple,Halfdan Storfod,61726017,tegnedrengen123@gmail.com,Gallerne,4,2016-09-10 14:24:07
+261,N,N261,Magnum,Camilla Marie ,40422308,chchrosen@outlook.dk,Risskov Piger,6,2016-09-10 14:25:34
+262,N,N262,Filur,Frederikke,40422308,chchrosen@outlook.dk,Risskov Piger,7,2016-09-10 14:28:51
+263,N,N263,Ã˜rne,Ask,60215600,askkrausejensen@yahoo.dk,1. Risskov drenge ,4,2016-09-10 14:33:20
+264,N,N264,HÃ¸ge,Nicolai,24450729,nicolai.damm@gmail.com,1. Risskov drenge,7,2016-09-10 14:33:27
+265,N,N265,Skanderborg StrÃ¦berne ,Nicklas Lauritzen ,22428297,nicklaslauritzen@hotmail.com,FDF Skanderborg-Stilling,7,2016-09-10 14:38:47
+266,N,N266,C91 ,Jesper,20733167,minismed@gmail.com,Klovborg fdf,4,2016-09-10 14:46:41
+267,N,N267,De StÃ¦rke BlÃ¥,Silas,22637464,annelise.kallin@12move.dk,DDS StÃ¦rkodder,5,2016-09-10 14:53:29
+268,N,N268,GrÃ¸nne bananer,1,52147245,susanne.seltoft.yde@cgi.com,DGP Risskov,6,2016-09-10 14:55:24
+269,N,N269,Power Girls,Julie,22637464,annelise.kallin@12move.dk,DDS StÃ¦rkodder,5,2016-09-10 14:55:24
+270,N,N270,Sortefod,Sofie Flindt,21186699,ik1507@live.dk,KFUM Spejderne i RÃ¸dekro,4,2016-09-10 14:56:36
+271,N,N271,B89,Pernille,22621334,pernille.have@hotmail.com,Klovborg,6,2016-09-10 14:56:56
+272,N,N272,Donuts,Cecilie,60557530,ceciliemafi@gmail.com,Risskovpiger,6,2016-09-10 14:57:03
+273,N,N273,StÃ¦rkodderdrengene,Lasse,22637464,annelise.kallin@12move.dk,DDSStÃ¦rkodder,5,2016-09-10 14:57:33
+274,N,N274,Dask,Sofie,51950510,sofie@bruuna.dk,DDS Gallerne,4,2016-09-10 15:01:50
+275,N,N275,FÃ¦tter BRs fÃ¦tre,Mikkel Thy Nielsen,30257188,m.thy.nielsen@gmail.com,Aarhus 9 HÃ¸jbjerg,5,2016-09-10 15:02:16
+277,N,N277,MÃ¥gen Ã…ge,Lars Andersen,28187010,m.thy.nielsen@gmail.com,Aarhus 9 HÃ¸jbjerg,6,2016-09-10 15:04:34
+278,N,N278,Fdf viby j ,Kasper ,42200384,markus8260@gmail.com,Viby J ,5,2016-09-10 15:08:14
+279,N,N279,B216,Julie ,60557412,juliec2812@gmail.com,HjortshÃ¸j,5,2016-09-10 15:17:36
+280,N,N280,Din Mor,Naiobe,50701823,shd1@live.dk,Viby Kongsvang ,7,2016-09-10 15:23:37
+281,N,N281,B221,Julie ,91542024,juliec2812@gmail.com,HjortshÃ¸j ,6,2016-09-10 15:25:25
+282,N,N282,Kevin og vennerne,Joachim Seiler,40849840,tjuki90@yahoo.dk,Aarhus 1,5,2016-09-10 15:25:55
+283,N,N283,B225,Julie ,51151351,juliec2812@gmail.com,HjortshÃ¸j,7,2016-09-10 15:27:48
+284,N,N284,Jesus bÃ¸rn,Simone Svejgaard,61772606,Svejgaards@gmail.com,Tranbjerg J,4,2016-09-10 15:28:15
+285,N,N285,SÃ¸pÃ¸lsen,Rud,41167630,chrrud@live.dk,Delfinerne,5,2016-09-10 15:32:05
+286,N,N286,Makrel,Karla,61602991,simonestudstrup@gmail.com,Viby-kongsvang,6,2016-09-10 15:33:04
+287,N,N287,Sild,Kimmie,61602991,simonestudstrup@gmail.com,Viby-kongsvang,5,2016-09-10 15:34:48
+288,N,N288,RÃ¸dspÃ¦tte,Liva ,61602991,simonestudstrup@gmail.com,Viby-kongsvang,5,2016-09-10 15:36:26
+289,N,N289,RÃ¸dspÃ¦tte,Liva ,61602991,simonestudstrup@gmail.com,Viby-kongsvang,5,2016-09-10 15:36:27
+290,N,N290,Solbjerg FDF ,Marie Bay Mortensen ,60818599,morten.sen@hotmail.com,solbjerg FDF ,3,2016-09-10 15:39:10
+291,N,N291,Galten 2,William,29908387,heidid8@hotmail.com,Galten,6,2016-09-10 15:40:58
+292,N,N292,Hajen,Katrine,29497361,gnided@gmail.com,Delfinerne,6,2016-09-10 15:42:01
+293,N,N293,RÃ¸dspÃ¦tten,Holger ,29497361,gnided@gmail.com,Delfinerne,6,2016-09-10 15:43:39
+294,N,N294,Mohikamer,Niels Anton,60512125,nielsantonvip@gmail.com,dvs 1 risskov,5,2016-09-10 15:45:21
+295,N,N295,Klovborg b87,Line,22560514,line@svinestregen.dk,Klovborg fdf,6,2016-09-10 15:45:27
+296,N,N296,Piratfisken,Noah,29497361,gnided@gmail.com,Delfinerne ,6,2016-09-10 15:45:36
+297,N,N297,B110,Jonathan ,28740123,buggychamp@gmail.com,SkjoldhÃ¸j,5,2016-09-10 15:51:50
+298,N,N298,Klovborg FDF - Hold 2,Susanne Have,52397800,susannehave@live.dk,Klovborg FDF,6,2016-09-10 15:52:25
+299,N,N299,Marselis killinger,Malou,20939687,maria@marselisspejderne.dk,Marselisspejderne ,5,2016-09-10 15:54:04
+300,N,N300,Marselis Missekatte,Veronica,20939687,maria@marselisspejderne.dk,Marselisspejderne ,5,2016-09-10 15:56:17
+301,N,N301,Klan Synnejysk kaffebord,SÃ¸ren,26311700,sorensteppat@gmail.com,RÃ¸dekro,7,2016-09-10 15:58:48
+302,N,N302,B205 Ã¥len,Julie Damgaard,28748771,k.moller@clin.au.dk,Delfinerne,5,2016-09-10 16:01:21
+303,N,N303,B187 SÃ¸hesten 01,Emilie Lund,28748771,k.moller@clin.au.dk,Delfinerne,5,2016-09-10 16:02:27
+304,N,N304,B182 SÃ¸hesten,Katrine Kallestrup,28748771,k.moller@clin.au.dk,Delfinerne,5,2016-09-10 16:03:38
+305,N,N305,Team Fjeld Kjeld,Jens,91112364,pernillepilgaard@hotmail.com,gl. Rye,6,2016-09-10 16:06:31
+306,N,N306,Gravers mÃ¸gunger,Carsten Graversen,28558968,carsten@smukel.dk,Lystrup/elev,4,2016-09-10 16:12:58
+307,N,N307,Mors Drenge,Janus SchiÃ¸tte,53635970,migger@migger.dk,FDF Kragelund,5,2016-09-10 16:21:52
+308,N,N308,Team awsome,Emma,22507426,emselacour@gmail.com,Odense 3.,4,2016-09-10 16:25:32
+309,N,N309,Solpatruljen,Nanna Michelle Rasmussen ,60604820,nannamichella@yahoo.dk,FDF Odense 4,7,2016-09-10 16:25:41
+310,N,N310,Seniorvaflerne,Louise simonsen,21666227,louise.simonsen@hotmail.com,FDF Aarhus 2,6,2016-09-10 16:29:56
+311,N,N311,C 38,2,60645069,jepphau95@gmail.com,Odder fdf ,7,2016-09-10 16:35:15
+312,N,N312,Squadet,Kirstine,26850828,kirstinethers31@gmail.com,Giber Ã… Gruppe,4,2016-09-10 16:36:36
+313,N,N313,Team Hold,Rasmus,30492015,rasmusslind@gmail.com,DDS Gallerne,4,2016-09-10 16:37:56
+314,N,N314,123 Nielses mor er fed ,1,30359390,sigridmariedahl@gmail.com,Aarhus 1 / Lystrup Elev ,4,2016-09-10 16:42:18
+315,N,N315,123 Nielses mor er fed ,1,30359390,sigridmariedahl@gmail.com,Aarhus 1 / Lystrup Elev ,4,2016-09-10 16:42:20
+316,N,N316,123 Nielses mor er fed ,1,30359390,sigridmariedahl@gmail.com,Aarhus 1 / Lystrup Elev ,4,2016-09-10 16:42:21
+317,N,N317,123 Nielses mor er fed ,1,30359390,sigridmariedahl@gmail.com,Aarhus 1 / Lystrup Elev ,4,2016-09-10 16:42:22
+318,N,N318,Luftens betvinger,Martin WolsgÃ¥rd,60747567,wolsgaard14000@gmail.com,Aarhus 2 fdf,4,2016-09-10 16:46:03
+319,N,N319,Heltehundene,Simon EgstrÃ¸m GrÃ¸nning,93992971,Simon.eg@hotmail.com,Egebjerg,5,2016-09-10 16:48:58
+320,N,N320,Inka,Sigurd,60259198,martin_bn@hotmail.com,1 Risskov ,5,2016-09-10 16:51:39
+321,N,N321,Zombie killer,Valdemar,30228744,troels@gallerne.dk,DDS Gallerne,7,2016-09-10 16:53:56
+322,N,N322,The swag girls,Anne Sofie,20865500,aak2308@gmail.com,Gallerne,7,2016-09-10 16:56:35
+323,N,N323,Hold Mund,Emil Dammeyer,21363904,alexanderbuch20001@gmail.com,Holstebro 1,4,2016-09-10 16:58:30
+324,N,N324,Puma,Bergrun,42175275,Simon.eg@hotmail.com,Egebjerg,4,2016-09-10 16:59:03
+325,N,N325,Apache,Toby,60259198,martin_bn@hotmail.com,1 risskov,3,2016-09-10 17:01:36
+326,N,N326,100m skoven,Ida,30535868,Louisekochen@gmail.com,KalÃ¸vig,4,2016-09-10 17:04:17
+327,N,N327,Den halvdÃ¸de sÃ¦l,Christian Villadsen Schneider,71204044,christianvschneider@gmail.com,Delfinerne,6,2016-09-10 17:06:25
+328,N,N328,Hajen,Christoffer ,71204042,jacob.kj7@gmail.com,Delfinerne,6,2016-09-10 17:07:10
+329,N,N329,Random ,ThorbjÃ¸rn ,42248343,Oliviabroe@gmail.com,12 Aarhus ,6,2016-09-10 17:14:24
+330,N,N330,Intet navn,Falk,26390353,spejder.silas@gmail.com,DDS 12. Aarhus,6,2016-09-10 17:17:03
+331,N,N331,De Vilde Hvepse,Miriam,23116017,marcus.olesen@get2net.dk,KFUM SkjoldhÃ¸j,4,2016-09-10 17:25:23
+332,N,N332,Panter galten,Jens,60949806,susjensen1981@gmail.com,1. Galten gruppe,7,2016-09-10 17:28:33
+333,N,N333,De vilde lÃ¸ver,Cecilie,31202991,melanie.marie.hansen@gmail.dk,KFUM SkjoldhÃ¸j,4,2016-09-10 17:38:15
+334,N,N334,KnÃ¦kket arm,Emil Leth,21270129,andreas.lunderskov@gmail.com,KFUM-spejderne MÃ¥rslet,6,2016-09-10 17:49:32
+335,N,N335,KÃ¸benhavnerne pÃ¥ afveje ,Izabella Rasmussen ,53378151,Izabella.rasmussen@gmail.com,K27,4,2016-09-10 17:51:05
+336,N,N336,Vaks,Lea,71756570,llk@brs.dk,1 Silkeborg ,6,2016-09-10 17:54:53
+337,N,N337,Ratata ,Dennise ,60242585,llk@brs.dk,1 Silkeborg ,5,2016-09-10 17:56:20
+338,N,N338,snicker,oliver,30799008,anders4812@gmail.com,kfum alminde viuf,4,2016-09-10 18:02:57
+339,N,N339,Team Tights,Sara,42415447,sara8klit@gmail.com,DDS 12. Aarhus,4,2016-09-10 18:04:24
+340,N,N340,the skittels,laura,31349866,anders4812@gmail.com,kfum alminde viuf ,4,2016-09-10 18:07:21
+341,N,N341,the skittels,laura,31349866,anders4812@gmail.com,kfum alminde viuf ,4,2016-09-10 18:07:40
+342,N,N342,the skittels,laura,31349866,anders4812@gmail.com,kfum alminde viuf ,4,2016-09-10 18:07:41
+343,N,N343,the skittels,laura,31349866,anders4812@gmail.com,kfum alminde viuf ,4,2016-09-10 18:07:42
+344,N,N344,the skittels,laura,31349866,anders4812@gmail.com,kfum alminde viuf ,4,2016-09-10 18:07:43
+345,N,N345,Holstebro hold 1,Allan,28950962,allanbroe@gmail.com,FDF Holstebro 1,8,2016-09-10 18:16:23
+346,N,N346,Holstebro hold 2,Morten,25677601,allanbroe@gmail.com,FDF Holstebro 1,8,2016-09-10 18:18:24
+347,N,N347,de grÃ¸nne gulfisk,Anders,22430065,anders4812@gmail.com,kfum almindelige viuf,4,2016-09-10 18:36:38
+348,N,N348,VÃ¦bnere,Hjalte,24220692,rysgaard@post.tele.dk,Gl Rye,6,2016-09-10 19:37:24
+349,N,N349,Uden hastag,Jakob,23885561,jakobhobgaard@gmail.com,MS Grindsted,4,2016-09-10 23:12:00
+350,N,N350,Lemans,Emilie hansen,22435125,eoh@live.dk,Ms grindsted ,5,2016-09-10 23:19:44
+351,N,N351,Jk,Lucas,23263101,lucasgrene@gmail.com,Giber Ã¥,4,2016-09-10 23:26:26
+352,N,N352,Kajakkkerne fra Lemvig,Emil,30621316,emil-hvas@hotmail.com,Lemvig,4,2016-09-10 23:31:20
+353,N,N353,tralaÃ¡,lars,25212002,jta@fdf.dk,wjiorer,31415,2016-09-11 01:02:02

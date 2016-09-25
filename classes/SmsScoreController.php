@@ -19,24 +19,37 @@ class SmsScoreController extends BaseInit
 
     public function handleReceivedPoints(SmsScoreModel $smsModel) {
         if (!$smsModel->getPost()) {
-            $message = "Du er ikke tjekket ind på en post. Send 'checkin post X' for at tjekke ind.".SMS_HELPTEXT;
-
+            $message = "Du er ikke tjekket ind på en post. Send 'tjek p xx' for at tjekke ind.".SMS_HELPTEXT;
+            $this->smsSender->sendSms($smsModel->getMsisdn(),$message);
+            $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
         }
         elseif(!$smsModel->getTeam()) {
-            $message = "'n' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig (ex N134).".SMS_HELPTEXT;
+            $message = "'h' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig (ex H12).".SMS_HELPTEXT;
+            $this->smsSender->sendSms($smsModel->getMsisdn(),$message);
+            $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
         }
         elseif (!$smsModel->getPoint()) {
-            $message = "'point' ikke fundet i beskeden eller dens værdi er ugyldig (1 - 100 point).".SMS_HELPTEXT;
+            $message = "'p' (for point) ikke fundet i beskeden eller dens værdi er ugyldig (ex p50).".SMS_HELPTEXT;
+            $this->smsSender->sendSms($smsModel->getMsisdn(),$message);
+            $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
         }
         else {
             // Insert Score
             $this->dbModel->insertScore($smsModel->getTeam(),$smsModel->getPoint(),$smsModel->getPost(),$smsModel->getMsisdn());
+
             // Send status to $sender
-            $message = $smsModel->getPoint()." point givet til hold ".$smsModel->getTeam()." på post ".$smsModel->getPost().". Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.";
+            if(NOTIFS == true) {
+                $message = $smsModel->getPoint()." point givet til hold ".$smsModel->getTeam()." på post ".$smsModel->getPost().". Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.";
+                $this->smsSender->sendSms($smsModel->getMsisdn(),$message);
+                $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
+            }
+            else {
+                $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),"N/A (Notifs disabled)");
+            }
         }
 
-        //$this->smsSender->sendSms($smsModel->getMsisdn(),$message);
-        $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
+
+
     }
     
     public function getScoreTableByGroup($group) {

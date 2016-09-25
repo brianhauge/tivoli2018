@@ -15,10 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Brian Hauge Hansen">
-    <meta name="description" content="FDF og spejderne indtager Tivoli">
-    <title>FDF og spejderne indtager Tivoli - Score</title>
-    <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="description" content="Aktiv Lejr Natløb">
+    <title>Aktiv Lejr Natløb</title>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 <div class="container-fluid">
@@ -30,11 +29,13 @@ setlocale(LC_ALL, "da_DK");
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
+include 'config.php';
 
-$score = new SmsScoreController();
 
 if(isset($_GET['body']) && isset($_GET['sender'])) {
     if($_GET['body'] == '' || $_GET['sender'] == '') {
+        $trace = new DbModel();
+        $trace->insertTrace(0,"","N/A");
         die("<br /><br /><div class=\"alert alert-danger\" role=\"alert\">Empty fields. Aborting</div>");
     }
     if(preg_match("/[Cc]heck|[Tt]jek/",$_GET['body'])) {
@@ -45,34 +46,19 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
     }
     else {
         $SmsScoreModel = new SmsScoreModel();
+        $score = new SmsScoreController();
         $SmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
         $score->handleReceivedPoints($SmsScoreModel);
-    }
-if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
-    // Trace
-    $db = new DbModel();
-    $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2016_trace ORDER BY tstamp desc limit 20";
-    $result = $db->printResultTable($sql);
-    print($result['table']);
-    // Log
-    print("<h3>Log fra denne server:</h3><pre style='font-size: 8px'>");
-    $cmd = "tail -n50 logs/log_" . date("Y-m-d") . ".txt";
-    print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
-    print("</pre>");
-}
-    else {
-        print ("200 OK");
     }
 }
 
 else if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
     $db = new DbModel();
-
     ?>
     <div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#trace" aria-controls="trace" role="tab" data-toggle="tab">SMS Trafik</a></li>
-            <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Hold Oversigt</a></li>
+            <li role="presentation"><a href="#teamoverview" aria-controls="teamoverview" role="tab" data-toggle="tab">Hold Oversigt</a></li>
             <li role="presentation"><a href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a></li>
             <li role="presentation"><a href="#postoverview" aria-controls="postoverview" role="tab" data-toggle="tab">Post / Point Oversigt</a></li>
             <li role="presentation"><a href="#smsflow" aria-controls="smsflow" role="tab" data-toggle="tab">SMS Flow</a></li>
@@ -80,30 +66,13 @@ else if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
 
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="trace">
-                <?php
-                // Trace
-                $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2016_trace ORDER BY tstamp desc limit 20";
-                $result = $db->printResultTable($sql);
-                print($result['table']);
-                ?>
+                <div class="col-md-2 col-md-offset-5"><br /><br /><img src="dist/gears.gif" ></div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="overview">
-                <?php
-                // Team Overview
-                $sql = "select concat(t.groups,t.id) id, t.name holdnavn, t.kreds 'kreds / gruppe', t.leader holdleder, t.mobile mobil, t.email, t.numberofmembers antal, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id group by t.id order by t.groups, t.id asc";
-                $result = $db->printResultTable($sql);
-                print("<h3>Antal hold: ".$result['count']." - Antal deltagere: ".$db->getMemberCount()."</h3>");
-                print($result['table']);
-                ?>
+            <div role="tabpanel" class="tab-pane" id="teamoverview">
+                <div class="col-md-2 col-md-offset-5"><br /><br /><img src="dist/gears.gif" ></div>
             </div>
             <div role="tabpanel" class="tab-pane" id="log">
-                <?php
-                // Log
-                print("<h3>Log fra denne server:</h3><pre style='font-size: 8px'>");
-                $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
-                print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
-                print("</pre>");
-                ?>
+                <div class="col-md-2 col-md-offset-5"><br /><br /><img src="dist/gears.gif" ></div>
             </div>
             <div role="tabpanel" class="tab-pane" id="postoverview">
                 <div class="col-md-2 col-md-offset-5"><br /><br /><img src="dist/gears.gif" ></div>
@@ -119,38 +88,36 @@ else if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
 }
 
 else {
-?>
+    $score = new SmsScoreController(); ?>
     <div class="page-header">
         <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
     </div>
-    <?php if(!isset($_GET['natloeb'])) { ?>
-    <h3 class="text-muted">0. - 4. klasse</h3>
-    <?php print($score->getScoreTableByGroup("A")); ?>
-    <h3 class="text-muted">5. - 8. klasse</h3>
-    <?php print($score->getScoreTableByGroup("B")); ?>
-    <h3 class="text-muted">9. klasse til 18 år</h3>
-    <?php print($score->getScoreTableByGroup("C")); } else { ?>
     <h3 class="text-muted">Natløb</h3>
-    <?php print($score->getScoreTableByGroup("N")); } ?>
+    <?php print($score->getScoreTableByGroup("H"));
+} ?>
 
-<?php
-}
-?>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="dist/js/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
+<script src="dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <?php if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) { ?>
 <script type="text/javascript">
     $().ready(function() {
-        $("#postoverview").load('overview.php?postoverview=<?php print(LOGCODE); ?>');
+        $("#postoverview").load('overview.php?section=postoverview&code=<?php print(LOGCODE); ?>');
+        $("#log").load('overview.php?section=log&code=<?php print(LOGCODE); ?>');
+        $("#teamoverview").load('overview.php?section=teamoverview&code=<?php print(LOGCODE); ?>');
+        $("#trace").load('overview.php?section=trace&code=<?php print(LOGCODE); ?>');
+
+
+        setInterval(function(){ $("#postoverview").load('overview.php?section=postoverview&code==<?php print(LOGCODE); ?>'); }, 60000);
+        setInterval(function(){ $("#log").load('overview.php?section=log&code==<?php print(LOGCODE); ?>'); }, 10000);
+        setInterval(function(){ $("#teamoverview").load('overview.php?section=teamoverview&code==<?php print(LOGCODE); ?>'); }, 60000);
+        setInterval(function(){ $("#trace").load('overview.php?section=trace&code==<?php print(LOGCODE); ?>'); }, 10000);
 
         $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
             $( this ).popover('show');
         });
-
-        setInterval(function(){ $("#postoverview").load('overview.php?postoverview=<?php print(LOGCODE); ?>'); }, 60000);
     });
 
 </script>

@@ -64,6 +64,7 @@ class SendSmsModel extends BaseInit
         if (!curl_errno($ch)) {
             if ($info['http_code'] == "200" || $info['http_code'] == "201") {
                 $this->logger->info(__METHOD__.": ".urldecode($message)." To: ".urldecode($msisdn). " - Response code: ".$info['http_code']);
+                $this->logger->debug(__METHOD__.": SMSGW Response: ".$content);
             } else {
                 $this->logger->error(__METHOD__.": Unexpected HTTP answer from SMSGW ". $info['url']." - Response code: ".$info['http_code']);
                 $this->logger->error(__METHOD__.": ".$content);

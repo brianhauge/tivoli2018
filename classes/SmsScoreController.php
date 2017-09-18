@@ -35,7 +35,7 @@ class SmsScoreController extends BaseInit
             $message = $smsModel->getPoint()." point givet til hold ".$smsModel->getTeam()." på post ".$smsModel->getPost().". Holdet har nu ".$this->dbModel->getTeamPoints($smsModel->getTeam())." point.";
         }
 
-        //$this->smsSender->sendSms($smsModel->getMsisdn(),$message);
+        $this->smsSender->sendSms($smsModel->getMsisdn(),$message);
         $this->dbModel->insertTrace($smsModel->getMsisdn(),$smsModel->getSmscontent(),$message);
     }
     

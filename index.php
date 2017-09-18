@@ -99,7 +99,7 @@ else if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
             <div role="tabpanel" class="tab-pane" id="log">
                 <?php
                 // Log
-                print("<h3>Log fra denne server:</h3><pre style='font-size: 8px'>");
+                print("<h3>Log fra denne server:</h3><pre style='font-size: 10px'>");
                 $cmd = "tail -n50 logs/log_".date("Y-m-d").".txt";
                 print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
                 print("</pre>");

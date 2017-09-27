@@ -6,6 +6,7 @@
  * Time: 10:26
  */
 session_start();
+if(isset($_SESSION['loggedin'])) header('Location: admin.php');
 ?>
 
 <!DOCTYPE html>

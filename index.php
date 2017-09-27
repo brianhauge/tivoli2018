@@ -26,6 +26,7 @@
         <div class="col-md-10 col-md-offset-1">
 <?php
 
+session_start();
 setlocale(LC_ALL, "da_DK");
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
@@ -48,24 +49,9 @@ if(isset($_GET['body']) && isset($_GET['sender'])) {
         $SmsScoreModel->setSmscontent($_GET['body'],$_GET['sender']);
         $score->handleReceivedPoints($SmsScoreModel);
     }
-if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
-    // Trace
-    $db = new DbModel();
-    $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2016_trace ORDER BY tstamp desc limit 20";
-    $result = $db->printResultTable($sql);
-    print($result['table']);
-    // Log
-    print("<h3>Log fra denne server:</h3><pre style='font-size: 8px'>");
-    $cmd = "tail -n50 logs/log_" . date("Y-m-d") . ".txt";
-    print(str_replace(PHP_EOL, '<br />', shell_exec($cmd)));
-    print("</pre>");
-}
-    else {
-        print ("200 OK");
-    }
 }
 
-else if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) {
+else if($_SESSION['loggedin']) {
     $db = new DbModel();
 
     ?>
@@ -141,19 +127,19 @@ else {
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<?php if(isset($_GET['logging']) && $_GET['code'] == LOGCODE) { ?>
+<?php if($_SESSION['loggedin']) { ?>
 <script type="text/javascript">
     $().ready(function() {
-        $("#postoverview").load('overview.php?postoverview=<?php print(LOGCODE); ?>');
+        $("#postoverview").load('overview.php');
 
         $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
             $( this ).popover('show');
         });
 
-        setInterval(function(){ $("#postoverview").load('overview.php?postoverview=<?php print(LOGCODE); ?>'); }, 60000);
+        setInterval(function(){ $("#postoverview").load('overview.php'); }, 60000);
     });
 
 </script>
-<? } ?>
+<?php } ?>
 </body>
 </html>

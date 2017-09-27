@@ -16,7 +16,7 @@ class DbModel extends BaseInit
     public function __construct()
     {
         parent::__construct();
-        $this->con = mysqli_connect(DBHOST, DBUSER, DBPASS, DB) or die("Error " . mysqli_error($this->con));
+        $this->con = mysqli_connect(DBHOST, DBUSER, DBPASS, DB, PORT) or die("Error " . mysqli_error($this->con));
         // Check connection
         if (mysqli_connect_errno())
         {
@@ -125,6 +125,14 @@ class DbModel extends BaseInit
         $method = $this->get_calling_function();
         $stmt->bind_param("ssss", $msisdn, $method, $input, $output);
         $stmt->execute();
+    }
+
+    public function userExists($user, $password) {
+        $stmt = $this->con->prepare("SELECT * from tivoli2016_users where user = ? and password = sha2(?,256) limit 1");
+        $stmt->bind_param("ss", $user, $password);
+        $stmt->execute();
+        $stmt->store_result();
+        return $stmt->num_rows;
     }
 
     public function __destruct()

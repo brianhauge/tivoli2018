@@ -6,7 +6,12 @@
  * Time: 10:26
  */
 session_start();
-if(isset($_SESSION['loggedin'])) header('Location: admin.php');
+if(isset($_GET['logout'])) {
+    session_destroy();
+}
+else if(isset($_SESSION['loggedin'])) {
+    if($_SESSION['loggedin'] == 1) header('Location: admin.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +89,7 @@ if(isset($_SESSION['loggedin'])) header('Location: admin.php');
                 $('#myModal').modal('show');
             }
             else {
-                window.location.href = "/";
+                window.location.href = "admin.php";
             }
         });
         return false;

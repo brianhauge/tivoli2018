@@ -19,7 +19,7 @@ include "config.php";
     $uniqteam = $db->queryToArray("select concat(groups,id) cid, id from tivoli2016_teams where groups = 'N' order by groups, id");
     $uniqpost = $db->queryToArray("select pc.postid,group_concat(DISTINCT p.mobile SEPARATOR '<br />') mobile from tivoli2016_postcheckin_change_log pc left join tivoli2016_postcheckin p on pc.postid = p.postid GROUP BY pc.postid ORDER BY LPAD(lower(pc.postid), 10,0)");
 
-    print("<h3>Post / Point Oversigt</h3><table class='table table-striped table-bordered'><tr><th></th>");
+    print("<h2>Post / Point Oversigt</h2><hr><table class='table table-striped table-bordered'><tr><th></th>");
     foreach ($uniqpost as $post) {
         print("<th>".$post['postid'].($post['mobile'] ? "<br/><span style='font-weight: normal; font-size: 10px'>Postmandskab:<br />".$post['mobile']."</span></th>" : ""));
     }

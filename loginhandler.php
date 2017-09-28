@@ -16,11 +16,13 @@ $data = $_POST;
 if(!empty($data)) {
     $db = new DbModel();
 
-    $userExist = $db->userExists($data['username'],$data['password']);
-    if($userExist) {
+    $userInfo = $db->getUserInfo($data['username'],$data['password']);
+
+    if(isset($userInfo['user'])) {
         $tmp['message'] = "Thumbs Up";
         $tmp['status'] = true;
         $_SESSION['loggedin'] = true;
+        $_SESSION['userinfo'] = $userInfo;
     }
     else {
         $tmp['message'] = "Nope";

@@ -9,7 +9,7 @@ session_start();
 if(isset($_GET['logout'])) {
     session_destroy();
 }
-else if(isset($_SESSION['loggedin'])) {
+else if(isset($_SESSION['loggedin']) && isset($_SESSION['userinfo'])) {
     if($_SESSION['loggedin'] == 1) header('Location: admin.php');
 }
 ?>

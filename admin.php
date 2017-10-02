@@ -33,6 +33,7 @@ spl_autoload_register(function ($class) {
         <title>FDF og spejderne indtager Tivoli - Score</title>
         <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             .tab-pane {
                 padding-top: 80px !important;
@@ -42,6 +43,12 @@ spl_autoload_register(function ($class) {
                 margin-top: 25vh;
                 width: 200px;
             }
+
+            .string { color: green; }
+            .number { color: darkorange; }
+            .boolean { color: blue; }
+            .null { color: magenta; }
+            .key { color: red; }
         </style>
     </head>
     <body>
@@ -137,6 +144,29 @@ spl_autoload_register(function ($class) {
                         <div role="tabpanel" class="tab-pane" id="sendsms">
                             <h2>Send SMS</h2>
                             <hr>
+                            <form class="form-horizontal" id="sendSMS" method="post">
+                                <div class="form-group">
+                                    <label for="team" class="col-sm-2 control-label">Modtagere</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="receivers" id="receivers" placeholder="Modtagere">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="leader" class="col-sm-2 control-label">Besked</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="message" id="message" placeholder="Besked">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-default">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <hr>
+                                <div id="sendSmsResult"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -170,6 +200,8 @@ spl_autoload_register(function ($class) {
             </div>
         </div>
     </div>
+
+
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
@@ -181,7 +213,7 @@ spl_autoload_register(function ($class) {
                 $( this ).popover('show');
             });
 
-            setInterval(function(){ $("#postoverview").load('overview.php'); }, 60000);
+            setInterval(function(){ $("#postoverview").load('overview.php'); }, 600000);
 
             $('#myTab a').click(function(e) {
                 e.preventDefault();
@@ -211,6 +243,43 @@ spl_autoload_register(function ($class) {
             })
 
         });
+
+        $("#sendSMS").submit(function( event ){
+            event.preventDefault();
+            $.post('outgoingEndpoint.php', $('#sendSMS').serialize(), function (data) {
+                obj = JSON.parse(data);
+            })
+            .done( function() {
+                var str = JSON.stringify(obj, undefined, 4);
+                if(obj.status && (obj.message.code == "201" || obj.message.code == "200")) { state = "success"; icon = "fa fa-check-circle"; }
+                else { state = "danger"; icon = "fa fa-exclamation-triangle"; }
+
+                $( "#sendSmsResult" ).html( "<div class='alert alert-"+state+"' role='alert'><span class='"+icon+"' aria-hidden='true'></span></div><pre>"+syntaxHighlight(str)+"</pre>" );
+            })
+            .fail( function () {
+                $("#sendSmsResult").html("fejl");
+            });
+        });
+
+
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
 
     </script>
     </body>

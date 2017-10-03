@@ -20,7 +20,10 @@ setlocale(LC_ALL, "da_DK");
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
-
+    if(isset($_GET['start'])) $graphstart = $_GET['start'];
+    else $graphstart = "2016-09-10";
+    if(isset($_GET['end'])) $graphend = $_GET['end'];
+    else $graphend = "2016-09-11";
     ?>
     <!DOCTYPE html>
     <html lang="da">
@@ -34,6 +37,7 @@ spl_autoload_register(function ($class) {
         <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/css/bootstrap-datepicker.min.css">
         <style>
             .tab-pane {
                 padding-top: 80px !important;
@@ -49,6 +53,8 @@ spl_autoload_register(function ($class) {
             .boolean { color: blue; }
             .null { color: magenta; }
             .key { color: red; }
+            .highcharts-credits {
+                display: none;}
         </style>
     </head>
     <body>
@@ -100,6 +106,17 @@ spl_autoload_register(function ($class) {
                         <div role="tabpanel" class="tab-pane active" id="dash">
                             <h2>My Dashboard</h2>
                             <hr>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" name="start" value="<?php print($graphstart); ?>" />
+                                            <span class="input-group-addon">til</span>
+                                            <input type="text" class="input-sm form-control" name="end" value="<?php print($graphend); ?>" />
+                                            &nbsp;<button type="button" class="btn btn-primary" id="updatedates">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="container" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
                             <?php
                             ?>
                         </div>
@@ -205,13 +222,31 @@ spl_autoload_register(function ($class) {
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/js/bootstrap-datepicker.min.js"></script>
+
+
     <script type="text/javascript">
+
         $().ready(function() {
+
+            getGraphdata(chart, $("input[name=start]").val(),$("input[name=end]").val());
+
+
+            $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+            $('.input-daterange').datepicker({
+                todayBtn: "linked",
+                language: "da",
+                autoclose: true
+            });
             $("#postoverview").load('overview.php');
 
             $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
                 $( this ).popover('show');
             });
+
+
 
             setInterval(function(){ $("#postoverview").load('overview.php'); }, 600000);
 
@@ -281,6 +316,84 @@ spl_autoload_register(function ($class) {
             });
         }
 
+
+
+
+
+
+
+
+
+
+
+
+Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});
+var chart = Highcharts.chart('container', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: ''
+    },
+
+    yAxis: {
+        title: {
+            text: 'Antal SMS\'er'
+        },
+        labels: {
+            formatter: function () {
+                return this.value;
+            }
+        }
+    },
+
+    xAxis: {
+        type: 'datetime'
+
+    },
+
+    plotOptions: {
+        area: {
+
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{}]
+});
+
+        $('#datepicker').on('click','#updatedates', function () {
+            getGraphdata(chart, $("input[name=start]").val(),$("input[name=end]").val());
+        });
+
+        function getGraphdata(chart, start, end) {
+            $.get( "graphdata.php", { start: start, end: end } )
+                .done(function( data ) {
+                    var data1 = JSON.parse(data);
+                    chart.update({
+                        chart: {
+                            inverted: false,
+                            polar: true
+                        },
+                        series: {
+                            name: start+' - '+end,
+                            data: data1
+                        }
+                    });
+                });
+        }
     </script>
     </body>
     </html>

@@ -16,7 +16,7 @@ class DbModel extends BaseInit
     public function __construct()
     {
         parent::__construct();
-        $this->con = mysqli_connect(DBHOST, DBUSER, DBPASS, DB, PORT) or die("Error " . mysqli_error($this->con));
+        $this->con = mysqli_connect(DBHOST, DBUSER, DBPASS, DB, DBPORT) or die("Error " . mysqli_error($this->con));
         // Check connection
         if (mysqli_connect_errno())
         {

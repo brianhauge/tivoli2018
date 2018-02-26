@@ -32,7 +32,7 @@ if(isset($_GET['start']) && isset($_GET['end'])) {
 
     $db = new DbModel();
 
-    $graphdata = $db->queryToArray('select DATE_FORMAT(tstamp,"%Y-%m-%d %H:%i:00") as x, count(*) as y from tivoli2016_trace where tstamp between "'.$_GET['start'].' 00:00:00" and "'.$_GET['end'].' 23:59:59" group by day(tstamp), hour(tstamp), minute(tstamp) ORDER BY x');
+    $graphdata = $db->queryToArray('select DATE_FORMAT(tstamp,"%Y-%m-%d %H:%i:00") as x, count(*) as y from tivoli2018_trace where tstamp between "'.$_GET['start'].' 00:00:00" and "'.$_GET['end'].' 23:59:59" group by day(tstamp), hour(tstamp), minute(tstamp) ORDER BY x');
     foreach ($graphdata as $graph) {
         $date_stamp = strtotime($graph['x']) * 1000;
         $data[] = "[".$date_stamp.",".$graph['y']."]";

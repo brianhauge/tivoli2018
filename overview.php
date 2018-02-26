@@ -16,8 +16,8 @@ include "config.php";
 
 
     $db = new DbModel();
-    $uniqteam = $db->queryToArray("select concat(groups,id) cid, id from tivoli2016_teams where groups = 'N' order by groups, id");
-    $uniqpost = $db->queryToArray("select pc.postid,group_concat(DISTINCT p.mobile SEPARATOR '<br />') mobile from tivoli2016_postcheckin_change_log pc left join tivoli2016_postcheckin p on pc.postid = p.postid GROUP BY pc.postid ORDER BY LPAD(lower(pc.postid), 10,0)");
+    $uniqteam = $db->queryToArray("select concat(groups,id) cid, id from tivoli2018_teams where groups = 'N' order by groups, id");
+    $uniqpost = $db->queryToArray("select pc.postid,group_concat(DISTINCT p.mobile SEPARATOR '<br />') mobile from tivoli2018_postcheckin_change_log pc left join tivoli2018_postcheckin p on pc.postid = p.postid GROUP BY pc.postid ORDER BY LPAD(lower(pc.postid), 10,0)");
 
     print("<h2>Post / Point Oversigt</h2><hr><table class='table table-striped table-bordered'><tr><th></th>");
     foreach ($uniqpost as $post) {
@@ -28,7 +28,7 @@ include "config.php";
     foreach($uniqteam as $team) {
         print("<tr><th>".$team['cid']."</th>");
         foreach ($uniqpost as $post) {
-            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at1 from tivoli2016_score_change_log where postid = '".$post['postid']."' and teamid = '".$team['id']."' order by updated_at desc");
+            $s = $db->queryToArray("select action, teamid, point, postid, creator, DATE_FORMAT(updated_at, '%H:%i:%S') updated_at1 from tivoli2018_score_change_log where postid = '".$post['postid']."' and teamid = '".$team['id']."' order by updated_at desc");
             if(isset($s[0])) {
                 if($s[0]['point']) {
                     $history = "";

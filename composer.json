@@ -12,6 +12,7 @@
   "require": {
     "katzgrau/klogger": "1.2.0",
     "phpmailer/phpmailer": "v6.0.0rc2",
-    "abeautifulsite/simple-php-captcha": "1.0.0"
+    "abeautifulsite/simple-php-captcha": "1.0.0",
+    "nexmo/client": "1.2.1"
   }
 }

@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Created by PhpStorm.
  * User: bhansen
@@ -34,7 +35,7 @@ spl_autoload_register(function ($class) {
         <meta name="author" content="Brian Hauge Hansen">
         <meta name="description" content="FDF og spejderne indtager Tivoli">
         <title>FDF og spejderne indtager Tivoli - Score</title>
-        <link rel="canonical" href="http://haugemedia.net/tivoli2016/">
+        <link rel="canonical" href="http://haugemedia.net/tivoli2018/">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/css/bootstrap-datepicker.min.css">
@@ -125,7 +126,7 @@ spl_autoload_register(function ($class) {
                             <hr>
                             <?php
                             // Trace
-                            $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2016_trace ORDER BY tstamp desc limit 20";
+                            $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2018_trace ORDER BY tstamp desc limit 20";
                             $result = $db->printResultTable($sql);
                             print($result['table']);
                             ?>
@@ -133,7 +134,7 @@ spl_autoload_register(function ($class) {
                         <div role="tabpanel" class="tab-pane" id="overview">
                             <?php
                             // Team Overview
-                            $sql = "select concat(t.groups,t.id) id, t.name holdnavn, t.kreds 'kreds / gruppe', t.leader holdleder, t.mobile mobil, t.email, t.numberofmembers antal, if(sum(s.point), sum(s.point), 0) point from tivoli2016_teams t left join tivoli2016_score s on s.teamid = t.id group by t.id order by t.groups, t.id asc";
+                            $sql = "select concat(t.groups,t.id) id, t.name holdnavn, t.kreds 'kreds / gruppe', t.leader holdleder, t.mobile mobil, t.email, t.numberofmembers antal, if(sum(s.point), sum(s.point), 0) point from tivoli2018_teams t left join tivoli2018_score s on s.teamid = t.id group by t.id order by t.groups, t.id asc";
                             $result = $db->printResultTable($sql);
                             print("<h2>Antal hold: ".$result['count']." - Antal deltagere: ".$db->getMemberCount()."</h2><hr>");
                             print($result['table']);

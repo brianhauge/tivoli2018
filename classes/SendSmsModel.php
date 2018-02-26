@@ -60,6 +60,29 @@ class SendSmsModel extends BaseInit
                 CURLOPT_POSTFIELDS => json_encode($postData)
             );
             $this->doCurl($curlargs);
+        }
+        else if (SMSGW == "nexmo") {
+
+
+
+            try{
+                $basic  = new \Nexmo\Client\Credentials\Basic(NEXMO_API_KEY, NEXMO_API_SECRET);
+                $client = new \Nexmo\Client($basic);
+                $text = new \Nexmo\Message\Text($msisdn, SMS_FROMNAME, $message);
+                $message = $client->message()->send($text);
+            } catch (Nexmo\Client\Exception\Request $e) {
+                //can still get the API response
+                $message     = $e->getEntity();
+                $request  = $message->getRequest(); //PSR-7 Request Object
+                $response = $message->getResponse(); //PSR-7 Response Object
+                $data     = $message->getResponseData(); //parsed response object
+                $code     = $e->getCode(); //nexmo error code
+                error_log($e->getMessage()); //nexmo error message
+            }
+
+            $this->returnmessage['smsgw'] = json_decode($message);
+            $this->returnmessage['code'] = "Sikkert 200";
+
         } else {
             die("'SMSGW' constant not set correct in config.php");
         }

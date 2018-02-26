@@ -2,8 +2,7 @@
 logs
 tmp.txt
 config.php
-config.php
-
 .DS_Store
-
-*.graffle
+/vendor/
+.Thumbs
+/logs/*

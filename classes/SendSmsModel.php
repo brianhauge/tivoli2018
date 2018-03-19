@@ -24,16 +24,19 @@
 class SendSmsModel extends BaseInit
 {
     private $returnmessage = array();
+    private $smsgw = SMSGW;
+    private $from = SMS_FROMNAME;
 
     public function __construct()
     {
         parent::__construct();
+        
     }
 
     public function sendSms($msisdn, $message)
     {
         if (!is_array($msisdn)) $msisdn = array($msisdn);
-        if (SMSGW == "app") {
+        if ($this->smsgw == "app") {
             foreach ($msisdn as $ms) {
                 $ms = urlencode($ms);
                 $message = urlencode($message);
@@ -46,8 +49,8 @@ class SendSmsModel extends BaseInit
                 $this->doCurl($curlargs);
             }
 
-        } else if (SMSGW == "mblox") {
-            $postData = array("from" => SMS_FROMNAME, "to" => $msisdn, "body" => $message);
+        } else if ($this->smsgw == "mblox") {
+            $postData = array("from" => $this->from, "to" => $msisdn, "body" => $message);
             $curlargs = array(
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_POST => 1,
@@ -61,28 +64,28 @@ class SendSmsModel extends BaseInit
             );
             $this->doCurl($curlargs);
         }
-        else if (SMSGW == "nexmo") {
-
-
-
-            try{
-                $basic  = new \Nexmo\Client\Credentials\Basic(NEXMO_API_KEY, NEXMO_API_SECRET);
-                $client = new \Nexmo\Client($basic);
-                $text = new \Nexmo\Message\Text($msisdn, SMS_FROMNAME, $message);
-                $message = $client->message()->send($text);
-            } catch (Nexmo\Client\Exception\Request $e) {
-                //can still get the API response
-                $message     = $e->getEntity();
-                $request  = $message->getRequest(); //PSR-7 Request Object
-                $response = $message->getResponse(); //PSR-7 Response Object
-                $data     = $message->getResponseData(); //parsed response object
-                $code     = $e->getCode(); //nexmo error code
-                error_log($e->getMessage()); //nexmo error message
+        else if ($this->smsgw == "nexmo") {
+            $basic = new \Nexmo\Client\Credentials\Basic(NEXMO_API_KEY, NEXMO_API_SECRET);
+            $client = new \Nexmo\Client($basic);
+            $status = 0;
+            foreach ($msisdn as $ms) {
+                try {
+                    $text = new \Nexmo\Message\Text($ms, $this->from, $message);
+                    $transaction = $client->message()->send($text);
+                } catch (Nexmo\Client\Exception\Request $e) {
+                    //can still get the API response
+                    $transaction = $e->getEntity();
+                    $request = $transaction->getRequest(); //PSR-7 Request Object
+                    $response = $transaction->getResponse(); //PSR-7 Response Object
+                    $data = $transaction->getResponseData(); //parsed response object
+                    $code = $e->getCode(); //nexmo error code
+                    error_log($e->getMessage()); //nexmo error message
+                }
+                $status = $status + $transaction->getStatus();
+                $this->returnmessage[$ms] = $transaction->getResponseData();
             }
-
-            $this->returnmessage['smsgw'] = json_decode($message);
-            $this->returnmessage['code'] = "Sikkert 200";
-
+            if($status > 0) $this->returnmessage['code'] = 500;
+            else $this->returnmessage['code'] = 200;
         } else {
             die("'SMSGW' constant not set correct in config.php");
         }
@@ -106,5 +109,14 @@ class SendSmsModel extends BaseInit
         $this->returnmessage['smsgw'] = json_decode($content);
         $this->returnmessage['code'] = $info['http_code'];
         curl_close($ch);
+    }
+
+    public function setSmsgw($smsgw) {
+        if(in_array($smsgw,AVAILABLE_SMSGW)) $this->smsgw = $smsgw;
+        else $this->logger->warning($smsgw. " not available, see config for more. Rolling back to ".SMSGW);
+    }
+
+    public function setFrom($from) {
+        $this->from = $from;
     }
 }

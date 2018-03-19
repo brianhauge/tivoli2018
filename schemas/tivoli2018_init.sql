@@ -158,12 +158,13 @@ CREATE TABLE `tivoli2018_trace` (
 -- Table structure for table `tivoli2016_users`
 --
 
-CREATE TABLE `tivoli2016_users` (
+CREATE TABLE `tivoli2018_users` (
   `user` varchar(20) NOT NULL,
   `password` varchar(256) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Indexes for dumped tables

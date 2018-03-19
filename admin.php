@@ -170,9 +170,28 @@ spl_autoload_register(function ($class) {
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="team" class="col-sm-2 control-label">Fra</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="from" id="from" placeholder="Modtagere" value="<?php print(SMS_FROMNAME) ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="leader" class="col-sm-2 control-label">Besked</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="message" id="message" placeholder="Besked">
+                                        <textarea rows="5" type="text" class="form-control" name="message" id="message" placeholder="Besked"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="team" class="col-sm-2 control-label">SMSGW</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="smsgw" id="smsgw">
+                                            <?php
+                                            foreach(AVAILABLE_SMSGW as $smsgw) {
+                                                if($smsgw == SMSGW) print("<option selected>".$smsgw."</option>");
+                                                else print("<option>".$smsgw."</option>");
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -288,6 +307,7 @@ spl_autoload_register(function ($class) {
             .done( function() {
                 var str = JSON.stringify(obj, undefined, 4);
                 if(obj.status && (obj.message.code == "201" || obj.message.code == "200")) { state = "success"; icon = "fa fa-check-circle"; }
+                else if(obj.message.code == "500") { state = "warning"; icon = "fa fa-exclamation-triangle"; }
                 else { state = "danger"; icon = "fa fa-exclamation-triangle"; }
 
                 $( "#sendSmsResult" ).html( "<div class='alert alert-"+state+"' role='alert'><span class='"+icon+"' aria-hidden='true'></span></div><pre>"+syntaxHighlight(str)+"</pre>" );

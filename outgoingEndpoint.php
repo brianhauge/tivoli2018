@@ -32,6 +32,8 @@ if(isset($_REQUEST['message']) && isset($_REQUEST['receivers'])) {
         $message = $_REQUEST['message'];
 
         $send = new SendSmsModel();
+        if(isset($_REQUEST['smsgw'])) $send->setSmsgw($_REQUEST['smsgw']);
+        if(isset($_REQUEST['from'])) $send->setFrom($_REQUEST['from']);
         $result = $send->sendSms($msisdn,$message);
         $tmp['message'] = $result;
         $tmp['status'] = true;

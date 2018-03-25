@@ -69,9 +69,3 @@ ALTER TABLE `tivoli2018_smsgw`
   ADD KEY `to_key` (`to`),
   ADD KEY `message-timestamp_key` (`message-timestamp`),
   ADD KEY `created_at_key` (`created_at`);
-
-desc tivoli2018_smsgw;
-
-select * from tivoli2018_smsgw;
-
-INSERT INTO tivoli2018_smsgw (`msisdn`,`to`,`messageId`,`text`,`type`,`keyword`,`message-timestamp`,`direction`) VALUES ('4525212002','4592452008','0B000000C57C6763','Glglqhl','text','GLGLQHL','2018-03-25 20:28:12','in');

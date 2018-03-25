@@ -151,11 +151,10 @@ class DbModel extends BaseInit
         $values = "'".implode("','",$inboundSMS)."'";
         $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
         if ($this->con->query($sql) === TRUE) {
-            echo "New record created successfully";
+            return "New record created successfully";
         } else {
-            echo "Error: \n\n" . $sql . "\n\n" . $this->con->error;
+            return "Error: \n\n" . $sql . "\n\n" . $this->con->error;
         }
-        ;
     }
 
 

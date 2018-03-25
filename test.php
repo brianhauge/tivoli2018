@@ -9,21 +9,15 @@
 
 include "config.php";
 include "vendor/autoload.php";
+spl_autoload_register(function ($class) {
+    include 'classes/' . $class . '.php';
+});
 
-$msisdn = 25212002;
-$message = "Noget rigtigt godt";
 
-try{
-    $basic  = new \Nexmo\Client\Credentials\Basic(NEXMO_API_KEY, NEXMO_API_SECRET);
-    $client = new \Nexmo\Client($basic);
-    $text = new \Nexmo\Message\Text($msisdn, SMS_FROMNAME, $message);
-    $message = $client->message()->send($text);
-} catch (Nexmo\Client\Exception\Request $e) {
-    //can still get the API response
-    $message     = $e->getEntity();
-    $request  = $message->getRequest(); //PSR-7 Request Object
-    $response = $message->getResponse(); //PSR-7 Response Object
-    $data     = $message->getResponseData(); //parsed response object
-    $code     = $e->getCode(); //nexmo error code
-    error_log($e->getMessage()); //nexmo error message
-}
+
+$inboundSMS = "{\"msisdn\":\"FDF\",\"to\":\"4592452008\",\"messageId\":\"0B000000BAE28273\",\"text\":\"Test Test 555\",\"type\":\"text\",\"keyword\":\"TEST\",\"message-timestamp\":\"2018-02-26 20:44:18\"}";
+
+
+$dbModel = new DbModel();
+
+print $dbModel->insertSMS($inboundSMS);

@@ -144,6 +144,59 @@ class DbModel extends BaseInit
         }
     }
 
+    public function insertSMS($inboundSMS, $direction = 0) {
+        $inboundSMS = json_decode($inboundSMS, true);
+        $inboundSMS['direction'] = $direction;
+        $keys = "`".implode("`,`",array_keys($inboundSMS))."`";
+        $values = "'".implode("','",$inboundSMS)."'";
+        $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
+        if ($this->con->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: \n\n" . $sql . "\n\n" . $this->con->error;
+        }
+        ;
+    }
+
+
+    /*
+
+
+INBOUND
+{
+  "messageId": "0A0000000123ABCD1",
+  "msisdn": "447700900001",
+  "to": "447700900000",
+  "text": "Hello world",
+  "type": "text",
+  "keyword": "Hello",
+  "message-timestamp": "2020-01-01T12:00:00.000+00:00",
+  "timestamp": "1578787200",
+  "nonce": "aaaaaaaa-bbbb-cccc-dddd-0123456789ab",
+  "concat": "true",
+  "concat-ref": "1",
+  "concat-total": "3",
+  "concat-part": "2",
+  "data": "abc123",
+  "udh": "abc123"
+}
+
+DLVR
+{
+  "messageId": "0A0000001234567B",
+  "msisdn": "447700900000",
+  "to": "Acme Inc",
+  "message-timestamp": "2020-01-01T12:00:00.000+00:00"
+  "network-code": "12345",
+  "price": "0.03330000",
+  "status": "delivered",  <-- delivered, expired, failed, rejected, accepted, buffered, unknown
+  "scts": "2001011400",
+  "err-code": "0",
+}
+
+
+*/
+
     public function __destruct()
     {
         $this->con->close();

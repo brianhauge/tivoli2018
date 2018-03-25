@@ -62,9 +62,14 @@ if(SMSGW == 'app') {
 "udh": "abc123"
 }
  *
+ * {"msisdn":"FDF","to":"4592452008","messageId":"0B000000BAE28273","text":"Test Test 555","type":"text","keyword":"TEST","message-timestamp":"2018-02-26 20:44:18"}
+ *
  **/
 else if (SMSGW == "nexmo") {
-    file_put_contents("received.txt",json_encode($_REQUEST));
+    //file_put_contents("received.txt",json_encode($_REQUEST));
+    $dbModel = new DbModel();
+
+    print $dbModel->insertSMS($_REQUEST);
 }
 
 

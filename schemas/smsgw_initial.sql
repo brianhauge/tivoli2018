@@ -46,7 +46,7 @@ CREATE TABLE `tivoli2018_smsgw` (
   `text` TEXT,
   `type` ENUM('text','unicode','binary') DEFAULT 'text',
   `keyword` varchar(20),
-  `smsgw-messageId` varchar(16),
+  `messageId` varchar(16),
   `message-timestamp` varchar(20),
   `timestamp` INT(10),
   `concat` ENUM('true','false'),
@@ -70,4 +70,6 @@ ALTER TABLE `tivoli2018_smsgw`
   ADD KEY `message-timestamp_key` (`message-timestamp`),
   ADD KEY `created_at_key` (`created_at`);
 
-desc tivoli2018_smsgw
+desc tivoli2018_smsgw;
+
+select * from tivoli2018_smsgw;

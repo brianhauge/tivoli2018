@@ -144,7 +144,7 @@ class DbModel extends BaseInit
         }
     }
 
-    public function insertSMS($inboundJsonSMS, $direction = 0) {
+    public function insertSMS($inboundJsonSMS, $direction) {
         $inboundSMS = json_decode($inboundJsonSMS, true);
         $inboundSMS['direction'] = $direction;
         $keys = "`".implode("`,`",array_keys($inboundSMS))."`";

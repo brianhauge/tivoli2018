@@ -39,27 +39,27 @@ DLVR
 
 DROP TABLE IF EXISTS `tivoli2018_smsgw`;
 CREATE TABLE `tivoli2018_smsgw` (
-  `id` INT(6) NOT NULL AUTO_INCREMENT,
-  `msisdn` INT(16) NOT NULL,
-  `to` INT(16) NOT NULL,
-  `direction` ENUM('0','1') DEFAULT '0',
+  `id`  BIGINT(6) NOT NULL AUTO_INCREMENT,
+  `msisdn` varchar(16) NOT NULL,
+  `to` varchar(16) NOT NULL,
+  `direction` ENUM('in','out'),
   `text` TEXT,
   `type` ENUM('text','unicode','binary') DEFAULT 'text',
   `keyword` varchar(20),
   `messageId` varchar(16),
-  `message-timestamp` varchar(20),
-  `timestamp` INT(10),
+  `message-timestamp` varchar(20) NOT NULL,
+  `timestamp` varchar(16),
   `concat` ENUM('true','false'),
-  `concat-ref` INT(3),
-  `concat-total` INT(2),
+  `concat-ref` varchar(6),
+  `concat-total` varchar(6),
   `price` VARCHAR(10),
   `remaining-balance` VARCHAR(10),
   `status` VARCHAR(10),
-  `scts` INT(10),
-  `err-code` INT(2),
+  `scts` varchar(16),
+  `err-code` varchar(16),
   `data` VARCHAR(180) DEFAULT NULL,
-  `udh` VARCHAR(180) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `udh` VARCHAR(180) DEFAULT NULL,  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -73,3 +73,5 @@ ALTER TABLE `tivoli2018_smsgw`
 desc tivoli2018_smsgw;
 
 select * from tivoli2018_smsgw;
+
+INSERT INTO tivoli2018_smsgw (`msisdn`,`to`,`messageId`,`text`,`type`,`keyword`,`message-timestamp`,`direction`) VALUES ('4525212002','4592452008','0B000000C57C6763','Glglqhl','text','GLGLQHL','2018-03-25 20:28:12','in');

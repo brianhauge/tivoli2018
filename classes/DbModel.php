@@ -144,17 +144,18 @@ class DbModel extends BaseInit
         }
     }
 
-    public function insertSMS($inboundSMS, $direction = 0) {
-        $inboundSMS = json_decode($inboundSMS, true);
+    public function insertSMS($inboundJsonSMS, $direction = 0) {
+        $inboundSMS = json_decode($inboundJsonSMS, true);
         $inboundSMS['direction'] = $direction;
         $keys = "`".implode("`,`",array_keys($inboundSMS))."`";
         $values = "'".implode("','",$inboundSMS)."'";
         $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
         if ($this->con->query($sql) === TRUE) {
-            return "New record created successfully";
+            $stat = "New record created successfully - ".$$inboundJsonSMS;
         } else {
-            return "Error: \n\n" . $sql . "\n\n" . $this->con->error;
+            $stat = "Error: \n\n" . $sql . "\n\n" . $this->con->error;
         }
+        $this->logger->info(__METHOD__.": ".$stat);
     }
 
 

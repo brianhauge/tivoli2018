@@ -160,7 +160,7 @@ class DbModel extends BaseInit
             $values = "'".implode("','",$inboundSMS)."'";
             $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
             if ($this->con->query($sql) === TRUE) {
-                $this->logger->warning(__METHOD__.": ". $messageId ." - New record created successfully - ".$inboundJsonSMS);
+                $this->logger->info(__METHOD__.": ". $messageId ." - New record created successfully - ".$inboundJsonSMS);
                 return true;
             } else {
                 $this->logger->warning(__METHOD__.": ". $messageId ." - Error: \n\n" . $sql . "\n\n" . $this->con->error);

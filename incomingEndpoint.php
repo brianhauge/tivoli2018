@@ -44,5 +44,5 @@ if(SMSGW == 'app') {
 else if (SMSGW == "nexmo") {
     $dbModel = new DbModel();
     $inBoundSMS = $dbModel->insertSMS($_REQUEST,'in');
-    $this->logger->info(__METHOD__.": - InboundSMS Status:  " . $inBoundSMS);
+    file_put_contents('received.txt',$inBoundSMS);
 }

@@ -144,18 +144,29 @@ class DbModel extends BaseInit
         }
     }
 
-    public function insertSMS($inboundJsonSMS, $direction) {
-        $inboundSMS = json_decode($inboundJsonSMS, true);
-        $inboundSMS['direction'] = $direction;
-        $keys = "`".implode("`,`",array_keys($inboundSMS))."`";
-        $values = "'".implode("','",$inboundSMS)."'";
-        $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
-        if ($this->con->query($sql) === TRUE) {
-            $stat = "New record created successfully - ".$inboundJsonSMS;
-        } else {
-            $stat = "Error: \n\n" . $sql . "\n\n" . $this->con->error;
+    public function insertSMS(array $inboundSMS, $direction) {
+        $inboundJsonSMS = json_encode($inboundSMS);
+        $messageId = $inboundSMS['messageId'];
+        $this->logger->info(__METHOD__.": ". $messageId ." - Received message " . $inboundJsonSMS);
+        if($inboundSMS['to'] === $inboundSMS['msisdn']) {
+            $this->logger->warning(__METHOD__.": ". $messageId ." - Receiver and sender are the same, cancelling. 'to': " . $inboundSMS['to'] . " 'msisdn': " . $inboundSMS['msisdn']);
         }
-        $this->logger->info(__METHOD__.": ".$stat);
+        else if($inboundSMS['text'] === "") {
+            $this->logger->warning(__METHOD__.": ". $messageId ." - Text in message empty, cancelling.");
+        }
+        else {
+            $inboundSMS['direction'] = $direction;
+            $keys = "`".implode("`,`",array_keys($inboundSMS))."`";
+            $values = "'".implode("','",$inboundSMS)."'";
+            $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
+            if ($this->con->query($sql) === TRUE) {
+                $this->logger->warning(__METHOD__.": ". $messageId ." - New record created successfully - ".$inboundJsonSMS);
+                return true;
+            } else {
+                $this->logger->warning(__METHOD__.": ". $messageId ." - Error: \n\n" . $sql . "\n\n" . $this->con->error);
+            }
+        }
+        return false;
     }
 
 

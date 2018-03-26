@@ -43,5 +43,6 @@ if(SMSGW == 'app') {
 
 else if (SMSGW == "nexmo") {
     $dbModel = new DbModel();
-    $dbModel->insertSMS(json_encode($_REQUEST),'in');
+    $inBoundSMS = $dbModel->insertSMS($_REQUEST,'in');
+    $this->logger->info(__METHOD__.": - InboundSMS Status:  " . $inBoundSMS);
 }

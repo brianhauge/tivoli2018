@@ -69,3 +69,4 @@ ALTER TABLE `tivoli2018_smsgw`
   ADD KEY `to_key` (`to`),
   ADD KEY `message-timestamp_key` (`message-timestamp`),
   ADD KEY `created_at_key` (`created_at`);
+

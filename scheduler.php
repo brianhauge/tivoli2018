@@ -19,7 +19,7 @@ if($schedule == '') die("Schedule not set");
 
 
 // Handle incoming SMS queue
-if($schedule == 'handleIncomingSMS') {
+if($schedule == 'handleIncomingQueue') {
     $smsDB = new smsgwDbModel();
     $smss = $smsDB->getSMS();
 
@@ -32,6 +32,7 @@ if($schedule == 'handleIncomingSMS') {
         }
         else {
             $SmsScoreModel = new SmsScoreModel();
+            $score = new SmsScoreController();
             $SmsScoreModel->setSmscontent($sms['text'],$sms['msisdn']);
             $score->handleReceivedPoints($SmsScoreModel);
         }

@@ -72,6 +72,7 @@ class SendSmsModel extends BaseInit
                 try {
                     $text = new \Nexmo\Message\Text($ms, $this->from, $message);
                     $transaction = $client->message()->send($text);
+                    $this->logger->info(__METHOD__.": ". $transaction->getMessageId() ." - Sent message to ". $ms);
                 } catch (Nexmo\Client\Exception\Request $e) {
                     //can still get the API response
                     $transaction = $e->getEntity();
@@ -80,12 +81,21 @@ class SendSmsModel extends BaseInit
                     $data = $transaction->getResponseData(); //parsed response object
                     $code = $e->getCode(); //nexmo error code
                     error_log($e->getMessage()); //nexmo error message
+
+                    $this->logger->error(__METHOD__.": Problem sending message to ". $ms . " Error message: " . $e->getMessage() . " Trace: " . $e->getTraceAsString());
                 }
                 $status = $status + $transaction->getStatus();
                 $this->returnmessage[$ms] = $transaction->getResponseData();
+
+
             }
-            if($status > 0) $this->returnmessage['code'] = 500;
-            else $this->returnmessage['code'] = 200;
+            if($status > 0) {
+                $this->returnmessage['code'] = 500;
+            }
+            else {
+                $this->returnmessage['code'] = 200;
+            }
+            
         } else {
             die("'SMSGW' constant not set correct in config.php");
         }

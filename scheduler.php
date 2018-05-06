@@ -18,17 +18,22 @@ $schedule = $_GET['schedule'];
 if($schedule == '') die("Schedule not set");
 
 
-// Incoming SMS
+// Handle incoming SMS queue
 if($schedule == 'handleIncomingSMS') {
     $smsDB = new smsgwDbModel();
     $smss = $smsDB->getSMS();
 
     foreach ($smss as $sms) {
-        print_r($sms);
-        print("\n");
+        if(preg_match("/[Cc]heck|[Tt]jek/",$sms['text'])) {
+            $checkinPostModel = new PostCheckInModel();
+            $checkin = new PostCheckInController();
+            $checkinPostModel->setSmscontent($sms['text'],$sms['to']);
+            $checkin->handleCheckin($checkinPostModel);
+        }
+        else {
+            $SmsScoreModel = new SmsScoreModel();
+            $SmsScoreModel->setSmscontent($sms['text'],$sms['to']);
+            $score->handleReceivedPoints($SmsScoreModel);
+        }
     }
-
-}
-else {
-    die("Missing parameters: 'message' and 'sender'");
 }

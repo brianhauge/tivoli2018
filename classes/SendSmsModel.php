@@ -72,7 +72,7 @@ class SendSmsModel extends BaseInit
                 try {
                     $text = new \Nexmo\Message\Text($ms, $this->from, $message);
                     $transaction = $client->message()->send($text);
-                    $this->logger->info(__METHOD__.": ". $transaction->getMessageId() ." - Sent message to ". $ms);
+                    $this->logger->info(__METHOD__.": ". $transaction->getMessageId() ." - Sent message to ". $ms . " Message: " . $message);
                 } catch (Nexmo\Client\Exception\Request $e) {
                     //can still get the API response
                     $transaction = $e->getEntity();

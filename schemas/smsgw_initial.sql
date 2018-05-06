@@ -72,4 +72,4 @@ ALTER TABLE `tivoli2018_smsgw`
 
 SELECT * FROM tivoli2018_smsgw WHERE tivoli2018_smsgw.concat not like 'Glglqhl';
 
-SELECT * FROM tivoli2018_smsgw;
+SELECT * FROM tivoli2018_smsgw where status in ('notProcessed');

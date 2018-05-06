@@ -48,7 +48,7 @@ class SmsgwDbModel extends BaseInit
 
     public function getSMS($limit = 10, $direction = 'in') {
         $array = array();
-        if ($result = $this->con->query("SELECT * FROM tivoli2018_smsgw where processing in ('notProcessed') direction = '".$direction."' FOR UPDATE LIMIT ".$limit)) {
+        if ($result = $this->con->query("SELECT * FROM tivoli2018_smsgw where status in ('notProcessed') direction = '".$direction."' FOR UPDATE LIMIT ".$limit)) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $this->con->query("UPDATE tivoli2018_smsgw set status = 'processing'");
                 $array[] = $row;

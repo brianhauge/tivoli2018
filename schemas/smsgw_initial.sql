@@ -49,12 +49,12 @@ CREATE TABLE `tivoli2018_smsgw` (
   `messageId` varchar(16),
   `message-timestamp` varchar(20) NOT NULL,
   `timestamp` varchar(16),
-  `concat` ENUM('true','false'),
+  `concat` ENUM('true','false') DEFAULT 'false',
   `concat-ref` varchar(6),
   `concat-total` varchar(6),
-  `price` VARCHAR(10),
+  `price` VARCHAR(10) DEFAULT 0,
   `remaining-balance` VARCHAR(10),
-  `status` VARCHAR(10),
+  `status` VARCHAR(12) DEFAULT 'notProcessed',
   `scts` varchar(16),
   `err-code` varchar(16),
   `data` VARCHAR(180) DEFAULT NULL,
@@ -70,4 +70,6 @@ ALTER TABLE `tivoli2018_smsgw`
   ADD KEY `message-timestamp_key` (`message-timestamp`),
   ADD KEY `created_at_key` (`created_at`);
 
-SELECT * FROM tivoli2018_smsgw WHERE status not in ('processing') FOR UPDATE;
+SELECT * FROM tivoli2018_smsgw WHERE tivoli2018_smsgw.concat not like 'Glglqhl';
+
+SELECT * FROM tivoli2018_smsgw;

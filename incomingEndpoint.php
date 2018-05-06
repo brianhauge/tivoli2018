@@ -42,6 +42,6 @@ if(SMSGW == 'app') {
 }
 
 else if (SMSGW == "nexmo") {
-    $dbModel = new DbModel();
+    $dbModel = new SmsgwDbModel();
     $dbModel->insertSMS($_REQUEST,'in');
 }

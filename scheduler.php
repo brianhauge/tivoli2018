@@ -27,12 +27,12 @@ if($schedule == 'handleIncomingSMS') {
         if(preg_match("/[Cc]heck|[Tt]jek/",$sms['text'])) {
             $checkinPostModel = new PostCheckInModel();
             $checkin = new PostCheckInController();
-            $checkinPostModel->setSmscontent($sms['text'],$sms['to']);
+            $checkinPostModel->setSmscontent($sms['text'],$sms['msisdn']);
             $checkin->handleCheckin($checkinPostModel);
         }
         else {
             $SmsScoreModel = new SmsScoreModel();
-            $SmsScoreModel->setSmscontent($sms['text'],$sms['to']);
+            $SmsScoreModel->setSmscontent($sms['text'],$sms['msisdn']);
             $score->handleReceivedPoints($SmsScoreModel);
         }
     }

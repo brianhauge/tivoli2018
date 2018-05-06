@@ -22,6 +22,9 @@ if($schedule == '') die("Schedule not set");
 if($schedule == 'handleIncomingQueue') {
     $smsDB = new SmsgwDbModel();
     $smss = $smsDB->getSMS();
+    print("<pre>");
+    print_r($smss);
+    print("</pre>");
 
     foreach ($smss as $sms) {
         if(preg_match("/[Cc]heck|[Tt]jek/",$sms['text'])) {

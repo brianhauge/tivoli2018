@@ -6,7 +6,7 @@
  * Date: 05-05-2018
  * Time: 13:27
  */
-class smsgwDbModel extends BaseInit
+class SmsgwDbModel extends BaseInit
 {
     private $con;
     public function __construct()

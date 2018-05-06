@@ -20,7 +20,7 @@ if($schedule == '') die("Schedule not set");
 
 // Handle incoming SMS queue
 if($schedule == 'handleIncomingQueue') {
-    $smsDB = new smsgwDbModel();
+    $smsDB = new SmsgwDbModel();
     $smss = $smsDB->getSMS();
 
     foreach ($smss as $sms) {

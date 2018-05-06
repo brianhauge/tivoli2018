@@ -70,3 +70,4 @@ ALTER TABLE `tivoli2018_smsgw`
   ADD KEY `message-timestamp_key` (`message-timestamp`),
   ADD KEY `created_at_key` (`created_at`);
 
+SELECT * FROM tivoli2018_smsgw WHERE status not in ('processing') FOR UPDATE;

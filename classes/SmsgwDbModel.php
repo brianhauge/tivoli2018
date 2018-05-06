@@ -22,6 +22,7 @@ class smsgwDbModel extends BaseInit
     }
 
     public function insertSMS(array $inboundSMS, $direction) {
+        print_r($inboundSMS);
         $inboundJsonSMS = json_encode($inboundSMS);
         $messageId = $inboundSMS['messageId'];
         $this->logger->info(__METHOD__.": ". $messageId ." - Received message " . $inboundJsonSMS);

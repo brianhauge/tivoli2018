@@ -16,6 +16,23 @@ class SmsScoreModel extends BaseInit
     private $msisdn;
     private $smscontent;
     private $db;
+    private $smsid;
+
+    /**
+     * @return mixed
+     */
+    public function getSmsid()
+    {
+        return $this->smsid;
+    }
+
+    /**
+     * @param mixed $smsid
+     */
+    public function setSmsid($smsid)
+    {
+        $this->smsid = $smsid;
+    }
 
     /**
      * SmsContent constructor.
@@ -105,13 +122,14 @@ class SmsScoreModel extends BaseInit
      * @param mixed $smscontent
      * @param mixed $sender
      */
-    public function setSmscontent($smscontent, $sender)
+    public function setSmscontent($smscontent, $sender, $smsid)
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPoint($this->smscontent);
         $this->setMsisdn($sender);
         $this->setPost($sender);
         $this->setTeam($this->smscontent);
+        $this->setSmsid($smsid);
         $this->logger->info(__METHOD__.": ".$this->getSmscontent() . " Point: " . $this->getPoint() . " Post: " . $this->getPost() . " Hold: " . $this->getTeam());
     }
 

@@ -29,15 +29,15 @@ if($schedule == 'handleIncomingQueue') {
     foreach ($smss as $sms) {
         if(preg_match("/[Cc]heck|[Tt]jek/",$sms['text'])) {
             $checkinPostModel = new PostCheckInModel();
-            $checkin = new PostCheckInController();
-            $checkinPostModel->setSmscontent($sms['text'],$sms['msisdn']);
-            $checkin->handleCheckin($checkinPostModel);
+            $checkinController = new PostCheckInController();
+            $checkinPostModel->setSmscontent($sms['text'],$sms['msisdn'],$sms['id']);
+            $checkinController->handleCheckin($checkinPostModel);
         }
         else {
             $SmsScoreModel = new SmsScoreModel();
-            $score = new SmsScoreController();
-            $SmsScoreModel->setSmscontent($sms['text'],$sms['msisdn']);
-            $score->handleReceivedPoints($SmsScoreModel);
+            $scoreController = new SmsScoreController();
+            $SmsScoreModel->setSmscontent($sms['text'],$sms['msisdn'],$sms['id']);
+            $scoreController->handleReceivedPoints($SmsScoreModel);
         }
     }
 }

@@ -26,14 +26,15 @@ class SendSmsModel extends BaseInit
     private $returnmessage = array();
     private $smsgw = SMSGW;
     private $from = SMS_FROMNAME;
+    private $smsDB;
 
     public function __construct()
     {
         parent::__construct();
-        
+        $this->smsDB = new SmsgwDbModel();
     }
 
-    public function sendSms($msisdn, $message)
+    public function sendSms($msisdn, $message, $smsid = 0)
     {
         if (!is_array($msisdn)) $msisdn = array($msisdn);
         if ($this->smsgw == "app") {
@@ -73,6 +74,7 @@ class SendSmsModel extends BaseInit
                     $text = new \Nexmo\Message\Text($ms, $this->from, $message);
                     $transaction = $client->message()->send($text);
                     $this->logger->info(__METHOD__.": ". $transaction->getMessageId() ." - Sent message to ". $ms . " Message: " . $message);
+                    file_put_contents("testhest.txt",$transaction->getResponseData());
                 } catch (Nexmo\Client\Exception\Request $e) {
                     //can still get the API response
                     $transaction = $e->getEntity();
@@ -86,8 +88,14 @@ class SendSmsModel extends BaseInit
                 }
                 $status = $status + $transaction->getStatus();
                 $this->returnmessage[$ms] = $transaction->getResponseData();
-
-
+                // Update and Insert to SMSGW DB
+                if($smsid != 0) {
+                    if ($transaction->getStatus() == 0) {
+                        $this->smsDB->updateStatus($smsid, 'processed');
+                    } else {
+                        $this->smsDB->updateStatus($smsid, 'failed');
+                    }
+                }
             }
             if($status > 0) {
                 $this->returnmessage['code'] = 500;

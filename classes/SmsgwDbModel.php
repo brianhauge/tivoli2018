@@ -50,11 +50,23 @@ class SmsgwDbModel extends BaseInit
         $array = array();
         if ($result = $this->con->query("SELECT * FROM tivoli2018_smsgw where status in ('notProcessed') AND direction = '".$direction."' LIMIT ".$limit." FOR UPDATE")) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                $this->con->query("UPDATE tivoli2018_smsgw set status = 'processing'");
+                $this->con->query("UPDATE tivoli2018_smsgw set status = 'processing' WHERE id = ".$row['id']);
                 $array[] = $row;
             }
         }
         return $array;
+    }
+
+    public function updateStatus($smsid,$status)
+    {
+        $sql = "UPDATE tivoli2018_smsgw set status = '".$status."' WHERE id = ".$smsid;
+        if ($this->con->query($sql) === TRUE) {
+            $this->logger->info(__METHOD__.": ". $smsid ." - Updated DB record successfully");
+            return true;
+        } else {
+            $this->logger->warning(__METHOD__.": ". $smsid ." - Error: \n\n" . $sql . "\n\n" . $this->con->error);
+        }
+        return false;
     }
 
     public function __destruct()

@@ -89,6 +89,7 @@ class SendSmsModel extends BaseInit
                 }
                 $status = $status + $transaction->getStatus();
                 $this->returnmessage[$ms] = $transaction->getResponseData();
+
                 // Update and Insert to SMSGW DB
                 if($smsid != 0) {
                     if ($transaction->getStatus() == 0) {
@@ -97,6 +98,8 @@ class SendSmsModel extends BaseInit
                         $this->smsDB->updateStatus($smsid, 'failed');
                     }
                 }
+                // Inserting sent sms to DB
+                $this->smsDB->insertOutgoingSMS($transaction);
             }
             if($status > 0) {
                 $this->returnmessage['code'] = 500;

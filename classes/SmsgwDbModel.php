@@ -83,7 +83,7 @@ class SmsgwDbModel extends BaseInit
         $messagePrice = $transaction->getPrice();
         $remainingPrice = $transaction->getRemainingBalance();
         $errorCode = $transaction->getStatus();
-        if($transaction->getStatus() === 0) {
+        if($errorCode < 1) {
             $status = 'sent';
         } else {
             $status = 'failed';

@@ -74,18 +74,9 @@ class SendSmsModel extends BaseInit
                     $text = new \Nexmo\Message\Text($ms, $this->from, $message);
                     $transaction = $client->message()->send($text);
                     $this->logger->info(__METHOD__.": ". $transaction->getMessageId() ." - Sent message to ". $ms . " Message: " . $message);
-                    file_put_contents("testhest.txt",json_encode($transaction->getResponseData()));
-
                 } catch (Nexmo\Client\Exception\Request $e) {
-                    //can still get the API response
                     $transaction = $e->getEntity();
-                    $request = $transaction->getRequest(); //PSR-7 Request Object
-                    $response = $transaction->getResponse(); //PSR-7 Response Object
-                    $data = $transaction->getResponseData(); //parsed response object
-                    $code = $e->getCode(); //nexmo error code
-                    error_log($e->getMessage()); //nexmo error message
-
-                    $this->logger->error(__METHOD__.": Problem sending message to ". $ms . " Error message: " . $e->getMessage() . " Trace: " . $e->getTraceAsString());
+                    $this->logger->error(__METHOD__.": Problem sending message to ".$ms." Error message: ".$e->getCode()." - ".$e->getMessage()." Trace: ".$e->getTraceAsString());
                 }
                 $status = $status + $transaction->getStatus();
                 $this->returnmessage[$ms] = $transaction->getResponseData();
@@ -98,8 +89,8 @@ class SendSmsModel extends BaseInit
                         $this->smsDB->updateStatus($smsid, 'failed');
                     }
                 }
-                // Inserting sent sms to DB
-                $this->smsDB->insertOutgoingSMS($transaction);
+                // Inserting Nexmo Sent SMS response to DB (also if failed)
+                $this->smsDB->insertOutgoingSMS($transaction, $message);
             }
             if($status > 0) {
                 $this->returnmessage['code'] = 500;

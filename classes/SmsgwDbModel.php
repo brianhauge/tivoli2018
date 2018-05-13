@@ -60,10 +60,9 @@ class SmsgwDbModel extends BaseInit
     /**
      * @param $transaction
      */
-    public function insertOutgoingSMS($transaction) {
+    public function insertOutgoingSMS($transaction, $message) {
         $msisdn = $transaction->getFrom();
         $to = $transaction->getTo();
-        $message = $transaction->getBody();
         $messageId = $transaction->getMessageId();
         $concat = '';
         $concatRef = '';
@@ -108,7 +107,6 @@ class SmsgwDbModel extends BaseInit
     {
         $sql = "UPDATE tivoli2018_smsgw set status = '".$status."' WHERE id = ".$smsid;
         if ($this->con->query($sql) === TRUE) {
-            $this->logger->info(__METHOD__.": ". $smsid ." - Updated DB record successfully");
             return true;
         } else {
             $this->logger->warning(__METHOD__.": ". $smsid ." - Error: \n\n" . $sql . "\n\n" . $this->con->error);

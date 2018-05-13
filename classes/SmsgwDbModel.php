@@ -67,7 +67,7 @@ class SmsgwDbModel extends BaseInit
         $direction = 'out';
         $type = 'text';
         $messageId = $transaction->getMessageId();
-        $messageTimestamp = $transaction->getDateReceived()->format('Y-m-d H:i:s');
+        $messageTimestamp = '';
         $timestamp = '';
         $messageCount = $transaction->count();
         if($messageCount < 2) {

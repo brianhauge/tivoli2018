@@ -34,8 +34,19 @@ DLVR
 }
 
 
-*/
+Outbound
 
+{
+  "message-count":"1",
+  "messages":[{
+    "to":"4525212002",
+    "message-id":"0D0000008FC49EC0",
+    "status":"0",
+    "remaining-balance":"6.42100000",
+    "message-price":"0.02210000",
+    "network":"23802"}]}
+
+*/
 
 DROP TABLE IF EXISTS `tivoli2018_smsgw`;
 CREATE TABLE `tivoli2018_smsgw` (

@@ -8,7 +8,14 @@
  */
 class SmsgwDbModel extends BaseInit
 {
+    /**
+     * @var mysqli
+     */
     private $con;
+
+    /**
+     * SmsgwDbModel constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -21,7 +28,11 @@ class SmsgwDbModel extends BaseInit
         }
     }
 
-    public function insertSMS(array $inboundSMS, $direction) {
+    /**
+     * @param array $inboundSMS
+     * @return bool
+     */
+    public function insertIncomingSMS(array $inboundSMS) {
         $inboundJsonSMS = json_encode($inboundSMS);
         $messageId = $inboundSMS['messageId'];
         $this->logger->info(__METHOD__.": ". $messageId ." - Received message " . $inboundJsonSMS);
@@ -32,7 +43,7 @@ class SmsgwDbModel extends BaseInit
             $this->logger->warning(__METHOD__.": ". $messageId ." - Text in message empty, cancelling.");
         }
         else {
-            $inboundSMS['direction'] = $direction;
+            $inboundSMS['direction'] = 'in';
             $keys = "`".implode("`,`",array_keys($inboundSMS))."`";
             $values = "'".implode("','",$inboundSMS)."'";
             $sql = "INSERT INTO tivoli2018_smsgw ($keys) VALUES ($values)";
@@ -46,6 +57,37 @@ class SmsgwDbModel extends BaseInit
         return false;
     }
 
+    /**
+     * @param $transaction
+     */
+    public function insertOutgoingSMS($transaction) {
+        $msisdn = $transaction->getFrom();
+        $to = $transaction->getTo();
+        $message = $transaction->getBody();
+        $messageId = $transaction->getMessageId();
+        $concat = '';
+        $concatRef = '';
+        $concatTotal = '';
+        $messagePrice = $transaction->getPrice();
+        $remainingPrice = $transaction->getRemainingBalance();
+        $errorCode = $transaction->getStatus();
+        if($transaction->getStatus() === 0) {
+            $status = 'sent';
+        } else {
+            $status = 'failed';
+        }
+
+        $stmt = $this->con->prepare("INSERT INTO tivoli2018_smsgw (`msisdn`,`to`,`direction`,`text`,`type`,`messageId`,`message-timestamp`,`timestamp`,`concat`,`concat-ref`,`concat-total`,`price`,`remaining-balance`,`status`,`err-code`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssssssss", $msisdn, $to, 'out', $message, 'text', $messageId, '', '', $concat, $concatRef, $concatTotal, $messagePrice, $remainingPrice, $status, $errorCode);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    /**
+     * @param int $limit
+     * @param string $direction
+     * @return array
+     */
     public function getSMS($limit = 20, $direction = 'in') {
         $array = array();
         if ($result = $this->con->query("SELECT * FROM tivoli2018_smsgw where status in ('notProcessed') AND direction = '".$direction."' LIMIT ".$limit." FOR UPDATE")) {
@@ -57,7 +99,12 @@ class SmsgwDbModel extends BaseInit
         return $array;
     }
 
-    public function updateStatus($smsid,$status)
+    /**
+     * @param $smsid
+     * @param $status
+     * @return bool
+     */
+    public function updateStatus($smsid, $status)
     {
         $sql = "UPDATE tivoli2018_smsgw set status = '".$status."' WHERE id = ".$smsid;
         if ($this->con->query($sql) === TRUE) {
@@ -69,6 +116,9 @@ class SmsgwDbModel extends BaseInit
         return false;
     }
 
+    /**
+     *
+     */
     public function __destruct()
     {
         $this->con->close();

@@ -10,9 +10,13 @@ class DbModel extends BaseInit
 {
 
     /**
-     * DbModel constructor.
+     * @var mysqli
      */
     private $con;
+
+    /**
+     * DbModel constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -25,12 +29,28 @@ class DbModel extends BaseInit
         }
     }
 
+    /**
+     * @param $name
+     * @param $leader
+     * @param $msisdn
+     * @param $email
+     * @param $kreds
+     * @param $group
+     * @param $numberofmembers
+     * @return mixed
+     */
     public function insertTeam($name, $leader, $msisdn, $email, $kreds, $group, $numberofmembers) {
         $this->con->query("INSERT INTO tivoli2018_teams (name, leader, mobile, email, kreds, groups, numberofmembers, updated_at) VALUES ('$name', '$leader', '$msisdn', '$email', '$kreds', '$group', '$numberofmembers', now())");
         $this->logger->info(__METHOD__.": ".$group.$this->con->insert_id." $name, $kreds");
         return $this->con->insert_id;
     }
 
+    /**
+     * @param $name
+     * @param $msisdn
+     * @param $kreds
+     * @return string
+     */
     public function insertNightCrew($name, $msisdn, $kreds) {
         $this->logger->info(__METHOD__.": $name, $kreds");
         $stmt = $this->con->prepare("INSERT INTO tivoli2018_nightpeople (name, mobile, kreds) VALUES (?, ?, ?)");
@@ -39,16 +59,30 @@ class DbModel extends BaseInit
         return $stmt->sqlstate;
     }
 
+    /**
+     * @param $team
+     * @param $point
+     * @param $post
+     * @param $msisdn
+     */
     public function insertScore($team, $point, $post, $msisdn) {
         $this->logger->info(__METHOD__.": $team, $point, $post");
         $this->con->query("INSERT INTO tivoli2018_score (teamid, point, postid, creator, updated_at) VALUES ('$team', '$point', '$post', '$msisdn', now()) ON DUPLICATE KEY UPDATE point = '$point'");
     }
 
+    /**
+     * @param $postid
+     * @param $msisdn
+     */
     public function insertCheckin($postid, $msisdn) {
         $this->logger->info(__METHOD__.": $postid");
         $this->con->query("INSERT INTO tivoli2018_postcheckin (mobile, postid, updated_at) VALUES ('$msisdn', '$postid', now()) ON DUPLICATE KEY UPDATE postid = '$postid' ");
     }
 
+    /**
+     * @param $group
+     * @return array
+     */
     public function getScore($group) {
         $score = array();
         if ($result = $this->con->query("select t.name team, concat(t.groups,t.id) cid, if(sum(s.point), sum(s.point), 0) point from tivoli2018_teams t left join tivoli2018_score s on s.teamid = t.id where t.groups = '$group' group by t.id order by point desc")) {
@@ -59,6 +93,10 @@ class DbModel extends BaseInit
         return $score;
     }
 
+    /**
+     * @param $sql
+     * @return array
+     */
     public function queryToArray($sql) {
         $array = array();
         if ($result = $this->con->query($sql)) {
@@ -69,6 +107,10 @@ class DbModel extends BaseInit
         return $array;
     }
 
+    /**
+     * @param $sql
+     * @return array
+     */
     public function printResultTable($sql) {
         $tmp = "<table class=\"table table-striped\">";
         $row_count = 0;
@@ -96,6 +138,9 @@ class DbModel extends BaseInit
         return array("count" => $row_count, "table" => $tmp . "</table>");
     }
 
+    /**
+     * @return int
+     */
     public function getMemberCount() {
         $numberofmembers = 0;
         if ($result = $this->con->query("SELECT if(sum(t.numberofmembers), sum(t.numberofmembers), 0) numberofmembers from tivoli2018_teams t")) {
@@ -105,6 +150,10 @@ class DbModel extends BaseInit
         return $numberofmembers;
     }
 
+    /**
+     * @param $msisdn
+     * @return int
+     */
     public function getCheckedinPost($msisdn) {
         $postid = 0;
         if ($result = $this->con->query("select postid from tivoli2018_postcheckin where mobile = '$msisdn'")) {
@@ -115,6 +164,10 @@ class DbModel extends BaseInit
         return $postid;
     }
 
+    /**
+     * @param $team
+     * @return int
+     */
     public function getTeamPoints($team) {
         $point = 0;
         if ($result = $this->con->query("select sum(point) point from tivoli2018_score where teamid = '$team'")) {
@@ -125,6 +178,11 @@ class DbModel extends BaseInit
         return $point;
     }
 
+    /**
+     * @param $msisdn
+     * @param string $input
+     * @param string $output
+     */
     public function insertTrace($msisdn, $input = "", $output = "") {
         $stmt = $this->con->prepare("INSERT INTO tivoli2018_trace (msisdn, method, input, output) VALUES (?, ?, ?, ?)");
         $method = $this->get_calling_function();
@@ -133,6 +191,11 @@ class DbModel extends BaseInit
         $stmt->close();
     }
 
+    /**
+     * @param $user
+     * @param $password
+     * @return array
+     */
     public function getUserInfo($user, $password) {
         $array = array();
         if ($stmt = $this->con->prepare("SELECT user,created,updated_at from tivoli2018_users where user = ? and password = sha2(?,256) limit 1")) {
@@ -149,6 +212,9 @@ class DbModel extends BaseInit
         return $array;
     }
 
+    /**
+     *
+     */
     public function __destruct()
     {
         $this->con->close();

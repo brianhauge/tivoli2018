@@ -78,7 +78,12 @@ class PostCheckInModel extends BaseInit
         return $this->smscontent;
     }
 
-    public function setSmscontent($smscontent, $msisdn, $smsid)
+    /**
+     * @param $smscontent
+     * @param $msisdn
+     * @param int $smsid
+     */
+    public function setSmscontent($smscontent, $msisdn, $smsid = 0)
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPost($this->smscontent);

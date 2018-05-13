@@ -121,8 +121,9 @@ class SmsScoreModel extends BaseInit
     /**
      * @param mixed $smscontent
      * @param mixed $sender
+     * @param mixed $smsid
      */
-    public function setSmscontent($smscontent, $sender, $smsid)
+    public function setSmscontent($smscontent, $sender, $smsid = 0)
     {
         $this->smscontent = strtolower(preg_replace('/\s+/', '', $smscontent));
         $this->setPoint($this->smscontent);

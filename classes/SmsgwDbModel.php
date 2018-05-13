@@ -67,7 +67,7 @@ class SmsgwDbModel extends BaseInit
         $direction = 'out';
         $type = 'text';
         $messageId = $transaction->getMessageId();
-        $messageTimestamp = $transaction->getDateReceived();
+        $messageTimestamp = $transaction->getDateReceived()->format('Y-m-d H:i:s');
         $timestamp = '';
         $messageCount = $transaction->count();
         if($messageCount < 2) {
@@ -90,7 +90,7 @@ class SmsgwDbModel extends BaseInit
         }
 
         $stmt = $this->con->prepare("INSERT INTO tivoli2018_smsgw (`msisdn`,`to`,`direction`,`text`,`type`,`messageId`,`message-timestamp`,`timestamp`,`concat`,`concat-ref`,`concat-total`,`price`,`remaining-balance`,`status`,`err-code`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssissssssss", $msisdn, $to, $direction, $message, $type, $messageId, $messageTimestamp, $timestamp, $concat, $concatRef, $concatTotal, $messagePrice, $remainingPrice, $status, $errorCode);
+        $stmt->bind_param("sssssssssssssss", $msisdn, $to, $direction, $message, $type, $messageId, $messageTimestamp, $timestamp, $concat, $concatRef, $concatTotal, $messagePrice, $remainingPrice, $status, $errorCode);
         $stmt->execute();
         $stmt->close();
     }

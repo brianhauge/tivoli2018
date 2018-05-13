@@ -78,11 +78,12 @@ class SmsgwDbModel extends BaseInit
         else {
             $concat = 'true';
             $concatRef = '';
-            $concatTotal = '$messageCount';
+            $concatTotal = $messageCount;
         }
         $messagePrice = $transaction->getPrice();
         $remainingPrice = $transaction->getRemainingBalance();
         $errorCode = $transaction->getStatus();
+
         if($errorCode < 1) {
             $status = 'sent';
         } else {

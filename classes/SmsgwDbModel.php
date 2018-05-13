@@ -58,15 +58,28 @@ class SmsgwDbModel extends BaseInit
     }
 
     /**
-     * @param $transaction
+     * @param \Nexmo\Message\Message $transaction
      */
     public function insertOutgoingSMS($transaction, $message) {
+
         $msisdn = $transaction->getFrom();
         $to = $transaction->getTo();
+        $direction = 'out';
+        $type = 'text';
         $messageId = $transaction->getMessageId();
-        $concat = '';
-        $concatRef = '';
-        $concatTotal = '';
+        $messageTimestamp = $transaction->getDateReceived();
+        $timestamp = '';
+        $messageCount = $transaction->count();
+        if($messageCount < 2) {
+            $concat = 'false';
+            $concatRef = '';
+            $concatTotal = '';
+        }
+        else {
+            $concat = 'true';
+            $concatRef = '';
+            $concatTotal = '$messageCount';
+        }
         $messagePrice = $transaction->getPrice();
         $remainingPrice = $transaction->getRemainingBalance();
         $errorCode = $transaction->getStatus();
@@ -77,7 +90,7 @@ class SmsgwDbModel extends BaseInit
         }
 
         $stmt = $this->con->prepare("INSERT INTO tivoli2018_smsgw (`msisdn`,`to`,`direction`,`text`,`type`,`messageId`,`message-timestamp`,`timestamp`,`concat`,`concat-ref`,`concat-total`,`price`,`remaining-balance`,`status`,`err-code`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssssssss", $msisdn, $to, 'out', $message, 'text', $messageId, '', '', $concat, $concatRef, $concatTotal, $messagePrice, $remainingPrice, $status, $errorCode);
+        $stmt->bind_param("ssssssssssssss", $msisdn, $to, $direction, $message, $type, $messageId, $messageTimestamp, $timestamp, $concat, $concatRef, $concatTotal, $messagePrice, $remainingPrice, $status, $errorCode);
         $stmt->execute();
         $stmt->close();
     }

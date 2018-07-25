@@ -38,13 +38,13 @@ $score = new SmsScoreController();
         <h1>Løbsplacering <small>Kl. <?php echo date("H:i"); ?></small></h1>
     </div>
     <?php if(!isset($_GET['natloeb'])) { ?>
-    <h3 class="text-muted">0. - 4. klasse, (6-10 år) Følger professoren</h3>
+    <h3 class="text-muted">0. - 4. klasse - Professor</h3>
     <?php print($score->getScoreTableByGroup("A")); ?>
-    <h3 class="text-muted">5. - 8. klasse, (10-14 år) Følger DIP</h3>
+    <h3 class="text-muted">5. - 8. klasse - DIP</h3>
     <?php print($score->getScoreTableByGroup("B")); ?>
-    <h3 class="text-muted">9. klasse - 18 år (14-18 år) Følger militæret</h3>
+    <h3 class="text-muted">9. klasse - 18 år - Militær</h3>
     <?php print($score->getScoreTableByGroup("C")); ?>
-    <h3 class="text-muted">Kun voksne (ikke del af konkurrencen)</h3>
+    <h3 class="text-muted">Kun voksne</h3>
     <?php print($score->getScoreTableByGroup("V")); ?>
 
     <?php } else { ?>

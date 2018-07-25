@@ -55,7 +55,7 @@ class CreateTeamController extends BaseInit
             } else {
 
                 $mailbody = "<h3>Patrulje oprettet</h3>";
-                $mailbody .= "<div class=\"row\"><div class=\"col-md-4\">I har fået hold nummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamModel->getGroup().$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><p><b>Skriv nummeret ned og medbring på dagen. Det skal angives ved pointgivning på posterne.</b></p></div>";
+                $mailbody .= "<div class=\"row\"><div class=\"col-md-4\">I har fået holdnummer:</div><div class=\"col-md-8\" style='font-size: 900%'>".$teamModel->getGroup().$teamid."</div></div><div class=\"alert alert-success\" role=\"alert\"><p><b>Skriv nummeret ned og medbring på dagen. Det skal angives ved pointgivning på posterne.</b></p></div>";
                 $mailbody .= "<table class=\"table table-striped\">";
                 $mailbody .= "<tr><th align='left'>Patruljenavn: </th><td>".$teamModel->getName()." (gruppe: ".$teamModel->getGroup().")</td></tr>";
                 $mailbody .= "<tr><th align='left'>Patruljeleder: </th><td>".$teamModel->getLeader()."</td></tr>";

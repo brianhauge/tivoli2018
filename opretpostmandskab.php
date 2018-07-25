@@ -8,6 +8,7 @@
 
 session_start();
 include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
+include "config.php";
 $_SESSION['captcha'] = simple_php_captcha();
 ?>
 
@@ -28,7 +29,13 @@ $_SESSION['captcha'] = simple_php_captcha();
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div class="page-header">
-                <h1>Postmandskabstilmelding <small>Natløb</small></h1>
+                <h1>Postmandskabstilmelding <small>
+                        <?php
+                            if (GAME_TYPE == 'd') print("Dagsløb");
+                            else if (GAME_TYPE == 'n') print("Natløb");
+                            else print("Løb");
+                        ?>
+                    </small></h1>
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">

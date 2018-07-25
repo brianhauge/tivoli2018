@@ -29,13 +29,11 @@ $_SESSION['captcha'] = simple_php_captcha();
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div class="page-header">
-                <h1>Postmandskabstilmelding <small>
-                        <?php
+                <h1>Postmandskabstilmelding <small><?php
                             if (GAME_TYPE == 'd') print("Dagsløb");
                             else if (GAME_TYPE == 'n') print("Natløb");
                             else print("Løb");
-                        ?>
-                    </small></h1>
+                        ?></small></h1>
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">

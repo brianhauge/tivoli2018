@@ -44,17 +44,22 @@ $_SESSION['captcha'] = simple_php_captcha();
                     <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
                     <div class="col-sm-10">
                         <div class="radio">
-                            <label><input type="radio" name="group" id="A" value="A">0-4 klasse, (6-10 år) Følger proffesoren</label>
+                            <label><input type="radio" name="group" id="A" value="A">0. - 4. klasse, (6-10 år) Følger professoren</label>
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="radio">
-                            <label><input type="radio" name="group" id="B" value="B">5-8 klasse, (10-14 år) Følger det interdimensionelle politi (DIP)</label>
+                            <label><input type="radio" name="group" id="B" value="B">5. - 8. klasse, (10-14 år) Følger det interdimensionelle politi (DIP)</label>
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="radio">
-                            <label><input type="radio" name="group" id="C" value="C">9 klasse - 18 år (14-18 år) Følger militæret</label>
+                            <label><input type="radio" name="group" id="C" value="C">9. klasse - 18 år (14-18 år) Følger militæret</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="radio">
+                            <label><input type="radio" name="group" id="V" value="V">Kun voksne (ikke del af konkurrencen)</label>
                         </div>
                     </div>
 <?php

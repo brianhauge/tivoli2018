@@ -79,7 +79,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 <div class="form-group">
                     <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
                     <div class="col-sm-10">
-                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-trigger="click" title="Postmandskab" data-html="true" data-content="Hver kreds / gruppe skal stille med følgende postmandskab afhænging af antal tilmeldte deltagere:<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>">
+                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-trigger="focus" title="Postmandskab" data-html="true" data-content="Hver kreds / gruppe skal stille med følgende postmandskab afhænging af antal tilmeldte deltagere:<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -144,6 +144,11 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+    $('#numberofmembers').on('focus', '.form-control', function () {
+        $( this ).popover('show');
+    });
+
     $("#createteam").submit(function(){
         $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {
             obj = JSON.parse(data);

@@ -4,7 +4,6 @@ include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
 include "config.php";
 $_SESSION['captcha'] = simple_php_captcha();
 ?>
-
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -143,7 +142,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $("#createteam").submit(function(){
         $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {

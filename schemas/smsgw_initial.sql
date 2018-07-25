@@ -89,3 +89,6 @@ SELECT * FROM tivoli2018_smsgw where status in ('notProcessed') AND direction = 
 UPDATE tivoli2018_smsgw set haugemedia_net_db2.tivoli2018_smsgw.status = 'notProcessed';
 
 desc tivoli2018_smsgw;
+
+show tables
+select * from tivoli2018_teams

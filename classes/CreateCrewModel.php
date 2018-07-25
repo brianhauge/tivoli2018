@@ -6,14 +6,15 @@
  * Time: 11:06
  */
 
-class CreateNightCrewModel extends BaseInit
+class CreateCrewModel extends BaseInit
 {
     private $name;
     private $mobile;
     private $kreds;
+    private $comment;
 
     /**
-     * CreateNightCrewModel constructor.
+     * CreateCrewModel constructor.
      * @param $postdata
      */
     public function __construct($postdata)
@@ -22,6 +23,7 @@ class CreateNightCrewModel extends BaseInit
         $this->name = (isset($postdata['name']) ? $postdata['name'] : "");
         $this->mobile = (isset($postdata['mobile']) ? $postdata['mobile'] : "");
         $this->kreds = (isset($postdata['kreds']) ? $postdata['kreds'] : "");
+        $this->comment = (isset($postdata['comment']) ? $postdata['comment'] : "");
     }
 
     /**
@@ -47,4 +49,13 @@ class CreateNightCrewModel extends BaseInit
     {
         return $this->kreds;
     }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
 }

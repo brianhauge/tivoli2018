@@ -32,32 +32,27 @@ $_SESSION['captcha'] = simple_php_captcha();
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
+
 <?php
     if(GAME_TYPE == 'n') {
 ?>
-                    <div class="col-sm-10">
-                        <div class="radio">
-                            <label><input type="radio" name="group" id="N" value="N" checked>Natløb</label>
-                        </div>
-                    </div>
+                    <input type="hidden" name="group" id="N" value="N" />
 <?php
     }
     else if(GAME_TYPE == 'd') {
 ?>
+                    <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
                     <div class="col-sm-10">
                         <div class="radio">
                             <label><input type="radio" name="group" id="A" value="A">0-4 klasse, (6-10 år) Følger proffesoren</label>
                         </div>
                     </div>
-        <label for="group" class="col-sm-2 control-label">&nbsp;</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-10">
                         <div class="radio">
                             <label><input type="radio" name="group" id="B" value="B">5-8 klasse, (10-14 år) Følger det interdimensionelle politi (DIP)</label>
                         </div>
                     </div>
-        <label for="group" class="col-sm-2 control-label">&nbsp;</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-10">
                         <div class="radio">
                             <label><input type="radio" name="group" id="C" value="C">9 klasse - 18 år (14-18 år) Følger militæret</label>
                         </div>
@@ -66,6 +61,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     }
     else {
 ?>
+                    <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
                     <div class="col-sm-10">
                         <div class="radio">
                             <label><input type="radio" name="group" id="Z" value="Z" checked>Standard</label>

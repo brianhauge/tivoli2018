@@ -12,13 +12,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tivoli2018_nightpeople`
+-- Table structure for table `tivoli2018_crew`
 --
 
-CREATE TABLE `tivoli2018_nightpeople` (
+CREATE TABLE `tivoli2018_crew` (
   `name` varchar(255) NOT NULL,
   `mobile` varchar(20) NOT NULL,
-  `kreds` varchar(20) NOT NULL
+  `kreds` varchar(20) NOT NULL,
+  `comment` TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

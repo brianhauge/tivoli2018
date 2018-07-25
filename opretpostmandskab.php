@@ -50,6 +50,12 @@ $_SESSION['captcha'] = simple_php_captcha();
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="kreds" class="col-sm-2 control-label">Kommentar</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="captcha" class="col-sm-2 control-label">Sikkerhedskode</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Kode">
@@ -88,7 +94,7 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $("#createteam").submit(function(){
-        $.post('createnightcrewhandler.php', $('#createteam').serialize(), function (data) {
+        $.post('createcrewhandler.php', $('#createteam').serialize(), function (data) {
             obj = JSON.parse(data);
             if(!obj.status) {
                 $('input').each(function () {

@@ -15,10 +15,10 @@ spl_autoload_register(function ($class) {
 $data = $_POST;
 if(!empty($data)) {
     if($data['captcha'] == $_SESSION['captcha']['code']) {
-        $nightcrewmodel = new CreateNightCrewModel($data);
-        $nightcrewcontroller = new CreateNightCrewController();
-        $nightcrew = $nightcrewcontroller->insertNightCrew($nightcrewmodel);
-        print(json_encode($nightcrew));
+        $crewmodel = new CreateCrewModel($data);
+        $crewcontroller = new CreateCrewController();
+        $crew = $crewcontroller->insertCrew($crewmodel);
+        print(json_encode($crew));
     }
     else {
         $tmp['message'] = "Forkert kode";

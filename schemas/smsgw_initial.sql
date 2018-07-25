@@ -92,3 +92,4 @@ desc tivoli2018_smsgw;
 
 show tables
 select * from tivoli2018_teams
+truncate table tivoli2018_teams

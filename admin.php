@@ -22,9 +22,9 @@ spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
     if(isset($_GET['start'])) $graphstart = $_GET['start'];
-    else $graphstart = "2016-09-10";
+    else $graphstart = "2018-05-01";
     if(isset($_GET['end'])) $graphend = $_GET['end'];
-    else $graphend = "2016-09-11";
+    else $graphend = "2018-05-20";
     ?>
     <!DOCTYPE html>
     <html lang="da">

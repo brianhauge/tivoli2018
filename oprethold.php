@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
+include "config.php";
 $_SESSION['captcha'] = simple_php_captcha();
 ?>
 
@@ -32,11 +33,47 @@ $_SESSION['captcha'] = simple_php_captcha();
                 </div>
                 <div class="form-group">
                     <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
+<?php
+    if(GAME_TYPE == 'n') {
+?>
                     <div class="col-sm-10">
                         <div class="radio">
                             <label><input type="radio" name="group" id="N" value="N" checked>Natløb</label>
                         </div>
                     </div>
+<?php
+    }
+    else if(GAME_TYPE == 'd') {
+?>
+                    <div class="col-sm-10">
+                        <div class="radio">
+                            <label><input type="radio" name="group" id="A" value="A" checked>0-4 klasse, (6-10 år) Følger proffesoren</label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <div class="radio">
+                            <label><input type="radio" name="group" id="B" value="B" checked>5-8 klasse, (10-14 år) Følger det interdimensionelle politi (DIP)</label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <div class="radio">
+                            <label><input type="radio" name="group" id="C" value="C" checked>9 klasse - 18 år (14-18 år) Følger militæret</label>
+                        </div>
+                    </div>
+<?php
+    }
+    else {
+?>
+                    <div class="col-sm-10">
+                        <div class="radio">
+                            <label><input type="radio" name="group" id="Z" value="Z" checked>Standard</label>
+                        </div>
+                    </div>
+<?php
+    }
+?>
                 </div>
                 <hr>
                 <div class="form-group">

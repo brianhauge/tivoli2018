@@ -177,7 +177,6 @@ $_SESSION['captcha'] = simple_php_captcha();
         });
 
         $('#numberofmembers').on('focus', function () {
-            alert("test");
             $( this ).popover('show');
         });
     });

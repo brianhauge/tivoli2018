@@ -28,7 +28,7 @@ class CreateCrewController extends BaseInit
         } elseif ($crewModel->getKreds() === "") {
             $this->status['message'] = "Kreds / Gruppe mangler";
         } else {
-            $teamid = $this->dbModel->insertCrew($crewModel->getName(), $crewModel->getMobile(), $crewModel->getKreds());
+            $teamid = $this->dbModel->insertCrew($crewModel->getName(), $crewModel->getMobile(), $crewModel->getKreds(), $crewModel->getComment());
             if($teamid != "00000") {
                 $this->status['status'] = false;
                 $this->status['message'] = "Der er opstået en fejl, indtast venligst oplysningerne igen.";

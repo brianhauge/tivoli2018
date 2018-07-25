@@ -52,7 +52,7 @@ class DbModel extends BaseInit
      * @param $comment
      * @return string
      */
-    public function insertCrew($name, $msisdn, $kreds, $comment = '') {
+    public function insertCrew($name, $msisdn, $kreds, $comment) {
         $this->logger->info(__METHOD__.": $name, $kreds");
         $stmt = $this->con->prepare("INSERT INTO tivoli2018_ncrew (name, mobile, kreds, comment) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $name, $msisdn, $kreds, $comment);

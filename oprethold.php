@@ -146,9 +146,7 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-    $('#numberofmembers').on('focus', '.form-control', function () {
-        $( this ).popover('show');
-    });
+
 
     $("#createteam").submit(function(){
         $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {
@@ -176,6 +174,10 @@ $_SESSION['captcha'] = simple_php_captcha();
             if(!$.trim(this.value).length) { // zero-length string AFTER a trim
                 $(this).addClass('warning');
             }
+        });
+
+        $('#numberofmembers').on('focus', '.form-control', function () {
+            $( this ).popover('show');
         });
     });
 </script>

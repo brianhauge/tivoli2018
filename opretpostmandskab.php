@@ -35,26 +35,62 @@ $_SESSION['captcha'] = simple_php_captcha();
                             else print("Løb");
                         ?></small></h1>
             </div>
-
-            <form class="form-inline" id="createteam" method="post">
-                <div class="form-group">
-                    <label for="team" class="control-label">Navn</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
+            <form class="form-horizontal" id="createteam" method="post">
+                <div class="well">
+                    <div class="form-group">
+                        <label for="team" class="col-sm-2 control-label">Navn</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-2 control-label">Mobil</label>
+                        <div class="col-sm-10">
+                            <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kreds" class="col-sm-2 control-label">Kreds / Gruppe</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kreds" class="col-sm-2 control-label">Kommentar</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="mobile" class="control-label">Mobil</label>
-                    <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
+                <div class="well">
+                    <div class="form-group">
+                        <label for="team" class="col-sm-2 control-label">Navn</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-2 control-label">Mobil</label>
+                        <div class="col-sm-10">
+                            <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kreds" class="col-sm-2 control-label">Kreds / Gruppe</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kreds" class="col-sm-2 control-label">Kommentar</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
+                        </div>
+                    </div>
                 </div>
+                <hr />
                 <div class="form-group">
-                    <label for="kreds" class="control-label">Kreds / Gruppe</label>
-                    <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
-                </div>
-                <div class="form-group">
-                    <label for="kreds" class="control-label">Kommentar</label>
-                    <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="captcha" class="control-label">Sikkerhedskode</label>
+                    <label for="captcha" class="col-sm-2 control-label">Sikkerhedskode</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Kode">
                     </div>

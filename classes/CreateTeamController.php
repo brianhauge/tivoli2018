@@ -63,7 +63,7 @@ class CreateTeamController extends BaseInit
                 $mailbodyTable .= "<tr><th align='left'>HoldEmail: </th><td>".$teamModel->getEmail()."</td></tr>";
                 $mailbodyTable .= "<tr><th align='left'>Kreds / Gruppe: </th><td>".$teamModel->getKreds()."</td></tr></table>";
                 $mailbodyTableMandskab = "<h3>Postmandskab</h3>";
-                $mailbodyTableMandskab .= "Hver kreds / gruppe skal stille med følgende postmandskab afhænging af antal tilmeldte deltagere:";
+                $mailbodyTableMandskab .= "<p>Hver kreds / gruppe skal stille med følgende postmandskab, afhængig af antal tilmeldte deltagere:</p>";
                 $mailbodyTableMandskab .= "<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>";
                 $mailbodyTableMandskab .= "<br /><a class=\"btn btn-primary\" href=\"http://haugemedia.net/tivoli2018/opretpostmandskab.php\" role=\"button\">Tilmeld postmandskab</a>";
                 //Set who the message is to be sent to

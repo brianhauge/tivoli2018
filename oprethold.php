@@ -168,8 +168,8 @@ $_SESSION['captcha'] = simple_php_captcha();
 
 
 
+
     $("#createteam").submit(function(){
-        $("#addTeamSubmit").button('loading')
         $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {
             obj = JSON.parse(data);
             if(!obj.status) {
@@ -200,6 +200,15 @@ $_SESSION['captcha'] = simple_php_captcha();
         $('#numberofmembers').on('focus', function () {
             $( this ).popover('show');
         });
+
+        $('#addTeamSubmit')
+            .click(function () {
+                var btn = $(this)
+                btn.button('loading')
+                setTimeout(function () {
+                    btn.button('reset')
+                }, 10000)
+            });
     });
 </script>
 </body>

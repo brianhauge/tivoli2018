@@ -83,7 +83,7 @@ class CreateTeamController extends BaseInit
                 }
 
                 
-                $mailbody .= "<br /><a class=\"btn btn-primary\" href=\"http://haugemedia.net/tivoli2018/oprethold.php\" role=\"button\">Tilmeld endnu en patrulje</a>";
+                $mailbody .= "<br /><a class=\"btn btn-default\" href=\"http://haugemedia.net/tivoli2018/oprethold.php\" role=\"button\">Tilmeld endnu en patrulje</a>";
 
                 $this->teamstatus['status'] = true;
                 $this->teamstatus['message'] = $mailbody.$mailbodyTableMandskab;

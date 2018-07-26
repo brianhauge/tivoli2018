@@ -35,30 +35,36 @@ $_SESSION['captcha'] = simple_php_captcha();
                             else print("Løb");
                         ?></small></h1>
             </div>
-            <form class="form-horizontal" id="createteam" method="post">
+
+            <form class="form-inline">
                 <div class="form-group">
-                    <label for="team" class="col-sm-2 control-label">Navn</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
-                    </div>
+                    <label for="exampleInputName2">Name</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
                 </div>
                 <div class="form-group">
-                    <label for="mobile" class="col-sm-2 control-label">Mobil</label>
-                    <div class="col-sm-10">
-                        <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
-                    </div>
+                    <label for="exampleInputEmail2">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                </div>
+                <button type="submit" class="btn btn-default">Send invitation</button>
+            </form>
+
+
+            <form class="form-inline" id="createteam" method="post">
+                <div class="form-group">
+                    <label for="team">Navn</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
                 </div>
                 <div class="form-group">
-                    <label for="kreds" class="col-sm-2 control-label">Kreds / Gruppe</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
-                    </div>
+                    <label for="mobile">Mobil</label>
+                    <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
                 </div>
                 <div class="form-group">
-                    <label for="kreds" class="col-sm-2 control-label">Kommentar</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
-                    </div>
+                    <label for="kreds">Kreds / Gruppe</label>
+                    <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
+                </div>
+                <div class="form-group">
+                    <label for="kreds">Kommentar</label>
+                    <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="captcha" class="col-sm-2 control-label">Sikkerhedskode</label>

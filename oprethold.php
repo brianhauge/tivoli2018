@@ -177,10 +177,10 @@ $_SESSION['captcha'] = simple_php_captcha();
                         $(this).parent().parent().addClass('has-error');
                     }
                 });
+                $("#addTeamSubmit").html('Tilmeld hold').prop("disabled",false);
                 $( ".modal-title" ).html( "Fejl" );
                 $( ".modal-body" ).html( obj.message );
                 $('#myModal').modal('show');
-                $("#addTeamSubmit").html('Tilmeld hold').prop("disabled",false);
             }
             else {
                 $("#contentelement").html( obj.message );

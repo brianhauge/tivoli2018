@@ -177,10 +177,10 @@ else if(isset($_SESSION['loggedin']) && isset($_SESSION['userinfo'])) {
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signin">
+        <form class="form-signin" id="loginform" method="post">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Email address" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
             <div id="remember" class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me
@@ -193,40 +193,6 @@ else if(isset($_SESSION['loggedin']) && isset($_SESSION['userinfo'])) {
         </a>
     </div><!-- /card-container -->
 </div><!-- /container -->
-
-<div class="container-fluid">
-    <div class="row">
-
-
-
-
-        <div class="col-md-10 col-md-offset-1" id="contentelement">
-            <div class="page-header">
-                <h1>Login <small>Administration</small></h1>
-            </div>
-            <form class="form-horizontal" id="loginform" method="post">
-                <div class="form-group">
-                    <label for="team" class="col-sm-2 control-label">Brugernavn</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="username" id="name" placeholder="Brugernavn">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="leader" class="col-sm-2 control-label">Kodeord</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" name="password" id="leader" placeholder="Kodeord">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Login</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

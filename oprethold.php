@@ -180,6 +180,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 $( ".modal-title" ).html( "Fejl" );
                 $( ".modal-body" ).html( obj.message );
                 $('#myModal').modal('show');
+                $("#addTeamSubmit").html('Tilmeld hold').prop("disabled",false);
             }
             else {
                 $("#contentelement").html( obj.message );

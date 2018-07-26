@@ -15,6 +15,26 @@ $_SESSION['captcha'] = simple_php_captcha();
     <title>FDF og spejderne indtager Tivoli - Score</title>
     <link rel="canonical" href="http://haugemedia.net/tivoli2018/">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style media="all" type="text/css">
+        .popover {
+            max-width: 376px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .popover-title {
+            padding: 8px 14px;
+            margin: 0;
+            font-size: 14px;
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #ebebeb;
+            border-radius: 5px 5px 0 0
+        }
+
+        .popover-content {
+            padding: 9px 14px
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -79,7 +99,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 <div class="form-group">
                     <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
                     <div class="col-sm-10">
-                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<div class='width:100%'>Hver kreds / gruppe skal stille med følgende postmandskab afhænging af antal tilmeldte deltagere:<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul></div>">
+                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="Hver kreds / gruppe skal stille med følgende postmandskab afhængig af antal tilmeldte deltagere:<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>">
                     </div>
                 </div>
                 <div class="form-group">

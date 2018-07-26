@@ -36,38 +36,25 @@ $_SESSION['captcha'] = simple_php_captcha();
                         ?></small></h1>
             </div>
 
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="exampleInputName2">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail2">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-                </div>
-                <button type="submit" class="btn btn-default">Send invitation</button>
-            </form>
-
-
             <form class="form-inline" id="createteam" method="post">
                 <div class="form-group">
-                    <label for="team">Navn</label>
+                    <label for="team" class="control-label">Navn</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
                 </div>
                 <div class="form-group">
-                    <label for="mobile">Mobil</label>
+                    <label for="mobile" class="control-label">Mobil</label>
                     <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
                 </div>
                 <div class="form-group">
-                    <label for="kreds">Kreds / Gruppe</label>
+                    <label for="kreds" class="control-label">Kreds / Gruppe</label>
                     <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
                 </div>
                 <div class="form-group">
-                    <label for="kreds">Kommentar</label>
+                    <label for="kreds" class="control-label">Kommentar</label>
                     <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="captcha" class="col-sm-2 control-label">Sikkerhedskode</label>
+                    <label for="captcha" class="control-label">Sikkerhedskode</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Kode">
                     </div>

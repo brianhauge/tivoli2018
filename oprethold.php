@@ -41,7 +41,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div class="page-header">
-                <h1>Opret hold <small>Indtast oplysninger herunder</small></h1>
+                <h1>Tilmeld hold <small>Indtast oplysninger herunder</small></h1>
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">
@@ -99,7 +99,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 <div class="form-group">
                     <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
                     <div class="col-sm-10">
-                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<p>Hver kreds / gruppe skal stille med følgende:</p><ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>">
+                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<p>Hver kreds / gruppe skal stille med følgende:</p><ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul><p>Tilmelding af postmandskab sker efter tilmelding af hold.</p>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -137,7 +137,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Opret hold</button>
+                        <button type="submit" class="btn btn-default">Tilmeld hold</button>
                     </div>
                 </div>
             </form>

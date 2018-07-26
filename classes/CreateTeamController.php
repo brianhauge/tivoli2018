@@ -65,7 +65,7 @@ class CreateTeamController extends BaseInit
                 $mailbodyTableMandskab = "<h3>Postmandskab</h3>";
                 $mailbodyTableMandskab .= "Hver kreds / gruppe skal stille med følgende postmandskab afhænging af antal tilmeldte deltagere:";
                 $mailbodyTableMandskab .= "<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>";
-                $mailbodyTableMandskab .= "<br /><a class=\"btn btn-primary\" href=\"opretpostmandskab.php\" role=\"button\">Tilmeld postmandskab</a>";
+                $mailbodyTableMandskab .= "<br /><a class=\"btn btn-primary\" href=\"http://haugemedia.net/tivoli2018/opretpostmandskab.php\" role=\"button\">Tilmeld postmandskab</a>";
                 //Set who the message is to be sent to
                 $this->mail->addAddress($teamModel->getEmail(), $teamModel->getName());
 
@@ -83,7 +83,7 @@ class CreateTeamController extends BaseInit
                 }
 
                 
-                $mailbody .= "<br /><a class=\"btn btn-primary\" href=\"oprethold.php\" role=\"button\">Opret endnu en patrulje</a>";
+                $mailbody .= "<br /><a class=\"btn btn-primary\" href=\"http://haugemedia.net/tivoli2018/oprethold.php\" role=\"button\">Tilmeld endnu en patrulje</a>";
 
                 $this->teamstatus['status'] = true;
                 $this->teamstatus['message'] = $mailbody.$mailbodyTableMandskab;

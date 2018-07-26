@@ -99,7 +99,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 <div class="form-group">
                     <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
                     <div class="col-sm-10">
-                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<p>Hver kreds / gruppe skal stille med følgende:</p><ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul><p>Tilmelding af postmandskab sker efter tilmelding af hold. Ellers klik her: <a class='btn btn-primary btn-xs' href='http://haugemedia.net/tivoli2018/opretpostmandskab.php' role='button'>Tilmeld postmandskab</a></p>">
+                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<p>Hver kreds / gruppe skal stille med følgende:</p><ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul><p>Tilmelding af postmandskab sker efter tilmelding af hold.</p>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -137,7 +137,7 @@ $_SESSION['captcha'] = simple_php_captcha();
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" id="addTeamSubmit" data-loading-text="Tilmelder hold..." class="btn btn-default">Tilmeld hold</button>
+                        <button type="submit" id="addTeamSubmit" class="btn btn-default">Tilmeld hold</button>
                     </div>
                 </div>
             </form>
@@ -167,9 +167,8 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script type="text/javascript">
 
 
-
-
     $("#createteam").submit(function(){
+        $("#addTeamSubmit").html('Tilmelder hold...').prop("disabled","disabled");
         $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {
             obj = JSON.parse(data);
             if(!obj.status) {
@@ -201,14 +200,7 @@ $_SESSION['captcha'] = simple_php_captcha();
             $( this ).popover('show');
         });
 
-        $('#addTeamSubmit')
-            .click(function () {
-                var btn = $(this)
-                btn.button('loading')
-                setTimeout(function () {
-                    btn.button('reset')
-                }, 10000)
-            });
+
     });
 </script>
 </body>

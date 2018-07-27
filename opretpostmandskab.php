@@ -35,75 +35,193 @@ $_SESSION['captcha'] = simple_php_captcha();
                             else print("Løb");
                         ?></small></h1>
             </div>
-            <form class="form-horizontal" id="createteam" method="post">
-                <div class="well">
-                    <div class="form-group">
-                        <label for="team" class="col-sm-2 control-label">Navn</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
+            <p>Hver kreds / gruppe skal stille med følgende:</p>
+            <ul>
+                <li>0-4 deltagere: Ingen postmandskab</li>
+                <li>5-10 deltagere: 1 leder til postmandskab</li>
+                <li>11-25 deltagere: 2 ledere til postmandskab</li>
+                <li>26-40 deltagere: 3 ledere til postmandskab</li>
+                <li>40+ deltagere: 4 ledere til postmandskab</li>
+            </ul>
+
+                <form class="form-horizontal" method="post" id="postmandskab1">
+                    <div class="well">
+                    <p class="postheader"><b>Postmandskab 1</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="team" class="control-label sr-only">Navn</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="name" placeholder="Navn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="mobile" class="control-label sr-only">Mobil</label>
+                                <div class="col-sm-12">
+                                    <input type="tel" maxlength="8" name="mobile" class="form-control" placeholder="Mobil">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kreds / Gruppe</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="kreds" placeholder="Kreds / Gruppe">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kommentar</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" rows="1" name="comment" placeholder="Kommentar"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="mobile" class="col-sm-2 control-label">Mobil</label>
-                        <div class="col-sm-10">
-                            <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
+                    </div>
+                </form>
+                <form class="form-horizontal" method="post" id="postmandskab2">
+                    <div class="well">
+                    <p class="postheader"><b>Postmandskab 2</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="team" class="control-label sr-only">Navn</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="name" placeholder="Navn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="mobile" class="control-label sr-only">Mobil</label>
+                                <div class="col-sm-12">
+                                    <input type="tel" maxlength="8" name="mobile" class="form-control" placeholder="Mobil">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kreds / Gruppe</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="kreds" placeholder="Kreds / Gruppe">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kommentar</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" rows="1" name="comment" placeholder="Kommentar"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="kreds" class="col-sm-2 control-label">Kreds / Gruppe</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
+                    </div>
+                </form>
+                <form class="form-horizontal" method="post" id="postmandskab3" style="display: none">
+                    <div class="well">
+                    <p class="postheader"><b>Postmandskab 3</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="team" class="control-label sr-only">Navn</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="name" placeholder="Navn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="mobile" class="control-label sr-only">Mobil</label>
+                                <div class="col-sm-12">
+                                    <input type="tel" maxlength="8" name="mobile" class="form-control" placeholder="Mobil">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kreds / Gruppe</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="kreds" placeholder="Kreds / Gruppe">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kommentar</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" rows="1" name="comment" placeholder="Kommentar"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="kreds" class="col-sm-2 control-label">Kommentar</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
+                    </div>
+                </form>
+                <form class="form-horizontal" method="post" id="postmandskab4" style="display: none">
+                    <div class="well">
+                    <p class="postheader"><b>Postmandskab 4</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="team" class="control-label sr-only">Navn</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="name" placeholder="Navn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="mobile" class="control-label sr-only">Mobil</label>
+                                <div class="col-sm-12">
+                                    <input type="tel" maxlength="8" name="mobile" class="form-control" placeholder="Mobil">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kreds / Gruppe</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" name="kreds" placeholder="Kreds / Gruppe">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="kreds" class="control-label sr-only">Kommentar</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" rows="1" name="comment" placeholder="Kommentar"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="well">
-                    <div class="form-group">
-                        <label for="team" class="col-sm-2 control-label">Navn</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
-                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="mobile" class="col-sm-2 control-label">Mobil</label>
-                        <div class="col-sm-10">
-                            <input type="tel" maxlength="8" name="mobile" class="form-control" id="mobile" placeholder="Mobil">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="kreds" class="col-sm-2 control-label">Kreds / Gruppe</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="kreds" id="kreds" placeholder="Kreds / Gruppe">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="kreds" class="col-sm-2 control-label">Kommentar</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
-                        </div>
-                    </div>
-                </div>
+                </form>
                 <hr />
-                <div class="form-group">
-                    <label for="captcha" class="col-sm-2 control-label">Sikkerhedskode</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Kode">
+                <form class="form-horizontal" style="padding: 0 0 0 15px">
+                    <p class="sikkerhedskode"><b>Sikkerhedskode</b></p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="captcha" class="control-label sr-only">Sikkerhedskode</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Kode">
+                                </div>
+                                <div class="col-sm-4">
+                                    <img src="<?php print($_SESSION['captcha']['image_src']); ?>" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-default" id="tilmeldknap">Tilmeld postmandskab</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <img src="<?php print($_SESSION['captcha']['image_src']); ?>" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Send</button>
-                    </div>
-                </div>
-            </form>
+                </form>
         </div>
     </div>
 </div>
@@ -127,34 +245,56 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    $("#createteam").submit(function(){
-        $.post('createcrewhandler.php', $('#createteam').serialize(), function (data) {
-            obj = JSON.parse(data);
-            if(!obj.status) {
-                $('input').each(function () {
-                    if(!$.trim(this.value).length) { // zero-length string AFTER a trim
-                        $(this).parent().parent().addClass('has-error');
+    $("#tilmeldknap").on('click',function(){
+        $('form').each(function () {
+            var captcha = $("#captcha").prop('value');
+            var formid = '#'+$(this).prop('id');
+            if($(this).is(':visible')) {
+                $.post('createcrewhandler.php', $(this).serialize()+"&captcha="+captcha, function (data) {
+                    obj = JSON.parse(data);
+                    if(!obj.status) {
+                        $('input',formid).each(function () {
+                             if(!$.trim(this.value).length) { // zero-length string AFTER a trim
+                                 $(this).parent().parent().addClass('has-error');
+                                 $('.postheader',formid).html("<span class='label label-danger'>Ikke tilmeldt, udfyld manglende info</span>");
+                             }
+                        });
+
+                        if(obj.message == "sikkerhedskode") {
+                            $("#captcha").parent().parent().addClass('has-error');
+                            $('.sikkerhedskode').html("<span class='label label-danger'>Forkert sikkerhedskode</span>");
+                            //$( ".modal-title" ).html( "Fejl" );
+                            //$( ".modal-body" ).html( obj.message );
+                            //$('#myModal').modal('show');
+                        } else {
+                            $('.well',formid).addClass('bg-danger');
+                        }
+
+                        return false;
+                    }
+                    else {
+                        $('input',formid).each(function () {
+                            var value = $(this).prop("value");
+                            $(this).parent().html("<span style='padding-left: 5px'>"+value+"</span>");
+                        });
+                        $('textarea',formid).each(function () {
+                            var value = $(this).prop("value");
+                            $(this).parent().html("<span style='padding-left: 5px'>"+value+"</span>");
+                        });
+                        $('.postheader',formid).html("<span class='label label-success'>Tilmeldt</span>");
+                        $('.well',formid).css("background-color","#dff0d8");
+
+                        //$(formid).html( obj.message );
                     }
                 });
-                $( ".modal-title" ).html( "Fejl" );
-                $( ".modal-body" ).html( obj.message );
-                $('#myModal').modal('show');
             }
-            else {
-                $("#contentelement").html( obj.message );
-            }
+
         });
-        return false;
+
     });
 
 
-    $().ready(function() {
-        $('#createteam input').blur(function() {
-            if(!$.trim(this.value).length) { // zero-length string AFTER a trim
-                $(this).addClass('warning');
-            }
-        });
-    });
+
 </script>
 </body>
 

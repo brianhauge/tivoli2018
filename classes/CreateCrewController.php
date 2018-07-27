@@ -34,13 +34,13 @@ class CreateCrewController extends BaseInit
                 $this->status['message'] = "Der er opstået en fejl, indtast venligst oplysningerne igen.";
             } else {
 
-                $reponsebody = "<h3>Postmandskab oprettet</h3>";
+                $reponsebody = "<p><b>Postmandskab oprettet</b></p>";
                 $reponsebody .= "<table class=\"table table-striped\">";
                 $reponsebody .= "<tr><th align='left'>Navn: </th><td>".$crewModel->getName()."</td></tr>";
                 $reponsebody .= "<tr><th align='left'>Mobil: </th><td>".$crewModel->getMobile()."</td></tr>";
                 $reponsebody .= "<tr><th align='left'>Kreds / Gruppe: </th><td>".$crewModel->getKreds()."</td></tr>";
                 $reponsebody .= "<tr><th align='left'>Kommentar: </th><td>".$crewModel->getComment()."</td></tr></table>";
-                $reponsebody .= "<br /><a class=\"btn btn-primary\" href=\"opretpostmandskab.php\" role=\"button\">Opret endnu et postmandskab</a>";
+                //$reponsebody .= "<br /><a class=\"btn btn-primary\" href=\"opretpostmandskab.php\" role=\"button\">Opret endnu et postmandskab</a>";
                 $this->status['status'] = true;
                 $this->status['message'] = $reponsebody;
             }

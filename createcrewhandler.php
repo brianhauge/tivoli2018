@@ -21,7 +21,7 @@ if(!empty($data)) {
         print(json_encode($crew));
     }
     else {
-        $tmp['message'] = "Forkert kode";
+        $tmp['message'] = "sikkerhedskode";
         $tmp['status'] = false;
         print(json_encode($tmp));
     }

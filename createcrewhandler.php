@@ -18,10 +18,12 @@ if(!empty($data)) {
         $crewmodel = new CreateCrewModel($data);
         $crewcontroller = new CreateCrewController();
         $crew = $crewcontroller->insertCrew($crewmodel);
+        $crew['sikkerhedskode'] = true;
         print(json_encode($crew));
     }
     else {
-        $tmp['message'] = "sikkerhedskode";
+        $tmp['message'] = "Forkert sikkerhedskode";
+        $crew['sikkerhedskode'] = false;
         $tmp['status'] = false;
         print(json_encode($tmp));
     }

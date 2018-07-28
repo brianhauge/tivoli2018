@@ -20,7 +20,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Brian Hauge Hansen">
     <meta name="description" content="FDF og spejderne indtager Tivoli">
-    <title>FDF og spejderne indtager Tivoli - Tilmeld natpostmandskab</title>
+    <title>FDF og spejderne indtager Tivoli - Tilmeld Postmandskab</title>
     <link rel="canonical" href="http://haugemedia.net/tivoli2018/">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>

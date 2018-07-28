@@ -7,7 +7,7 @@
  */
 
 ?>
-<form class="form-horizontal" method="post" id="postmandskab<?php print($_GET['mandskabnum']); ?>">
+<form class="form-horizontal tilmeld" method="post" id="postmandskab<?php print($_GET['mandskabnum']); ?>">
     <div class="well1">
         <p class="postheader"><b>Postmandskab <?php print($_GET['mandskabnum']); ?></b></p>
         <div class="row">

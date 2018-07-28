@@ -129,47 +129,43 @@ $_SESSION['captcha'] = simple_php_captcha();
     $("#tilmeldknap").on('click',function(){
         $("#tilmeldknap").prop("disabled","disabled").html("Tjekker...");
         var warning = 0;
-        $('form').each(function () {
-            var captcha = $("#captcha").prop('value');
-            var formid = '#'+$(this).prop('id');
-            $.post('createcrewhandler.php', $(this).serialize()+"&captcha="+captcha, function (data) {
-                obj = JSON.parse(data);
-                if(obj.sikkerhedskode) {
-                    $("#captcha").parent().parent().addClass('has-success').removeClass('has-error');
-                    $("#captcha").prop("disabled","disabled");
-                    $('.sikkerhedskode').html("<span class='label label-success'>Korrekt sikkerhedskode</span>");
-                } else {
-                    $("#captcha").parent().parent().addClass('has-error').removeClass('has-success');
-                    $('.sikkerhedskode').html("<span class='label label-danger'>Forkert sikkerhedskode</span>");
-                }
-                if(!obj.status) {
-                    warning = 1;
-                    $('input',formid).each(function () {
-                         if(!$.trim(this.value).length) { // zero-length string AFTER a trim
-                             $(this).parent().parent().addClass('has-error');
-                             $('.postheader',formid).html("<span class='label label-danger'>Ikke tilmeldt, udfyld manglende info</span>");
-                         }
-                    });
-                    $('.well',formid).addClass('bg-danger');
-
-                    return false;
-                }
-                else {
-
-
-                        $('input', formid).each(function () {
-                            var value = $(this).prop("value");
-                            $(this).parent().html("<span style='padding-left: 5px'>" + value + "</span>");
+        $('form.tilmeld').each(function () {
+                var captcha = $("#captcha").prop('value');
+                var formid = '#'+$(this).prop('id');
+                $.post('createcrewhandler.php', $(this).serialize()+"&captcha="+captcha, function (data) {
+                    obj = JSON.parse(data);
+                    if(obj.sikkerhedskode) {
+                        $("#captcha").parent().parent().addClass('has-success').removeClass('has-error');
+                        $("#captcha").prop("disabled","disabled");
+                        $('.sikkerhedskode').html("<span class='label label-success'>Korrekt sikkerhedskode</span>");
+                    } else {
+                        $("#captcha").parent().parent().addClass('has-error').removeClass('has-success');
+                        $('.sikkerhedskode').html("<span class='label label-danger'>Forkert sikkerhedskode</span>");
+                    }
+                    if(!obj.status) {
+                        warning = 1;
+                        $('input',formid).each(function () {
+                             if(!$.trim(this.value).length) { // zero-length string AFTER a trim
+                                 $(this).parent().parent().addClass('has-error');
+                                 $('.postheader',formid).html("<span class='label label-danger'>Ikke tilmeldt, udfyld manglende info</span>");
+                             }
                         });
-                        $('textarea', formid).each(function () {
-                            var value = $(this).prop("value");
-                            $(this).parent().html("<span style='padding-left: 5px'>" + value + "</span>");
-                        });
-                        $('.postheader', formid).html("<span class='label label-success'>Tilmeldt</span>");
-                        $('.well', formid).css("background-color", "#dff0d8");
-
-                }
-            });
+                        $('.well',formid).addClass('bg-danger');
+                        return false;
+                    }
+                    else {
+                            $('input', formid).each(function () {
+                                var value = $(this).prop("value");
+                                $(this).parent().html("<span style='padding-left: 5px'>" + value + "</span>");
+                            });
+                            $('textarea', formid).each(function () {
+                                var value = $(this).prop("value");
+                                $(this).parent().html("<span style='padding-left: 5px'>" + value + "</span>");
+                            });
+                            $('.postheader', formid).html("<span class='label label-success'>Tilmeldt</span>");
+                            $(formid).removeClass('tilmeld');
+                    }
+                });
         });
         $("#tilmeldknap").html("Tilmelder...");
         setTimeout(function(){

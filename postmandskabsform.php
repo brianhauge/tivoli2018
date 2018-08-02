@@ -1,10 +1,16 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: bhh
  * Date: 27-07-2018
  * Time: 11:54
  */
+if(isset($_SESSION['kreds'])) {
+    $kreds = $_SESSION['kreds'];
+} else {
+    $kreds = "";
+}
 
 ?>
 <form class="form-horizontal tilmeld" method="post" id="postmandskab<?php print($_GET['mandskabnum']); ?>">
@@ -41,7 +47,7 @@
         <div class="col-md-12 inputGroupContainer">
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <input name="kreds" placeholder="Kreds / Gruppe" class="form-control" type="text">
+                <input name="kreds" placeholder="Kreds / Gruppe" class="form-control" type="text" value="<?php print($_SESSION['kreds']); ?>">
             </div>
         </div>
     </div>

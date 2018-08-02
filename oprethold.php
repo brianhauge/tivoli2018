@@ -13,7 +13,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <meta name="author" content="Brian Hauge Hansen">
     <meta name="description" content="FDF og spejderne indtager Tivoli">
     <title>FDF og spejderne indtager Tivoli - Tilmeld Hold</title>
-    <link rel="canonical" href="http://haugemedia.net/tivoli2018/">
+    <link rel="canonical" href="https://fdfogspejderne.dk/tivoli2018/">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style media="all" type="text/css">
         .popover {
@@ -99,7 +99,8 @@ $_SESSION['captcha'] = simple_php_captcha();
                 <div class="form-group">
                     <label for="numberofmembers" class="col-sm-2 control-label">Antal</label>
                     <div class="col-sm-10">
-                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<p>Hver kreds / gruppe skal stille med følgende:</p><ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul><p>Tilmelding af postmandskab sker efter tilmelding af hold.</p>">
+                        <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" placeholder="Antal">
+                        <!-- <input type="number" maxlength="2" class="form-control" name="numberofmembers" id="numberofmembers" tabindex="0" data-placement="top" data-toggle="popover" data-animation="false" data-trigger="focus" title="Postmandskab" data-html="true" data-content="<p>Hver kreds / gruppe skal stille med følgende:</p><ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul><p>Tilmelding af postmandskab sker efter tilmelding af hold.</p>"> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -197,9 +198,9 @@ $_SESSION['captcha'] = simple_php_captcha();
             }
         });
 
-        $('#numberofmembers').on('focus', function () {
-            $( this ).popover('show');
-        });
+        //$('#numberofmembers').on('focus', function () {
+        //    $( this ).popover('show');
+        //});
 
 
     });

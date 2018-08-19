@@ -91,5 +91,6 @@ UPDATE tivoli2018_smsgw set haugemedia_net_db2.tivoli2018_smsgw.status = 'notPro
 desc tivoli2018_smsgw;
 
 show tables
-select * from tivoli2018_teams
-truncate table tivoli2018_teams
+
+
+select * from tivoli2018_crew

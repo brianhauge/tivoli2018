@@ -7,6 +7,7 @@
  */
 
 session_start();
+$_SESSION['smscode'] = rand(1000, 9999);
 include "config.php";
 ?>
 <!DOCTYPE html>
@@ -23,22 +24,21 @@ include "config.php";
 
 <!-- Start Tjekin -->
 <div data-role="page" id="tjekind">
-
     <div data-role="header">
         <h1>Tjekind</h1>
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
         <p>
-            <label for="text-basic">Post Nummer</label>
-            <input type="text" name="text-basic" id="text-basic" value="">
+            <label for="text-basic">Post</label>
+            <input type="text" name="text-basic" id="postid" value="">
         </p>
         <p>
             <label for="number-pattern">Mobil</label>
-            <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="">
+            <input type="number" name="number" pattern="[0-9]*" id="msisdn" value="">
         </p>
         <p>
-            <a href="#verificertjekind" class="ui-shadow ui-btn ui-corner-all">Tjekind</a>
+            <a href="#verificertjekind" id="tjekindbutton" class="ui-shadow ui-btn ui-corner-all">Tjekind</a>
         </p>
     </div><!-- /content -->
 </div><!-- /page -->
@@ -53,10 +53,10 @@ include "config.php";
     <div role="main" class="ui-content">
         <p>
             <label for="text-basic">Indtast kode modtaget på SMS</label>
-            <input type="text" name="text-basic" id="text-basic" value="">
+            <input type="text" name="text-basic" id="smscode" value="">
         </p>
         <p>
-            <a href="#givpoint" class="ui-shadow ui-btn ui-corner-all">Tjekind</a>
+            <a href="#givpoint" id="verificertjekindbutton" class="ui-shadow ui-btn ui-corner-all">Tjekind</a>
         </p>
     </div><!-- /content -->
 </div><!-- /page -->
@@ -70,15 +70,15 @@ include "config.php";
 
     <div role="main" class="ui-content">
         <p>
-            <label for="text-basic">Holdnummer</label>
-            <input type="text" name="text-basic" id="text-basic" value="">
+            <label for="text-basic">Hold</label>
+            <input type="text" name="text-basic" id="team" value="">
         </p>
         <p>
             <label for="number-pattern">Point 1-100</label>
-            <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="">
+            <input type="number" name="number" pattern="[0-9]*" id="point" value="">
         </p>
         <p>
-            <a href="#pointgivet" class="ui-shadow ui-btn ui-corner-all">Giv point</a>
+            <a href="#pointgivet" id="givpointbutton" class="ui-shadow ui-btn ui-corner-all">Giv point</a>
         </p>
     </div><!-- /content -->
 </div><!-- /page -->
@@ -91,12 +91,42 @@ include "config.php";
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
-        <p>Holdet har nu fået alle deres point</p>
+        <p id="pointgivetcontainer">Venter på point...</p>
         <p><a href="#givpoint"><< Gå tilbage</a></p>
     </div><!-- /content -->
 </div><!-- /page -->
 
 
+<script type="text/javascript">
+    $("#tjekindbutton").on('click',function(){
+        var msisdn = $("#msisdn").prop('value');
+        var postid = $("#postid").prop('value');
+        $.post('givpointhandler.php', "cmd=sendcode&postid="+postid+"&msisdn="+msisdn, function (data) {
+            obj = JSON.parse(data);
+        });
+    });
 
+    $("#verificertjekindbutton").on('click',function(){
+        var msisdn = $("#msisdn").prop('value');
+        var postid = $("#postid").prop('value');
+        var smscode = $("#smscode").prop('value');
+        $.post('givpointhandler.php', "cmd=tjekind&postid="+postid+"&msisdn="+msisdn+"&smscode="+smscode, function (data) {
+            obj = JSON.parse(data);
+            alert(obj.message);
+        });
+    });
+
+    $("#givpointbutton").on('click',function(){
+        var msisdn = $("#msisdn").prop('value');
+        var postid = $("#postid").prop('value');
+        var smscode = $("#smscode").prop('value');
+        var point = $("#point").prop('value');
+        var team = $("#team").prop('value');
+        $.post('givpointhandler.php', "cmd=givpoint&postid="+postid+"&msisdn="+msisdn+"&smscode="+smscode+"&point="+point+"&team="+team, function (data) {
+            obj = JSON.parse(data);
+            $("#pointgivetcontainer").html(obj.message);
+        });
+    });
+</script>
 </body>
 </html>

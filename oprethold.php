@@ -3,6 +3,10 @@ session_start();
 include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
 include "config.php";
 $_SESSION['captcha'] = simple_php_captcha();
+$gametype = GAME_TYPE;
+if(isset($_GET['gametype'])) {
+    $gametype = $_GET['gametype'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="da">
@@ -13,7 +17,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <meta name="author" content="Brian Hauge Hansen">
     <meta name="description" content="FDF og spejderne indtager Tivoli">
     <title>FDF og spejderne indtager Tivoli - Tilmeld Hold</title>
-    <link rel="canonical" href="https://fdfogspejderne.dk/tivoli2018/">
+    <link rel="canonical" href="<?php print(BASEURL); ?>">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style media="all" type="text/css">
         .popover {
@@ -37,6 +41,14 @@ $_SESSION['captcha'] = simple_php_captcha();
     </style>
 </head>
 <body>
+<?php if(DRYRUN) {
+?>
+    <div class="alert alert-danger">
+        <strong>Dryrun.</strong> Mails sendes ikke, database opdateres ikke.
+    </div>
+<?php
+}
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
@@ -53,12 +65,12 @@ $_SESSION['captcha'] = simple_php_captcha();
                 <div class="form-group">
 
 <?php
-    if(GAME_TYPE == 'n') {
+    if($gametype == 'n') {
 ?>
                     <input type="hidden" name="group" id="N" value="N" />
 <?php
     }
-    else if(GAME_TYPE == 'd') {
+    else if($gametype == 'd') {
 ?>
                     <label for="group" class="col-sm-2 control-label">Løbsgruppe</label>
                     <div class="col-sm-10">

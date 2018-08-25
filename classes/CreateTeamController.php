@@ -48,7 +48,11 @@ class CreateTeamController extends BaseInit
             $this->teamstatus['message'] = "Løbsgruppe mangler";
         } else {
             $_SESSION['kreds'] = $teamModel->getKreds();
-            $teamid = $this->dbModel->insertTeam($teamModel->getName(), $teamModel->getLeader(), $teamModel->getMobile(),$teamModel->getEmail(),$teamModel->getKreds(),$teamModel->getGroup(),$teamModel->getNumberofmembers());
+            if(DRYRUN) {
+                $teamid = 9999;
+            } else {
+                $teamid = $this->dbModel->insertTeam($teamModel->getName(), $teamModel->getLeader(), $teamModel->getMobile(), $teamModel->getEmail(), $teamModel->getKreds(), $teamModel->getGroup(), $teamModel->getNumberofmembers());
+            }
 
             if($teamid == 0) {
                 $this->teamstatus['status'] = false;
@@ -64,9 +68,15 @@ class CreateTeamController extends BaseInit
                 $mailbodyTable .= "<tr><th align='left'>HoldEmail: </th><td>".$teamModel->getEmail()."</td></tr>";
                 $mailbodyTable .= "<tr><th align='left'>Kreds / Gruppe: </th><td>".$teamModel->getKreds()."</td></tr></table>";
                 $mailbodyTableMandskab = "<h3>Postmandskab</h3>";
-                $mailbodyTableMandskab .= "<p>Hver kreds / gruppe skal stille med følgende postmandskab, afhængig af antal tilmeldte deltagere:</p>";
-                $mailbodyTableMandskab .= "<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>";
-                $mailbodyTableMandskab .= "<br /><a class=\"btn btn-primary\" href=\"https://fdfogspejderne.dk/tivoli2018/opretpostmandskab.php\" role=\"button\">Tilmeld postmandskab</a>";
+                if($teamModel->getGroup() !== "N") {
+                    $mailbodyTableMandskab .= "<p>Hver kreds / gruppe skal stille med følgende postmandskab, afhængig af antal tilmeldte deltagere:</p>";
+                    $mailbodyTableMandskab .= "<ul><li>0-4 deltagere: Ingen postmandskab</li><li>5-10 deltagere: 1 leder til postmandskab</li><li>11-25 deltagere: 2 ledere til postmandskab</li><li>26-40 deltagere: 3 ledere til postmandskab</li><li>40+ deltagere: 4 ledere til postmandskab</li></ul>";
+                    $mailbodyTableMandskab .= "<br /><a class=\"btn btn-primary\" href=\"".BASEURL."/opretpostmandskab.php?gametype=d\" role=\"button\">Tilmeld postmandskab</a>";
+                } else {
+                    $mailbodyTableMandskab .= "<p>Hver kreds / gruppe skal stille med minimum 1 postmandskab til natløbet</p>";
+                    $mailbodyTableMandskab .= "<br /><a class=\"btn btn-primary\" href=\"".BASEURL."/opretpostmandskab.php?gametype=n\" role=\"button\">Tilmeld postmandskab</a>";
+                }
+
                 //Set who the message is to be sent to
                 $this->mail->addAddress($teamModel->getEmail(), $teamModel->getName());
 
@@ -75,16 +85,20 @@ class CreateTeamController extends BaseInit
                 $this->mail->Body = $mailbody.$mailbodyTable.$mailbodyTableMandskab;
 
                 //send the message, check for errors
-                if (!$this->mail->send()) {
-                    $this->logger->error(__METHOD__.": Mailer Error: " . $this->mail->ErrorInfo);
-                    $mailbody .= "<p>Der skete en fejl da vi forsøgte at sende en mail med oplysningerne til: <b>". $teamModel->getEmail()."</b> Kontakt venligst ".MAIL_ADDRESS." for at være sikker på at i er tilmeldt korrekt</p>";
+                if(DRYRUN) {
+                    $this->logger->warning(__METHOD__.": Mail not sent: Dryrun");
+                    $mailbody .= "<p>Send mail er slået fra</p>";
                 } else {
-                    $this->logger->info(__METHOD__.": Mail sent!");
-                    $mailbody .= "<p>Du modtager snarest en mail med oplysningerne om patruljen, sendt til: <b>". $teamModel->getEmail()."</b></p>";
+                    if (!$this->mail->send()) {
+                        $this->logger->error(__METHOD__.": Mail error: " . $this->mail->ErrorInfo);
+                        $mailbody .= "<p>Der skete en fejl da vi forsøgte at sende en mail med oplysningerne til: <b>". $teamModel->getEmail()."</b> Kontakt venligst ".MAIL_ADDRESS." for at være sikker på at i er tilmeldt korrekt</p>";
+                    } else {
+                        $this->logger->info(__METHOD__.": Mail sent");
+                        $mailbody .= "<p>Du modtager snarest en mail med oplysningerne om patruljen, sendt til: <b>". $teamModel->getEmail()."</b></p>";
+                    }
                 }
-
                 
-                $mailbody .= "<br /><a class=\"btn btn-default\" href=\"https://fdfogspejderne.dk/tivoli2018/oprethold.php\" role=\"button\">Tilmeld endnu en patrulje</a>";
+                $mailbody .= "<br /><a class=\"btn btn-default\" href=\"".$_SERVER['HTTP_REFERER']."\" role=\"button\">Tilmeld endnu en patrulje</a>";
 
                 $this->teamstatus['status'] = true;
                 $this->teamstatus['message'] = $mailbody.$mailbodyTableMandskab;

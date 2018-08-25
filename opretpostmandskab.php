@@ -10,6 +10,10 @@ session_start();
 include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
 include "config.php";
 $_SESSION['captcha'] = simple_php_captcha();
+$gametype = GAME_TYPE;
+if(isset($_GET['gametype'])) {
+    $gametype = $_GET['gametype'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,29 +25,40 @@ $_SESSION['captcha'] = simple_php_captcha();
     <meta name="author" content="Brian Hauge Hansen">
     <meta name="description" content="FDF og spejderne indtager Tivoli">
     <title>FDF og spejderne indtager Tivoli - Tilmeld Postmandskab</title>
-    <link rel="canonical" href="https://fdfogspejderne.dk/tivoli2018/">
+    <link rel="canonical" href="<?php print(BASEURL); ?>">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
+<?php if(DRYRUN) {
+    ?>
+    <div class="alert alert-danger">
+        <strong>Dryrun.</strong> Mails sendes ikke, database opdateres ikke.
+    </div>
+    <?php
+}
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div id="antalcontainer">
                 <div class="page-header">
                     <h1>Postmandskabstilmelding <small><?php
-                                if (GAME_TYPE == 'd') print("Dagsløb");
-                                else if (GAME_TYPE == 'n') print("Natløb");
+                                if ($gametype == 'd') print("Dagsløb");
+                                else if ($gametype == 'n') print("Natløb");
                                 else print("Løb");
                             ?></small></h1>
                 </div>
-                <p>Hver kreds / gruppe skal stille med følgende:</p>
-                <ul>
-                    <li>0-4 deltagere: Ingen postmandskab</li>
-                    <li>5-10 deltagere: 1 leder til postmandskab</li>
-                    <li>11-25 deltagere: 2 ledere til postmandskab</li>
-                    <li>26-40 deltagere: 3 ledere til postmandskab</li>
-                    <li>40+ deltagere: 4 ledere til postmandskab</li>
-                </ul>
+                <?php if($gametype == 'd') { ?>
+
+                    <p>Hver kreds / gruppe skal stille med følgende til dagsløbet:</p>
+                    <ul>
+                        <li>0-4 deltagere: Ingen postmandskab</li>
+                        <li>5-10 deltagere: 1 leder til postmandskab</li>
+                        <li>11-25 deltagere: 2 ledere til postmandskab</li>
+                        <li>26-40 deltagere: 3 ledere til postmandskab</li>
+                        <li>40+ deltagere: 4 ledere til postmandskab</li>
+                    </ul>
+
                 <div class="form-horizontal" method="post" id="antal">
                         <div class="row">
                             <div class="col-sm-3">
@@ -67,8 +82,21 @@ $_SESSION['captcha'] = simple_php_captcha();
                         </div>
                     <hr>
                 </div>
+
+                <?php } else { ?>
+
+                    <p>Hver kreds / gruppe skal stille med mindst ét postmandskab til natløbet.</p>
+                    <p>Klik på "Ekstra postmandskab" for at tilføje flere.</p>
+                    <hr>
+
+                <?php } ?>
             </div>
             <hr />
+            <div id="plus" class="pull-right" style="display: none;">
+                <button type="button" class="btn btn-success" id="addknap">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekstra postmandskab
+                </button>
+            </div>
             <div class="form-horizontal" style="display: none;" id="sikkerhedsform">
                 <p class="sikkerhedskode"><b>Sikkerhedskode</b></p>
                 <div class="row">
@@ -99,34 +127,53 @@ $_SESSION['captcha'] = simple_php_captcha();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js" integrity="sha384-zvMQfjRbXhrBMD2UJZW5K0txqcbUBEZygTi8PPJ3NFWE978a5zAisEiCnLjH2wmM" crossorigin="anonymous"></script>
 <script type="text/javascript">
     var i = 1;
+    <?php if($gametype == 'n') { ?>
+
+    $(function() {
+        $("#sikkerhedsform").show();
+        $("#plus").show();
+        i++;
+        $.get("postmandskabsform.php", {mandskabnum: i-1}, function (data) {
+            $("#antalcontainer").append(data);
+        });
+    });
+
+    <?php } ?>
+
+    $("#addknap").on('click',function() {
+        i++;
+        $.get("postmandskabsform.php", {mandskabnum: i-1}, function (data) {
+            $("#antalcontainer").append(data);
+        });
+    });
+
     $("#antalknap").on('click',function(){
         var antal = $("#antalinput").prop('value');
         var number = 0;
         if (antal < 5) {
-            $( "#antalcontainer" ).append( '<div class="well">Da i er mindre end 5, behøver i ikke tilmelde nogen postmandskaber.</div>' );
+            $( "#antalcontainer" ).append( '<div class="well">Da i er mindre end 5, behøver i ikke tilmelde nogen postmandskaber.<br /><br />Klik på "Ekstra postmandskab" knappen, hvis i ønsker at tilmelde postmandskaber.</div>' );
         } else if (antal < 11) {
             number = 2;
-            $("#sikkerhedsform").show();
         } else if (antal < 26) {
             number = 3;
-            $("#sikkerhedsform").show();
         } else if (antal < 41) {
             number = 4;
-            $("#sikkerhedsform").show();
         } else {
             number = 5;
-            $("#sikkerhedsform").show();
         }
+        $("#sikkerhedsform").show();
+        $("#plus").show();
 
         while (i < number) {
-            $.get("postmandskabsform.php", {mandskabnum: i}, function (data) {
+            i++;
+            $.get("postmandskabsform.php", {mandskabnum: i-1}, function (data) {
                 $("#antalcontainer").append(data);
             });
-            i++;
         }
     });
 
     $("#tilmeldknap").on('click',function(){
+        $("#addknap").prop("disabled","disabled");
         $("#tilmeldknap").prop("disabled","disabled").html("Tjekker...");
         var warning = 0;
         $('form.tilmeld').each(function () {
@@ -170,12 +217,14 @@ $_SESSION['captcha'] = simple_php_captcha();
         $("#tilmeldknap").html("Tilmelder...");
         setTimeout(function(){
             if(!warning) {
+                $("#plus").hide();
                 $("#antalknap").prop("disabled","disabled");
                 $("#antalinput").prop("disabled","disabled");
-                $("#sikkerhedsform").html("<p>Tak for det. Jeres postmandskab er nu tilmeldt.</p><p><a href='opretpostmandskab.php'>Klik her hvis i ønsker at tilmelde flere postmandskaber</a></p>")
+                $("#sikkerhedsform").html("<p>Tak for det. Jeres postmandskab er nu tilmeldt.</p><p><a href='<?php print(FULLURL); ?>'>Klik her hvis i ønsker at tilmelde flere postmandskaber</a></p>")
 
             } else {
                 $("#tilmeldknap").prop("disabled",false).html("Tjek fejl ovenfor og klik her igen");
+                $("#addknap").prop("disabled",false);
             }
         }, 1000);
     });

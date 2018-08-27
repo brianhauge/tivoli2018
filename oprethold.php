@@ -4,9 +4,16 @@ include "vendor/abeautifulsite/simple-php-captcha/simple-php-captcha.php";
 include "config.php";
 $_SESSION['captcha'] = simple_php_captcha();
 $gametype = GAME_TYPE;
+$gametypelong = GAME_TYPE_LONG;
 if(isset($_GET['gametype'])) {
     $gametype = $_GET['gametype'];
+    if($gametype === "n") {
+        $gametypelong = "Natløb";
+    } elseif ($gametype === "d") {
+        $gametypelong = "Dagsløb";
+    }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="da">
@@ -16,7 +23,7 @@ if(isset($_GET['gametype'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Brian Hauge Hansen">
     <meta name="description" content="FDF og spejderne indtager Tivoli">
-    <title>FDF og spejderne indtager Tivoli - Tilmeld Hold</title>
+    <title>FDF og spejderne indtager Tivoli - Tilmeld Hold <?php print($gametypelong); ?></title>
     <link rel="canonical" href="<?php print(BASEURL); ?>">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style media="all" type="text/css">
@@ -53,7 +60,7 @@ if(isset($_GET['gametype'])) {
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div class="page-header">
-                <h1>Tilmeld hold <small>Indtast oplysninger herunder</small></h1>
+                <h1>Tilmeld Hold <?php print($gametypelong); ?><small>Indtast oplysninger herunder</small></h1>
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">

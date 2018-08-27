@@ -60,7 +60,7 @@ if(isset($_GET['gametype'])) {
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div class="page-header">
-                <h1>Tilmeld Hold <?php print($gametypelong); ?><small>Indtast oplysninger herunder</small></h1>
+                <h1>Tilmeld Hold <small><?php print($gametypelong); ?></small></h1>
             </div>
             <form class="form-horizontal" id="createteam" method="post">
                 <div class="form-group">

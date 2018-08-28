@@ -189,7 +189,7 @@ if(isset($_GET['gametype'])) {
 
     $("#createteam").submit(function(){
         $("#addTeamSubmit").html('Tilmelder hold...').prop("disabled","disabled");
-        $.post('createteamhandler.php', $('#createteam').serialize(), function (data) {
+        $.post('<?php print(BASEURL); ?>createteamhandler.php', $('#createteam').serialize(), function (data) {
             obj = JSON.parse(data);
             if(!obj.status) {
                 $('input').each(function () {

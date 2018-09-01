@@ -77,6 +77,9 @@ spl_autoload_register(function ($class) {
                     <a class="nav-link" href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Hold Oversigt</a>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="#postmandskaber" aria-controls="postmandskaber" role="tab" data-toggle="tab">Postmandskab</a>
+                </li>
+                <li class="nav-item" role="presentation">
                     <a class="nav-link" href="#log" aria-controls="log" role="tab" data-toggle="tab">Log</a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -137,6 +140,16 @@ spl_autoload_register(function ($class) {
                             ?>
                         </div>
 
+                        <div role="tabpanel" class="tab-pane" id="postmandskaber">
+                            <?php
+                            // Team Overview
+                            $sql = "select * from tivoli2018_crew";
+                            $result = $db->printResultTable($sql);
+                            print("<h2>Antal postmandskaber: ".$result['count']."</h2><hr>");
+                            print($result['table']);
+                            ?>
+                        </div>
+
 
                         <div role="tabpanel" class="tab-pane" id="log">
                             <h2>Log fra denne server:</h2>
@@ -183,19 +196,6 @@ spl_autoload_register(function ($class) {
                                     <label for="leader" class="col-sm-2 control-label">Besked</label>
                                     <div class="col-sm-10">
                                         <textarea rows="5" type="text" class="form-control" name="message" id="message" placeholder="Besked"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="team" class="col-sm-2 control-label">SMSGW</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="smsgw" id="smsgw">
-                                            <?php
-                                            foreach(AVAILABLE_SMSGW as $smsgw) {
-                                                if($smsgw == SMSGW) print("<option selected>".$smsgw."</option>");
-                                                else print("<option>".$smsgw."</option>");
-                                            }
-                                            ?>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -328,15 +328,6 @@ spl_autoload_register(function ($class) {
                 return '<span class="' + cls + '">' + match + '</span>';
             });
         }
-
-
-
-
-
-
-
-
-
 
 
 

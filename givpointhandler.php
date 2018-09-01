@@ -24,7 +24,9 @@ if(!empty($data)) {
         if(preg_match('/^\d{8}$/',$data['msisdn'])) {
             $_SESSION['msisdn'] = "45" . $data['msisdn'];
             if ($data['cmd'] == "sendcode") {
-                $smsSender->sendSms($_SESSION['msisdn'], "Sikkerhedskode: " . $_SESSION['smscode']);
+                $message = "Sikkerhedskode: " . $_SESSION['smscode'];
+                $smsSender->sendSms($_SESSION['msisdn'], $message);
+                $dbModel->insertTrace($_SESSION['msisdn'],"",$message);
                 $tmp['message'] = "Kode sendt til " . $data['msisdn'];
                 $tmp['status'] = true;
             }

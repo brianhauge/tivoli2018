@@ -12,6 +12,8 @@ class CreateCrewModel extends BaseInit
     private $mobile;
     private $kreds;
     private $comment;
+    private $gametype;
+
 
     /**
      * CreateCrewModel constructor.
@@ -24,6 +26,7 @@ class CreateCrewModel extends BaseInit
         $this->mobile = (isset($postdata['mobile']) ? $postdata['mobile'] : "");
         $this->kreds = (isset($postdata['kreds']) ? $postdata['kreds'] : "");
         $this->comment = (isset($postdata['comment']) ? $postdata['comment'] : "");
+        $this->gametype = (isset($postdata['gametype']) ? $postdata['gametype'] : "");
     }
 
     /**
@@ -56,6 +59,14 @@ class CreateCrewModel extends BaseInit
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGametype()
+    {
+        return $this->gametype;
     }
 
 }

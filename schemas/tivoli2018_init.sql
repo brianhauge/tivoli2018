@@ -15,7 +15,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `tivoli2018_crew`
 --
 
-DROP TABLE IF EXISTS `tivoli2018_crew`;
 CREATE TABLE `tivoli2018_crew` (
   `name` varchar(255) NOT NULL,
   `mobile` varchar(20) NOT NULL,
@@ -24,6 +23,10 @@ CREATE TABLE `tivoli2018_crew` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+ALTER TABLE `tivoli2018_crew`
+    ADD COLUMN `gametype` varchar(20) NOT NULL;
 
 -- --------------------------------------------------------
 

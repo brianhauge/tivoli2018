@@ -42,7 +42,7 @@ if(isset($_GET['gametype'])) {
         <div class="col-md-10 col-md-offset-1" id="contentelement">
             <div id="antalcontainer">
                 <div class="page-header">
-                    <h1>Postmandskabstilmelding <small><?php
+                    <h1>Tilmeld Postmandskab <small><?php
                                 if ($gametype == 'd') print("Dagsløb");
                                 else if ($gametype == 'n') print("Natløb");
                                 else print("Løb");
@@ -91,12 +91,12 @@ if(isset($_GET['gametype'])) {
 
                 <?php } ?>
             </div>
-            <hr />
-            <div id="plus" class="pull-right" style="display: none;">
+            <div id="plus" style="display: none;">
                 <button type="button" class="btn btn-success" id="addknap">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekstra postmandskab
                 </button>
             </div>
+            <hr />
             <div class="form-horizontal" style="display: none;" id="sikkerhedsform">
                 <p class="sikkerhedskode"><b>Sikkerhedskode</b></p>
                 <div class="row">
@@ -112,7 +112,7 @@ if(isset($_GET['gametype'])) {
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <button type="button" class="btn btn-default" id="tilmeldknap">Tilmeld postmandskab</button>
+                                <button type="button" class="btn btn-primary" id="tilmeldknap">Tilmeld postmandskab</button>
                             </div>
                         </div>
                     </div>
@@ -178,8 +178,9 @@ if(isset($_GET['gametype'])) {
         var warning = 0;
         $('form.tilmeld').each(function () {
                 var captcha = $("#captcha").prop('value');
+                var gametype = '<?php print($gametype); ?>';
                 var formid = '#'+$(this).prop('id');
-                $.post('createcrewhandler.php', $(this).serialize()+"&captcha="+captcha, function (data) {
+                $.post('createcrewhandler.php', $(this).serialize()+"&captcha="+captcha+"&gametype="+gametype, function (data) {
                     obj = JSON.parse(data);
                     if(obj.sikkerhedskode) {
                         $("#captcha").parent().parent().addClass('has-success').removeClass('has-error');

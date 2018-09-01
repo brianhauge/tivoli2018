@@ -32,7 +32,7 @@ class CreateCrewController extends BaseInit
                 // Sætter teamid til det samme som SQL state OK = 00000
                 $teamid = "00000";
             } else {
-                $teamid = $this->dbModel->insertCrew($crewModel->getName(), $crewModel->getMobile(), $crewModel->getKreds(), $crewModel->getComment());
+                $teamid = $this->dbModel->insertCrew($crewModel->getName(), $crewModel->getMobile(), $crewModel->getKreds(), $crewModel->getComment(), $crewModel->getGametype());
             }
             if($teamid != "00000") {
                 $this->status['status'] = false;

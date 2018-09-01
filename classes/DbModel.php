@@ -52,10 +52,10 @@ class DbModel extends BaseInit
      * @param $comment
      * @return string
      */
-    public function insertCrew($name, $msisdn, $kreds, $comment) {
-        $this->logger->info(__METHOD__.": $name, $kreds");
-        $stmt = $this->con->prepare("INSERT INTO tivoli2018_crew (name, mobile, kreds, comment) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $msisdn, $kreds, $comment);
+    public function insertCrew($name, $msisdn, $kreds, $comment, $gametype) {
+        $this->logger->info(__METHOD__.": $name, $kreds, $gametype");
+        $stmt = $this->con->prepare("INSERT INTO tivoli2018_crew (name, mobile, kreds, comment, gametype) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $name, $msisdn, $kreds, $comment, $gametype);
         $stmt->execute();
         return $stmt->sqlstate;
     }

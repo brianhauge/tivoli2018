@@ -23,7 +23,7 @@ class SmsScoreController extends BaseInit
 
         }
         elseif(!$smsModel->getTeam()) {
-            $message = "'n' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig (ex N134).".SMS_HELPTEXT;
+            $message = "'d' (for hold-id) ikke fundet i beskeden eller dens værdi er ugyldig (ex N134).".SMS_HELPTEXT;
         }
         elseif (!$smsModel->getPoint()) {
             $message = "'point' ikke fundet i beskeden eller dens værdi er ugyldig (1 - 100 point).".SMS_HELPTEXT;

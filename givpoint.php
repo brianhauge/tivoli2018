@@ -81,6 +81,9 @@ include "config.php";
         <p>
             <a href="#pointgivet" id="givpointbutton" class="ui-shadow ui-btn ui-corner-all">Giv point</a>
         </p>
+        <p>
+            <a href="#tjekind" style="position: absolute; bottom: 0; margin-bottom: 10px"> << Tjek ind på anden post</a>
+        </p>
     </div><!-- /content -->
 </div><!-- /page -->
 
@@ -99,25 +102,50 @@ include "config.php";
 
 
 <script type="text/javascript">
-    $("#tjekindbutton").on('click',function(){
+
+    $().ready(function() {
+        $.post('givpointhandler.php', "cmd=mypost", function (data) {
+            obj = JSON.parse(data);
+            if(obj.status) {
+                $('#givpoint h1').html("Giv Point - Post "+obj.message);
+            }
+        });
+    });
+
+    $("#tjekindbutton").on('click',function(event){
+        event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
         var postid = $("#postid").prop('value');
         $.post('givpointhandler.php', "cmd=sendcode&postid="+postid+"&msisdn="+msisdn, function (data) {
             obj = JSON.parse(data);
+            if(obj.status) {
+                window.location.href = '#verificertjekind';
+            }
+            else {
+                alert(obj.message);
+            }
         });
     });
 
-    $("#verificertjekindbutton").on('click',function(){
+    $("#verificertjekindbutton").on('click',function(event){
+        event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
         var postid = $("#postid").prop('value');
         var smscode = $("#smscode").prop('value');
         $.post('givpointhandler.php', "cmd=tjekind&postid="+postid+"&msisdn="+msisdn+"&smscode="+smscode, function (data) {
             obj = JSON.parse(data);
-            alert(obj.message);
+            if(obj.status) {
+                window.location.href = '#givpoint';
+                $('#givpoint h1').html("Giv Point - Post "+postid);
+            }
+            else {
+                alert(obj.message);
+            }
         });
     });
 
-    $("#givpointbutton").on('click',function(){
+    $("#givpointbutton").on('click',function(event){
+        event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
         var postid = $("#postid").prop('value');
         var smscode = $("#smscode").prop('value');
@@ -125,7 +153,13 @@ include "config.php";
         var team = $("#team").prop('value');
         $.post('givpointhandler.php', "cmd=givpoint&postid="+postid+"&msisdn="+msisdn+"&smscode="+smscode+"&point="+point+"&team="+team, function (data) {
             obj = JSON.parse(data);
-            $("#pointgivetcontainer").html(obj.message);
+            if(obj.status) {
+                window.location.href = '#pointgivet';
+                $("#pointgivetcontainer").html(obj.message);
+            }
+            else {
+                alert(obj.message);
+            }
         });
     });
 </script>

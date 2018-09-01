@@ -169,6 +169,7 @@ CREATE TABLE `tivoli2018_users` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Example: insert into tivoli2018_users values ('user',sha2('password',256),now(),now());
 
 --
 -- Indexes for dumped tables
@@ -179,6 +180,9 @@ CREATE TABLE `tivoli2018_users` (
 --
 ALTER TABLE `tivoli2018_nightpeople`
   ADD UNIQUE KEY `score` (`name`,`mobile`);
+
+ALTER TABLE `tivoli2018_score_change_log`
+    ADD INDEX `overview` (`action`, `teamid`, `point`, `postid`, `creator`);
 
 --
 -- Indexes for table `tivoli2018_postcheckin`

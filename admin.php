@@ -113,6 +113,8 @@ spl_autoload_register(function ($class) {
                             <div id="container" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
 
                         </div>
+
+
                         <div role="tabpanel" class="tab-pane" id="trace">
                             <h2>SMS Trafik</h2>
                             <hr>
@@ -123,6 +125,8 @@ spl_autoload_register(function ($class) {
                             print($result['table']);
                             ?>
                         </div>
+
+
                         <div role="tabpanel" class="tab-pane" id="overview">
                             <?php
                             // Team Overview
@@ -132,6 +136,8 @@ spl_autoload_register(function ($class) {
                             print($result['table']);
                             ?>
                         </div>
+
+
                         <div role="tabpanel" class="tab-pane" id="log">
                             <h2>Log fra denne server:</h2>
                             <hr>
@@ -142,15 +148,21 @@ spl_autoload_register(function ($class) {
                                 ?>
                             </pre>
                         </div>
+
+
                         <div role="tabpanel" class="tab-pane" id="postoverview">
                             <div class="site-wrapper">
                                  <div><img src="dist/gears.gif" ></div>
                             </div>
                         </div>
+
+
                         <div role="tabpanel" class="tab-pane" id="smsflow">
                             <p class="bg-primary" style="padding: 15px;"><a href="Tivoli_2016_SMS_Flow.pdf" style="color: #FFF">Download Tivoli 2016 SMS Flow.pdf</a></p>
                             <p><img src="Tivoli_2016_SMS_Flow.png" width="800" /></p>
                         </div>
+
+
                         <div role="tabpanel" class="tab-pane" id="sendsms">
                             <h2>Send SMS</h2>
                             <hr>
@@ -242,23 +254,16 @@ spl_autoload_register(function ($class) {
     <script type="text/javascript">
 
         $().ready(function() {
-
             getGraphdata(chart, '<?php print($graphstart); ?>','<?php print($graphend); ?>','');
             getGraphdata(chartTeams, '<?php print($graphstart); ?>','<?php print($graphend); ?>','teams');
-
-
             $("#postoverview").load('overview.php');
-
             $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
                 $( this ).popover('show');
             });
-
-
-
             setInterval(function(){ $("#postoverview").load('overview.php'); }, 600000);
-
             $('#myTab a').click(function(e) {
                 e.preventDefault();
+
                 $(this).tab('show');
             });
 

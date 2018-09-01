@@ -9,5 +9,7 @@ CREATE TABLE `tivoli2018_post` (
 ALTER TABLE `tivoli2018_post`
   ADD UNIQUE KEY `postnr_type` (`postnr`,`type`);
 
-select * from tivoli2018_post;
+select * from tivoli2018_users
+
+insert into tivoli2018_users values ('user',sha2('password',256),now(),now());
 

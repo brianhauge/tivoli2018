@@ -22,7 +22,7 @@ spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
     if(isset($_GET['start'])) $graphstart = $_GET['start'];
-    else $graphstart = date('Y-m-d H:m',strtotime("-6 hour"));
+    else $graphstart = date('Y-m-d H:m',strtotime("-1 day"));
     if(isset($_GET['end'])) $graphend = $_GET['end'];
     else $graphend = date('Y-m-d H:m');
 
@@ -109,9 +109,9 @@ spl_autoload_register(function ($class) {
                         <div role="tabpanel" class="tab-pane active" id="dash">
                             <h2>My Dashboard</h2>
                             <hr>
+                            <div id="containerteams" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
                             <div id="container" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
-                            <?php
-                            ?>
+
                         </div>
                         <div role="tabpanel" class="tab-pane" id="trace">
                             <h2>SMS Trafik</h2>
@@ -243,15 +243,10 @@ spl_autoload_register(function ($class) {
 
         $().ready(function() {
 
-            getGraphdata(chart, '<?php print($graphstart); ?>','<?php print($graphend); ?>');
+            getGraphdata(chart, '<?php print($graphstart); ?>','<?php print($graphend); ?>','');
+            getGraphdata(chartTeams, '<?php print($graphstart); ?>','<?php print($graphend); ?>','teams');
 
 
-            $.fn.datepicker.defaults.format = "yyyy-mm-dd";
-            $('.input-daterange').datepicker({
-                todayBtn: "linked",
-                language: "da",
-                autoclose: true
-            });
             $("#postoverview").load('overview.php');
 
             $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
@@ -351,7 +346,55 @@ var chart = Highcharts.chart('container', {
         zoomType: 'xy'
     },
     title: {
-        text: 'Antal SMS\'er'
+        text: 'SMS'
+    },
+
+    yAxis: {
+        title: {
+            text: ''
+        },
+        labels: {
+            formatter: function () {
+                return this.value;
+            }
+        }
+    },
+
+    xAxis: {
+        type: 'datetime'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    exporting: { enabled: false },
+    tooltip: {
+        useHTML: true,
+        headerFormat: '{point.key}: <span style="color: {series.color}; font-weight: bold">{point.y}</span>',
+        pointFormat: '',
+        footerFormat: ''
+    },
+    series: [{showInLegend: false}]
+});
+
+var chartTeams = Highcharts.chart('containerteams', {
+    chart: {
+        type: 'spline',
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Tilmeldte hold'
     },
 
     yAxis: {
@@ -394,12 +437,8 @@ var chart = Highcharts.chart('container', {
     series: [{showInLegend: false}]
 });
 
-        $('#datepicker').on('click','#updatedates', function () {
-            getGraphdata(chart, $("input[name=start]").val(),$("input[name=end]").val());
-        });
-
-        function getGraphdata(chart, start, end) {
-            $.get( "graphdata.php", { start: start, end: end } )
+        function getGraphdata(chart, start, end, type) {
+            $.get( "graphdata.php", { type: type, start: start, end: end } )
                 .done(function( data ) {
                     var data1 = JSON.parse(data);
                     chart.update({

@@ -143,7 +143,7 @@ spl_autoload_register(function ($class) {
                         <div role="tabpanel" class="tab-pane" id="postmandskaber">
                             <?php
                             // Team Overview
-                            $sql = "select * from tivoli2018_crew";
+                            $sql = "select * from tivoli2018_crew order by gametype";
                             $result = $db->printResultTable($sql);
                             print("<h2>Antal postmandskaber: ".$result['count']."</h2><hr>");
                             print($result['table']);

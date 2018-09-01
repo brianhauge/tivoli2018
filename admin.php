@@ -22,9 +22,11 @@ spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
     if(isset($_GET['start'])) $graphstart = $_GET['start'];
-    else $graphstart = "2018-05-01";
+    else $graphstart = date('Y-m-d H:m',strtotime("-6 hour"));
     if(isset($_GET['end'])) $graphend = $_GET['end'];
-    else $graphend = "2018-05-20";
+    else $graphend = date('Y-m-d H:m');
+
+    print($graphstart."<br>".$graphend);
     ?>
     <!DOCTYPE html>
     <html lang="da">
@@ -107,17 +109,7 @@ spl_autoload_register(function ($class) {
                         <div role="tabpanel" class="tab-pane active" id="dash">
                             <h2>My Dashboard</h2>
                             <hr>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="start" value="<?php print($graphstart); ?>" />
-                                            <span class="input-group-addon">til</span>
-                                            <input type="text" class="input-sm form-control" name="end" value="<?php print($graphend); ?>" />
-                                            &nbsp;<button type="button" class="btn btn-primary" id="updatedates">Update</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="container" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
+                            <div id="container" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
                             <?php
                             ?>
                         </div>
@@ -251,7 +243,7 @@ spl_autoload_register(function ($class) {
 
         $().ready(function() {
 
-            getGraphdata(chart, $("input[name=start]").val(),$("input[name=end]").val());
+            getGraphdata(chart, '<?php print($graphstart); ?>','<?php print($graphend); ?>');
 
 
             $.fn.datepicker.defaults.format = "yyyy-mm-dd";
@@ -355,15 +347,16 @@ Highcharts.setOptions({
 });
 var chart = Highcharts.chart('container', {
     chart: {
-        type: 'area'
+        type: 'spline',
+        zoomType: 'xy'
     },
     title: {
-        text: ''
+        text: 'Antal SMS\'er'
     },
 
     yAxis: {
         title: {
-            text: 'Antal SMS\'er'
+            text: ''
         },
         labels: {
             formatter: function () {
@@ -373,13 +366,12 @@ var chart = Highcharts.chart('container', {
     },
 
     xAxis: {
-        type: 'datetime'
+        type: 'datetime',
 
     },
 
     plotOptions: {
-        area: {
-
+        spline: {
             marker: {
                 enabled: false,
                 symbol: 'circle',
@@ -392,7 +384,14 @@ var chart = Highcharts.chart('container', {
             }
         }
     },
-    series: [{}]
+    exporting: { enabled: false },
+    tooltip: {
+        useHTML: true,
+        headerFormat: '{point.key}: <span style="color: {series.color}; font-weight: bold">{point.y}</span>',
+        pointFormat: '',
+        footerFormat: ''
+    },
+    series: [{showInLegend: false}]
 });
 
         $('#datepicker').on('click','#updatedates', function () {

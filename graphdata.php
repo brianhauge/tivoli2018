@@ -40,7 +40,7 @@ if(isset($_GET['start']) && isset($_GET['end'])) {
     }
 
     if($_GET['type'] == 'teams') {
-        $i = $db->queryToArray('select count(*) as y from tivoli2018_teams where updated_at > "'.$_GET['start'].'"');
+        $i = $db->queryToArray('select count(*) as y from tivoli2018_teams where updated_at < "'.$_GET['start'].'"');
         $iFirst = $i[0]['y'];
         $i = $iFirst;
         $graphdata = $db->queryToArray('select DATE_FORMAT(updated_at,"%Y-%m-%d %H:%i") as x, count(*) as y from tivoli2018_teams where updated_at between "'.$_GET['start'].'" and "'.$_GET['end'].'" group by day(updated_at), hour(updated_at), minute(updated_at) ORDER BY x');

@@ -58,6 +58,15 @@ spl_autoload_register(function ($class) {
             .key { color: red; }
             .highcharts-credits {
                 display: none;}
+
+            .collapsing {
+                position: relative;
+                height: 0;
+                overflow: hidden;
+                -webkit-transition: height .10s ease;
+                -o-transition: height .10s ease;
+                transition: height .10s ease;
+            }
         </style>
     </head>
     <body>
@@ -263,7 +272,6 @@ spl_autoload_register(function ($class) {
             setInterval(function(){ $("#postoverview").load('overview.php'); }, 600000);
             $('#myTab a').click(function(e) {
                 e.preventDefault();
-
                 $(this).tab('show');
             });
 
@@ -275,7 +283,9 @@ spl_autoload_register(function ($class) {
                 $(e.target).addClass('active');
             });
 
-
+            $("ul.navbar-nav > li > a").on("click", function(e) {
+                $("button.navbar-toggler").click();
+            });
 
             // on load of the page: switch to the currently selected tab
             var hash = window.location.hash;

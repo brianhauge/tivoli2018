@@ -7,6 +7,8 @@
  * Time: 19:03
  */
 
+error_reporting(0);
+
 include_once("config.php");
 
 if( ! ini_get('date.timezone') )

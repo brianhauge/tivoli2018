@@ -54,7 +54,8 @@ if(!empty($data)) {
             preg_match("/".TEAM_REGEX."/",$tmpmatch[0],$teamid);
             $dbModel->insertScore($teamid[0],$data['point'],$checkedInPost,$_SESSION['msisdn']);
 			$teampoints = $dbModel->getTeamPoints($teamid[0]);
-            $tmp['message'] = "<p>".$data['point'] . " point givet til:</p><p><b>" . $data['team'] . "</b></p><p>Holdet har nu ".$teampoints." point.";
+			$teamdetails = $dbModel->getTeamDetails($teamid[0]);
+            $tmp['message'] = "<p>".$data['point'] . " point givet til:</p><p><b>" . $teamdetails['cid'] . " - " . $teamdetails['name'] . "</b></p><p>Holdet har nu ".$teampoints." point.";
             $tmp['status'] = true;
         } else {
             $tmp['message'] = $data['point'] . " IKKE givet til hold " . $data['team'] . " på post ".$checkedInPost;

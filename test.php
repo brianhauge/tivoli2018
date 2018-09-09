@@ -14,4 +14,18 @@ spl_autoload_register(function ($class) {
 });
 
 
-print(BASEURL);
+$dbModel = new DbModel();
+
+var_dump ($dbModel->getTeamDetails(22));
+
+
+
+$allPosts = $dbModel->getAllPostDetails("d");
+$array = array();
+
+foreach($allPosts as $key => $post) {
+	$array[] = $key . " - " . $post['name'];
+}
+
+$json = json_encode($array);
+print($json);

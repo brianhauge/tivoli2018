@@ -19,7 +19,7 @@ class PostCheckInController extends BaseInit
 
     public function handleCheckin(PostCheckInModel $checkInModel) {
         if (!$checkInModel->getPost()) {
-            $message = "Postindtjekning: 'post' eller 'p' ikke fundet i beskeden eller dens værdi er ugyldig (Nxx).".SMS_HELPTEXT;
+            $message = "Postindtjekning: 'post' eller 'p' ikke fundet i beskeden eller dens værdi er ugyldig (Axx).".SMS_HELPTEXT;
             $this->smsSender->sendSms($checkInModel->getMsisdn(),$message,$checkInModel->getSmsid());
             $this->logger->warning(__METHOD__.": ".$checkInModel->getMsisdn().",".$checkInModel->getSmscontent().", Wrong value in message");
         }
@@ -28,7 +28,7 @@ class PostCheckInController extends BaseInit
             $this->dbModel->insertCheckin($checkInModel->getPost(),$checkInModel->getMsisdn());
             // Send status to $sender
             $this->logger->info(__METHOD__.": ".$checkInModel->getMsisdn()." has checked in on post ".$checkInModel->getPost());
-            $message = "Du er nu tjekket ind på post ".$checkInModel->getPost().". For at give point, send ex: c4 p20 (20 point til hold N4). Husk at checke ind igen, hvis du flytter post!";
+            $message = "Du er nu tjekket ind på post ".$checkInModel->getPost().". For at give point, send ex: a4 p20 (20 point til hold A4). Husk at checke ind igen, hvis du flytter post!";
             $this->smsSender->sendSms($checkInModel->getMsisdn(),$message);
         }
         $this->dbModel->insertTrace($checkInModel->getMsisdn(),$checkInModel->getSmscontent(),$message);

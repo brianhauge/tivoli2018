@@ -212,6 +212,101 @@ class DbModel extends BaseInit
         }
         return $array;
     }
+	
+    /**
+     * @param $user
+     * @param $password
+     */
+    public function createUser($user, $password) {
+        $stmt = $this->con->prepare("INSERT INTO tivoli2018_users (user, password) VALUES (?,sha2(?,256))");
+        $stmt->bind_param("ss", $user, $password);
+        $stmt->execute();
+        $stmt->close();
+    }
+	
+	
+    /**
+     * @param $postnr
+	 * @param $type
+     * @return array
+     */
+    public function getPostDetails($postnr, $type) {
+        $array = array();
+        if ($stmt = $this->con->prepare("SELECT navn,location,description FROM tivoli2018_post WHERE postnr = ? and type = ? LIMIT 1")) {
+            $stmt->bind_param("ss", $postnr, $type);
+            $stmt->execute();
+            $stmt->bind_result($name, $location, $description);
+            while ($stmt->fetch()) {
+				$array['postnr'] = $postnr;
+				$array['type'] = $type;
+                $array['name'] = $name;
+                $array['location'] = $location;
+                $array['description'] = $description;
+            }
+            $stmt->close();
+			return $array;
+        }
+		else {
+			return false;
+		}
+    }
+	
+	
+    /**
+     * @param $teamid
+     * @return array
+     */
+    public function getTeamDetails($teamid) {
+        $array = array();
+        if ($stmt = $this->con->prepare("SELECT id, concat(t.groups,t.id) cid,name,leader,mobile,email,kreds,numberofmembers,groups,updated_at FROM tivoli2018_teams t WHERE id = ?")) {
+            $stmt->bind_param("i", $teamid);
+            $stmt->execute();
+            $stmt->bind_result($id, $cid, $name, $leader, $mobile, $email, $kreds, $numberofmembers, $groups, $updated_at);
+            while ($stmt->fetch()) {
+				$array['id'] = $id;
+				$array['cid'] = $cid;
+                $array['name'] = $name;
+                $array['leader'] = $leader;
+                $array['mobile'] = $mobile;
+				$array['email'] = $email;
+				$array['kreds'] = $kreds;
+				$array['numberofmembers'] = $numberofmembers;
+				$array['groups'] = $groups;
+				$array['updated_at'] = $updated_at;
+            }
+            $stmt->close();
+			return $array;
+        }
+		else {
+			return false;
+		}
+    }
+	
+	
+    /**
+     * @param $postnr
+	 * @param $type
+     * @return array
+     */
+    public function getAllPostDetails($type = GAME_TYPE) {
+        $array = array();
+        if ($stmt = $this->con->prepare("SELECT postnr,navn,location,description FROM tivoli2018_post WHERE type = ?")) {
+            $stmt->bind_param("s", $type);
+            $stmt->execute();
+            $stmt->bind_result($postnr, $name, $location, $description);
+            while ($stmt->fetch()) {
+				$array[$postnr]['type'] = $type;
+                $array[$postnr]['name'] = $name;
+                $array[$postnr]['location'] = $location;
+                $array[$postnr]['description'] = $description;
+            }
+            $stmt->close();
+			return $array;
+        }
+		else {
+			return false;
+		}
+    }
 
     /**
      *

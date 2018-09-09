@@ -44,4 +44,6 @@ if(SMSGW == 'app') {
 else if (SMSGW == "nexmo") {
     $smsgwDbModel = new SmsgwDbModel();
     $smsgwDbModel->insertIncomingSMS($_REQUEST,'in');
+	// Hack for at få scheduler til at køre hver gang, så der ikke ventes 1 min.
+	shell_exec("php scheduler.php  --schedule=handleIncomingQueue");
 }

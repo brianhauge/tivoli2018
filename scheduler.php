@@ -5,28 +5,40 @@
  * Date: 05-05-2018
  * Time: 13:49
  */
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+$schedule = '';
+$val = getopt(null, ["schedule:"]);
+if (isset($val['schedule'])) {
+	$schedule = $val['schedule'];
+} else if (isset($_GET['schedule'])) {
+	$schedule = $_GET['schedule'];
+}
+if($schedule == '') die("Schedule not set");
 
 setlocale(LC_ALL, "da_DK");
 require 'vendor/autoload.php';
+use Katzgrau\KLogger\Logger;
 require 'config.php';
 
 spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
 
-$schedule = $_GET['schedule'];
-if($schedule == '') die("Schedule not set");
+$logger = new Logger(LOGPATH,Psr\Log\LogLevel::DEBUG, array(
+            'dateFormat' => 'Y-m-d G:i:s',
+            'logFormat' =>  '[{date}] [{level}]{level-padding} {message}',
+			'prefix' => 'scheduler_'
+        ));
 
 
 // Handle incoming SMS queue
 if($schedule == 'handleIncomingQueue') {
     $smsDB = new SmsgwDbModel();
     $smss = $smsDB->getSMS();
-    print("<pre>");
-    print_r($smss);
-    print("</pre>");
+	$logger->info("Scheduler::handleIncomingQueue: Number of SMS's to handle: ".count($smss));
 
     foreach ($smss as $sms) {
+		$logger->info("Scheduler::handleIncomingQueue: Handling ".$sms['id']);
         if(preg_match("/[Cc]heck|[Tt]jek/",$sms['text'])) {
             $checkinPostModel = new PostCheckInModel();
             $checkinController = new PostCheckInController();
@@ -40,4 +52,5 @@ if($schedule == 'handleIncomingQueue') {
             $scoreController->handleReceivedPoints($SmsScoreModel);
         }
     }
+	$logger->info("Scheduler::handleIncomingQueue: Done");
 }

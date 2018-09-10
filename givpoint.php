@@ -9,6 +9,11 @@
 session_start();
 $_SESSION['smscode'] = rand(1000, 9999);
 include "config.php";
+setlocale(LC_ALL, "da_DK");
+spl_autoload_register(function ($class) {
+    include 'classes/' . $class . '.php';
+});
+$checkIn = new PostCheckInController();
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +37,14 @@ include "config.php";
     <div role="main" class="ui-content">
         <p>
             <label for="text-basic">Post</label>
-            <input type="text" name="text-basic" id="postid" value="">
+			<form>
+			    <div class="ui-field-contain">
+			        <select id="post-filter-menu" data-native-menu="false" class="filterable-select">
+			            <option>Vælg post...</option>
+						<?php print ($checkIn->listPostsForWeb("d"));?>
+			        </select>
+			    </div>
+			</form>
         </p>
         <p>
             <label for="number-pattern">Mobil</label>
@@ -111,11 +123,14 @@ include "config.php";
             }
         });
     });
+	
+	$.mobile.defaultPageTransition = "slidefade";
 
     $("#tjekindbutton").on('click',function(event){
         event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
-        var postid = $("#postid").prop('value');
+        var postid = $("#post-filter-menu").prop('value');
+		alert(postid);
         $.post('givpointhandler.php', "cmd=sendcode&postid="+postid+"&msisdn="+msisdn, function (data) {
             obj = JSON.parse(data);
             if(obj.status) {
@@ -130,7 +145,7 @@ include "config.php";
     $("#verificertjekindbutton").on('click',function(event){
         event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
-        var postid = $("#postid").prop('value');
+        var postid = $("#post-filter-menu").prop('value');
         var smscode = $("#smscode").prop('value');
         $.post('givpointhandler.php', "cmd=tjekind&postid="+postid+"&msisdn="+msisdn+"&smscode="+smscode, function (data) {
             obj = JSON.parse(data);
@@ -147,7 +162,7 @@ include "config.php";
     $("#givpointbutton").on('click',function(event){
         event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
-        var postid = $("#postid").prop('value');
+        var postid = $("#post-filter-menu").prop('value');
         var smscode = $("#smscode").prop('value');
         var point = $("#point").prop('value');
         var team = $("#team").prop('value');
@@ -163,5 +178,6 @@ include "config.php";
         });
     });
 </script>
+	
 </body>
 </html>

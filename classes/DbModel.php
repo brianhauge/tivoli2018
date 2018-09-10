@@ -295,10 +295,11 @@ class DbModel extends BaseInit
             $stmt->execute();
             $stmt->bind_result($postnr, $name, $location, $description);
             while ($stmt->fetch()) {
-				$array[$postnr]['type'] = $type;
+				$array[$postnr]['postnr'] = $postnr;
                 $array[$postnr]['name'] = $name;
                 $array[$postnr]['location'] = $location;
                 $array[$postnr]['description'] = $description;
+				$array[$postnr]['type'] = $type;
             }
             $stmt->close();
 			return $array;

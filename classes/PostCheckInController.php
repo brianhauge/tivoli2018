@@ -33,4 +33,13 @@ class PostCheckInController extends BaseInit
         }
         $this->dbModel->insertTrace($checkInModel->getMsisdn(),$checkInModel->getSmscontent(),$message);
     }
+	
+	public function listPostsForWeb() {
+		$postList = "";
+		$allPosts = $this->dbModel->getAllPostDetails();
+		foreach($allPosts as $post) {
+			$postList .= '<option value="' . $post['postnr'] . '">' . $post['postnr'] . ' - ' . $post['name'] . '</option>';
+		}
+		return $postList;
+	}
 }

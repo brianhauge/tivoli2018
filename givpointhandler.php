@@ -48,15 +48,31 @@ if(!empty($data)) {
             $tmp['message'] = "Point eller Hold ikke udfyldt";
             $tmp['status'] = false;
         }
-        else if (preg_match("/".POINT_REGEX."/",$data['point']) && preg_match("/".TEAM_REGEX."/",$data['team'])) {
+		else if (!preg_match("/".GROUP_REGEX.TEAM_REGEX."/",$data['team'])) {
+            $tmp['message'] = "Hold " . $data['team'] . " ikke anført korrekt.";
+            $tmp['status'] = false;
+		}
+		else if (!preg_match("/^".POINT_REGEX."$/",$data['point'])) {
+            $tmp['message'] = "Der kan kun gives 0 - 100 point.";
+            $tmp['status'] = false;
+		}
+        else if (preg_match("/".POINT_REGEX."/",$data['point']) && preg_match("/".GROUP_REGEX.TEAM_REGEX."/",$data['team'])) {
             $team = strtolower(preg_replace('/\s+/', '', $data['team']));
             preg_match("/".GROUP_REGEX.TEAM_REGEX."/",$data['team'],$tmpmatch);
             preg_match("/".TEAM_REGEX."/",$tmpmatch[0],$teamid);
-            $dbModel->insertScore($teamid[0],$data['point'],$checkedInPost,$_SESSION['msisdn']);
-			$teampoints = $dbModel->getTeamPoints($teamid[0]);
-			$teamdetails = $dbModel->getTeamDetails($teamid[0]);
-            $tmp['message'] = "<p>".$data['point'] . " point givet til:</p><p><b>" . $teamdetails['cid'] . " - " . $teamdetails['name'] . "</b></p><p>Holdet har nu ".$teampoints." point.";
-            $tmp['status'] = true;
+			
+			if(!$dbModel->getTeamDetails($teamid)) {
+	            $tmp['message'] = "Hold " . $data['team'] . " findes ikke.";
+	            $tmp['status'] = false;
+			}
+			else {
+	            $dbModel->insertScore($teamid[0],$data['point'],$checkedInPost,$_SESSION['msisdn']);
+				$teampoints = $dbModel->getTeamPoints($teamid[0]);
+				$teamdetails = $dbModel->getTeamDetails($teamid[0]);
+	            $tmp['message'] = "<p>".$data['point'] . " point givet til:</p><p><b>" . $teamdetails['cid'] . " - " . $teamdetails['name'] . "</b></p><p>Holdet har nu ".$teampoints." point.";
+	            $tmp['status'] = true;
+			}
+            
         } else {
             $tmp['message'] = $data['point'] . " IKKE givet til hold " . $data['team'] . " på post ".$checkedInPost;
             $tmp['status'] = false;

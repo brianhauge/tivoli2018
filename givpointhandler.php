@@ -60,15 +60,15 @@ if(!empty($data)) {
             $team = strtolower(preg_replace('/\s+/', '', $data['team']));
             preg_match("/".GROUP_REGEX.TEAM_REGEX."/",$data['team'],$tmpmatch);
             preg_match("/".TEAM_REGEX."/",$tmpmatch[0],$teamid);
-			
-			if(!$dbModel->getTeamDetails($teamid)) {
+			$teamdetails = $dbModel->getTeamDetails($teamid[0]);
+			if(!$teamdetails) {
 	            $tmp['message'] = "Hold " . $data['team'] . " findes ikke.";
 	            $tmp['status'] = false;
 			}
 			else {
 	            $dbModel->insertScore($teamid[0],$data['point'],$checkedInPost,$_SESSION['msisdn']);
 				$teampoints = $dbModel->getTeamPoints($teamid[0]);
-				$teamdetails = $dbModel->getTeamDetails($teamid[0]);
+				
 	            $tmp['message'] = "<p>".$data['point'] . " point givet til:</p><p><b>" . $teamdetails['cid'] . " - " . $teamdetails['name'] . "</b></p><p>Holdet har nu ".$teampoints." point.";
 	            $tmp['status'] = true;
 			}

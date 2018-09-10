@@ -130,7 +130,6 @@ $checkIn = new PostCheckInController();
         event.preventDefault();
         var msisdn = $("#msisdn").prop('value');
         var postid = $("#post-filter-menu").prop('value');
-		alert(postid);
         $.post('givpointhandler.php', "cmd=sendcode&postid="+postid+"&msisdn="+msisdn, function (data) {
             obj = JSON.parse(data);
             if(obj.status) {

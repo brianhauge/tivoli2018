@@ -24,6 +24,27 @@ $checkIn = new PostCheckInController();
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <link rel="canonical" href="<?php print(BASEURL); ?>">
+
+    <style>
+        .ui-selectmenu.ui-popup .ui-input-search {
+            margin-left: .5em;
+            margin-right: .5em;
+        }
+        .ui-selectmenu.ui-dialog .ui-content {
+            padding-top: 0;
+        }
+        .ui-selectmenu.ui-dialog .ui-selectmenu-list {
+            margin-top: 0;
+        }
+        .ui-selectmenu.ui-popup .ui-selectmenu-list li.ui-first-child .ui-btn {
+            border-top-width: 1px;
+            -webkit-border-radius: 0;
+            border-radius: 0;
+        }
+        .ui-selectmenu.ui-dialog .ui-header {
+            border-bottom-width: 1px;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,7 +62,7 @@ $checkIn = new PostCheckInController();
 			    <div class="ui-field-contain">
 			        <select id="post-filter-menu" data-native-menu="false" class="filterable-select">
 			            <option>Vælg post...</option>
-						<?php print ($checkIn->listPostsForWeb("d"));?>
+						<?php print ($checkIn->listPostsForWeb());?>
 			        </select>
 			    </div>
 			</form>
@@ -84,7 +105,14 @@ $checkIn = new PostCheckInController();
     <div role="main" class="ui-content">
         <p>
             <label for="text-basic">Hold</label>
-            <input type="text" name="text-basic" id="team" value="">
+        <form>
+            <div class="ui-field-contain">
+                <select name="team" id="team" data-native-menu="false" class="filterable-select">
+                    <option>Vælg hold...</option>
+                    <?php print ($checkIn->listTeamsForWeb());?>
+                </select>
+            </div>
+        </form>
         </p>
         <p>
             <label for="number-pattern">Point 1-100</label>
@@ -175,6 +203,30 @@ $checkIn = new PostCheckInController();
                 alert(obj.message);
             }
         });
+    });
+
+
+    $(document).on("pagecreate", "#team-dialog", function (e) {
+        var form = $("<form><input data-type='search'/></form>"),
+            page = $(this);
+
+        $(".ui-content", this)
+            .prepend(form);
+
+        form.enhanceWithin()
+            .on("keyup", "input", function () {
+                var data = $(this).val().toLowerCase();
+                $("li", page).addClass("ui-screen-hidden")
+                    .filter(function (i, v) {
+                        return $(this).text().toLowerCase().indexOf(data) > -1;
+                    }).removeClass("ui-screen-hidden");
+            });
+
+        $(document).on("pagecontainerhide", function () {
+            $("#team-menu li").removeClass("ui-screen-hidden");
+            $("input", form).val("");
+        });
+
     });
 </script>
 	

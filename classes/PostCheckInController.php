@@ -42,4 +42,14 @@ class PostCheckInController extends BaseInit
 		}
 		return $postList;
 	}
+
+
+    public function listTeamsForWeb() {
+        $teamList = "";
+        $allTeams = $this->dbModel->getAllTeamDetails();
+        foreach($allTeams as $team) {
+            $teamList .= '<option value="' . $team['cid'] . '">' . $team['cid'] . ' - ' . $team['name'] . '</option>';
+        }
+        return $teamList;
+    }
 }

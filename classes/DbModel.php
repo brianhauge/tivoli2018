@@ -309,6 +309,46 @@ class DbModel extends BaseInit
 		}
     }
 
+
+    /**
+     * @param $postnr
+     * @return array
+     */
+    public function getAllTeamDetails($type = GAME_TYPE) {
+        $array = array();
+        if($type === "n") {
+            $sql = "SELECT id, concat(t.groups,t.id) cid,name,leader,mobile,email,kreds,numberofmembers,groups,updated_at FROM tivoli2018_teams t WHERE groups IN ('n') ORDER BY cid";
+        }
+        else if ($type === "d") {
+            $sql = "SELECT id, concat(t.groups,t.id) cid,name,leader,mobile,email,kreds,numberofmembers,groups,updated_at FROM tivoli2018_teams t WHERE groups IN ('a','b','c') ORDER BY groups,id";
+        }
+        else {
+            $sql = "SELECT id, concat(t.groups,t.id) cid,name,leader,mobile,email,kreds,numberofmembers,groups,updated_at FROM tivoli2018_teams t WHERE groups IN ('z') ORDER BY cid";
+        }
+        if ($stmt = $this->con->prepare($sql)) {
+            $stmt->bind_param("s", $groups);
+            $stmt->execute();
+            $stmt->bind_result($id, $cid, $name, $leader, $mobile, $email, $kreds, $numberofmembers, $groups, $updated_at);
+            while ($stmt->fetch()) {
+                $array[$id]['id'] = $id;
+                $array[$id]['cid'] = $cid;
+                $array[$id]['name'] = $name;
+                $array[$id]['leader'] = $leader;
+                $array[$id]['mobile'] = $mobile;
+                $array[$id]['email'] = $email;
+                $array[$id]['kreds'] = $kreds;
+                $array[$id]['numberofmembers'] = $numberofmembers;
+                $array[$id]['groups'] = $groups;
+                $array[$id]['updated_at'] = $updated_at;
+            }
+            $stmt->close();
+            return $array;
+        }
+        else {
+            return false;
+        }
+    }
+
     /**
      *
      */

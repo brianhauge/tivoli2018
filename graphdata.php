@@ -60,7 +60,7 @@ if(isset($_GET['start']) && isset($_GET['end'])) {
         }
     }
     else {
-        $graphdata = $db->queryToArray('select DATE_FORMAT(tstamp,"%Y-%m-%d %H:%i") as x, count(*) as y from tivoli2018_trace where tstamp between "'.$_GET['start'].'" and "'.$_GET['end'].'" group by day(tstamp), hour(tstamp), minute(tstamp) ORDER BY x');
+        $graphdata = $db->queryToArray('select DATE_FORMAT(created_at,"%Y-%m-%d %H:%i") as x, count(*) as y from tivoli2018_smsgw where created_at between "'.$_GET['start'].'" and "'.$_GET['end'].'" group by day(created_at), hour(created_at), minute(created_at) ORDER BY x');
         foreach ($graphdata as $graph) {
             $points[$graph['x']] = $graph['y'];
         }

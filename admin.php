@@ -95,9 +95,6 @@ spl_autoload_register(function ($class) {
                     <a class="nav-link" href="#postoverview" aria-controls="postoverview" role="tab" data-toggle="tab">Post / Point Oversigt</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="#smsflow" aria-controls="smsflow" role="tab" data-toggle="tab">SMS Flow</a>
-                </li>
-                <li class="nav-item" role="presentation">
                     <a class="nav-link" href="#sendsms" aria-controls="sendsms" role="tab" data-toggle="tab">Send SMS</a>
                 </li>
             </ul>
@@ -132,7 +129,7 @@ spl_autoload_register(function ($class) {
                             <hr>
                             <?php
                             // Trace
-                            $sql = "select DATE_FORMAT(tstamp, '%Y-%m-%d %H:%i:%S') tid,msisdn mobil,input modtaget,output sendt from tivoli2018_trace ORDER BY tstamp desc limit 20";
+                            $sql = "select created_at as Tid,Direction,msisdn as Fra,`to` as Til,text,`remaining-balance`,messageId,Status from tivoli2018_smsgw ORDER BY created_at desc limit 100";
                             $result = $db->printResultTable($sql);
                             print($result['table']);
                             ?>
@@ -178,11 +175,6 @@ spl_autoload_register(function ($class) {
                             </div>
                         </div>
 
-
-                        <div role="tabpanel" class="tab-pane" id="smsflow">
-                            <p class="bg-primary" style="padding: 15px;"><a href="Tivoli_2016_SMS_Flow.pdf" style="color: #FFF">Download Tivoli 2016 SMS Flow.pdf</a></p>
-                            <p><img src="Tivoli_2016_SMS_Flow.png" width="800" /></p>
-                        </div>
 
 
                         <div role="tabpanel" class="tab-pane" id="sendsms">

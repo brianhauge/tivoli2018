@@ -266,7 +266,7 @@ spl_autoload_register(function ($class) {
             getGraphdata(chart, '<?php print($graphstart); ?>','<?php print($graphend); ?>','');
             getGraphdata(chartTeams, '<?php print($graphstart); ?>','<?php print($graphend); ?>','teams');
             getGraphdata(chartPoint, '<?php print($graphstart); ?>','<?php print($graphend); ?>','point');
-            //$("#postoverview").load('overview.php');
+            $("#postoverview").load('overview.php');
             $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
                 $( this ).popover('show');
             });

@@ -7,6 +7,10 @@
  * Time: 20:24
  */
 
+
+if(!isset($_SESSION['loggedin'])) {
+    header('Location: oprethold.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="da">

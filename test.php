@@ -6,7 +6,9 @@
  * Time: 17:07
  */
 
-
+session_start();
+$cache_expire = session_cache_expire();
+print($cache_expire);
 include "config.php";
 include "vendor/autoload.php";
 spl_autoload_register(function ($class) {
@@ -14,18 +16,3 @@ spl_autoload_register(function ($class) {
 });
 
 
-$dbModel = new DbModel();
-
-var_dump ($dbModel->getTeamDetails(22));
-
-
-
-$allPosts = $dbModel->getAllPostDetails("d");
-$array = array();
-
-foreach($allPosts as $key => $post) {
-	$array[] = $key . " - " . $post['name'];
-}
-
-$json = json_encode($array);
-print($json);

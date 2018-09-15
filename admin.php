@@ -22,7 +22,7 @@ spl_autoload_register(function ($class) {
     include 'classes/' . $class . '.php';
 });
     if(isset($_GET['start'])) $graphstart = $_GET['start'];
-    else $graphstart = date('Y-m-d H:m',strtotime("-1 day"));
+    else $graphstart = date('Y-m-d H:m',strtotime("-4 hour"));
     if(isset($_GET['end'])) $graphend = $_GET['end'];
     else $graphend = date('Y-m-d H:m');
 

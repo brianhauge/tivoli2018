@@ -16,7 +16,7 @@ include "config.php";
 
 
     $db = new DbModel();
-    $uniqteam = $db->queryToArray("select concat(groups,id) cid, id from tivoli2018_teams where groups != 'N' order by groups, id");
+    $uniqteam = $db->queryToArray("select concat(groups,id) cid, id from tivoli2018_teams where groups = 'N' order by groups, id");
     $uniqpost = $db->queryToArray("select pc.postid,group_concat(DISTINCT p.mobile SEPARATOR '<br />') mobile from tivoli2018_postcheckin_change_log pc left join tivoli2018_postcheckin p on pc.postid = p.postid GROUP BY pc.postid ORDER BY LPAD(lower(pc.postid), 10,0)");
 
     print("<h2>Post / Point Oversigt</h2><hr><table class='table table-striped table-bordered'><tr><th></th>");

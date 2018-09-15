@@ -9,7 +9,7 @@
 
 session_start();
 if(!isset($_SESSION['loggedin'])) {
-    header('Location: oprethold.php');
+    header('Location: oprethold.php?gametype=n');
 }
 ?>
 <!DOCTYPE html>

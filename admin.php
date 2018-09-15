@@ -120,6 +120,7 @@ spl_autoload_register(function ($class) {
                             <hr>
                             <div id="containerteams" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
                             <div id="container" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
+                            <div id="containerpoint" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
 
                         </div>
 
@@ -266,7 +267,8 @@ spl_autoload_register(function ($class) {
         $().ready(function() {
             getGraphdata(chart, '<?php print($graphstart); ?>','<?php print($graphend); ?>','');
             getGraphdata(chartTeams, '<?php print($graphstart); ?>','<?php print($graphend); ?>','teams');
-            $("#postoverview").load('overview.php');
+            getGraphdata(chartPoint, '<?php print($graphstart); ?>','<?php print($graphend); ?>','point');
+            //$("#postoverview").load('overview.php');
             $('#postoverview').on('focus', '.bg-success, .bg-warning, .bg-danger', function () {
                 $( this ).popover('show');
             });
@@ -443,6 +445,56 @@ var chartTeams = Highcharts.chart('containerteams', {
     },
     series: [{showInLegend: false}]
 });
+
+
+        var chartPoint = Highcharts.chart('containerpoint', {
+            chart: {
+                type: 'spline',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Antal point'
+            },
+
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value;
+                    }
+                }
+            },
+
+            xAxis: {
+                type: 'datetime',
+
+            },
+
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            exporting: { enabled: false },
+            tooltip: {
+                useHTML: true,
+                headerFormat: '{point.key}: <span style="color: {series.color}; font-weight: bold">{point.y}</span>',
+                pointFormat: '',
+                footerFormat: ''
+            },
+            series: [{showInLegend: false}]
+        });
 
         function getGraphdata(chart, start, end, type) {
             $.get( "graphdata.php", { type: type, start: start, end: end } )

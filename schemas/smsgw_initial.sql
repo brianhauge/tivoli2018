@@ -80,17 +80,3 @@ ALTER TABLE `tivoli2018_smsgw`
   ADD KEY `to_key` (`to`),
   ADD KEY `message-timestamp_key` (`message-timestamp`),
   ADD KEY `created_at_key` (`created_at`);
-
-SELECT * FROM tivoli2018_smsgw;
-#WHERE tivoli2018_smsgw.concat not like 'Glglqhl';
-
-SELECT * FROM tivoli2018_smsgw where status in ('notProcessed') AND direction = 'in' limit 10;
-
-UPDATE tivoli2018_smsgw set haugemedia_net_db2.tivoli2018_smsgw.status = 'notProcessed';
-
-desc tivoli2018_smsgw;
-
-show tables
-
-
-select * from tivoli2018_crew

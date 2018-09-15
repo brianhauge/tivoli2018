@@ -129,7 +129,11 @@ spl_autoload_register(function ($class) {
                             <hr>
                             <?php
                             // Trace
-                            $sql = "select created_at as Tid,Direction,msisdn as Fra,`to` as Til,text,`remaining-balance`,messageId,Status from tivoli2018_smsgw ORDER BY created_at desc limit 100";
+                            $sql = "select `remaining-balance` from tivoli2018_smsgw ORDER BY created_at desc limit 1";
+                            $result = $db->printResultTable($sql);
+                            print($result['table']);
+
+                            $sql = "select created_at as Tid,Direction as '',msisdn as Fra,`to` as Til,text as 'Tekst',messageId as Id,Status from tivoli2018_smsgw ORDER BY created_at desc limit 100";
                             $result = $db->printResultTable($sql);
                             print($result['table']);
                             ?>
@@ -148,7 +152,12 @@ spl_autoload_register(function ($class) {
 
                         <div role="tabpanel" class="tab-pane" id="postmandskaber">
                             <?php
-                            // Team Overview
+                            // Crew Overview
+                            $sql = "SELECT gametype 'Løbstype', count(*) 'Antal' from tivoli2018_crew group by gametype";
+                            $result = $db->printResultTable($sql);
+                            print("<h2>Fordeling af postmandskaber:</h2><hr>");
+                            print($result['table']);
+
                             $sql = "select * from tivoli2018_crew order by gametype";
                             $result = $db->printResultTable($sql);
                             print("<h2>Antal postmandskaber: ".$result['count']."</h2><hr>");
